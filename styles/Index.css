@@ -183,7 +183,8 @@ body {
     flex-wrap: wrap;
     width: 100%;
     background-color: #1b2522;
-    margin-top: 200px; /* Ajusta este valor según necesites */
+    margin-top: 200px; /* Mantiene el margen superior */
+    height: 500px; /* Aumenta la altura total */
 }
 
 #informacionPrincipal {
@@ -194,13 +195,22 @@ body {
     margin-top: 20px; /* Puedes ajustar esto también */
 }
 
-#menu h2{
+#menu h2 {
     text-decoration: none;
     color: rgb(255, 255, 255);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Playfair Display', serif; /* Aplicar la fuente Playfair */
     font-size: 80px; /* Letra más grande */
-    
+    margin-top: 20px; /* Ajusta el margen superior para bajarlo */
+    text-align: center; /* Asegura que esté alineado si es necesario */
+}
 
+#menu p {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: 'Lora', serif; /* Aplicar la fuente Lora */
+    font-size: 40px; /* Letra más grande */
+    text-align: center;
+    justify-content: center; /* Centrar el texto */
 }
 #informacionPrincipal p{
     font-size: 30px;
@@ -212,4 +222,564 @@ body {
   
    margin-bottom:0;
 }
+.parent {
+    display: flex;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 0.8fr); /* Reducir tamaño de filas */
+    gap: 20px; /* Reducir separación */
+    border-radius: 15px;
+    padding: 10px; /* Reducir padding */
+    background-color: rgba(0, 0, 0, 0.477);
+    max-width: 1800px;
+    max-height: 500px; /* Reducir altura máxima */
+    width: 100%;
+    height: 50%; /* Ajustar altura */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: -80px; /* Reducir este valor para subirlo */
+    margin-left: 50px;
+}
+ /* Finaliza seccion acerca de nosotros*/
 
+/* Seccion comida */
+ #comida {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex-wrap: wrap; /* Permite que el contenido se ajuste si es necesario */
+    width: 100%;
+    background-color: #1b2522;
+    padding: 50px 20px; /* Espaciado uniforme */
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+    text-align: center; /* Asegura que el texto dentro se centre */
+}
+
+#comida h2 {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    margin-top: -80px; /* Usa un valor negativo para subirlo */
+    text-align: center;
+}
+
+.parent2 {
+    display: flex;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 0.8fr); /* Reducir tamaño de filas */
+    gap: 20px; /* Reducir separación */
+    border-radius: 15px;
+    padding: 10px; /* Reducir padding */
+    background-color: rgba(0, 0, 0, 0.477);
+    max-width: 1800px;
+    max-height: 500px; /* Reducir altura máxima */
+    width: 100%;
+    height: 50%; /* Ajustar altura */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px; /* Reducir este valor para subirlo */
+    margin-left: 50px;
+}
+.div1 {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    grid-row: span 3 / span 3;
+    grid-row-start: 2;
+    border-radius: 15px;
+    padding: 20px;
+    
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    
+    gap: 50px; /* Espaciado entre imagen y texto */
+}
+
+.div2 {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    grid-row: span 3 / span 3;
+    grid-column-start: 3;
+    grid-row-start: 2;
+    border-radius: 15px;
+    padding: 20px;
+    
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+   
+    gap: 50px; /* Espaciado entre imagen y texto */
+}
+
+.div3 {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    grid-row: span 3 / span 3;
+    grid-column-start: 5;
+    grid-row-start: 2;
+    border-radius: 15px;
+    padding: 20px;
+   
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+   
+    gap: 50px; /* Espaciado entre imagen y texto */
+}
+
+.div1 img, .div2 img, .div3 img {
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: 100%; /* Ajusta la imagen al alto del contenedor */
+    object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
+    border-radius: 5px; /* Mantiene el borde redondeado */
+}
+.title-container {
+    display: flex;
+    justify-content: center; /* Centra el título horizontalmente */
+    align-items: center;
+   
+    padding: 10px;
+}
+
+.title-box {
+    background-color: #FF8C00; /* Color de fondo naranja */
+    color: white; /* Color del texto */
+    padding: 10px 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    text-align: center;
+}
+/* Finaliza Sección comida*/
+
+/* Inicia Sección Reservas*/
+#reservas {
+    display: flex;
+    flex-direction: column; /* Acomoda los elementos en columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #1b2522;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+#reservas h2 {
+    color: rgb(255, 255, 255);
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    text-align: center;
+    position: relative;
+    margin-top: -350px;
+    margin-bottom: 100px; /* Aumenta el espacio debajo del h2 */
+}
+
+.parent3 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 0.8fr); /* Tamaño de filas */
+    gap: 20px; /* Reducir separación */
+    border-radius: 15px;
+    padding: 10px; /* Reducir padding */
+    background-color: rgba(0, 0, 0, 0.477);
+    max-width: 1800px;
+    max-height: 500px; /* Reducir altura máxima */
+    width: 100%;
+    height: 50%; /* Ajustar altura */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: -80px; /* Reducir este valor para subirlo */
+    margin-left: 50px;
+}
+
+.div4 {
+    grid-column: span 3 / span 3;
+    grid-row: span 5 / span 5;
+    grid-column-start: 3;
+    grid-row-start: 1;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    gap: 50px; /* Espaciado entre imagen y texto */
+}
+
+.div5 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    gap: 50px; /* Espaciado entre imagen y texto */
+}
+
+.div6 {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-row-start: 4;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    gap: 50px; /* Espaciado entre imagen y texto */
+}
+
+.div4 img, .div5 img, .div6 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+.titulo-naranja {
+    background-color: #FF8C00; /* Naranja */
+    color: white; /* Texto blanco */
+    text-align: center; /* Centrado */
+    font-family: 'Playfair Display', serif; /* Tipografía elegante */
+    font-size: 40px; /* Tamaño de fuente */
+    padding: 15px 20px; /* Espaciado interno */
+    width: 50%; /* Ancho del título */
+    margin: 30px auto; /* Centrado horizontalmente y espacio superior */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Finaliza Sección Reservas*/
+
+/* Inicia Sesion Galeria */
+
+
+#galleria {
+    
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #1b2522;
+    font-family: "Nunito", sans-serif;
+    
+}
+#galleria h2 {
+    color: rgb(255, 255, 255);
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    text-align: center;
+    position: relative;
+    margin-top: -350px;
+    margin-bottom: 100px; /* Aumenta el espacio debajo del h2 */
+}
+.div7 {
+    grid-row: span 5 / span 5;
+}
+
+.div8 {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 4;
+    grid-row-start: 4;
+}
+
+.div9 {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+
+.div10 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 2;
+    grid-row-start: 3;
+}
+
+.div11 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+    grid-row-start: 1;
+}
+
+.div7 img, .div8 img, .div9 img, .div10 img, .div11 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+/* finaliza seccion galleria */
+
+#encuentranos {
+    display: flex;
+    justify-content: space-evenly; /* Asegura que los elementos estén separados */
+    align-items: center; /* Centra verticalmente los elementos */
+    flex-direction: row-reverse; /* Invierte el orden de los elementos */
+    width: 100%;
+    background-color: #1b2522;
+    padding: 20px; /* Añade un poco de espacio alrededor del contenido */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+}
+
+.contenido {
+    display: flex;
+    width: 100%;
+    font-family: "Nunito", sans-serif;
+}
+
+.info {
+    width: 60%; /* Ajusta el ancho del contenedor del texto */
+    text-align: left; /* Alinea el texto a la izquierda */
+    font-size: 7em; /* Agranda el tamaño del texto */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el contenido */
+    align-items: flex-start; /* Alinea el contenido al inicio (izquierda) */
+    padding-left: 15%; /* Añade espacio a la izquierda para mover el texto hacia el centro */
+    font-family: "Nunito", sans-serif;
+}
+
+
+.info h2 {
+    font-size: 50px;
+    font-family: "Nunito", sans-serif;
+    color: white;
+}
+
+.info p{
+    font-size: 28px;
+    color: white;
+    font-family: "Nunito", sans-serif;
+}
+.mapa {
+    margin-right: 50px;
+    width: 40%; /* Ajusta el ancho del contenedor del mapa */
+    height: 500px; /* Ajusta la altura del mapa */
+}
+.parent4 {
+    display: flex;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 0.8fr); /* Tamaño de filas */
+    gap: 20px; /* Reducir separación */
+    border-radius: 15px;
+    padding: 10px; /* Reducir padding */
+    background-color: rgba(0, 0, 0, 0.477);
+    max-width: 1800px;
+    max-height: 500px; /* Reducir altura máxima */
+    width: 100%;
+    height: 50%; /* Ajustar altura */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 50px; /* Reducir este valor para subirlo */
+    margin-left: 50px;
+}
+footer {
+    background-color: #f8f8f8;
+    padding: 30px 0;
+    border-top: 5px solid #1b2522; /* Borde superior oscuro */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-section img {
+    max-width: 230px;
+    height: auto;
+}
+
+.logo-section p {
+    font-size: 30px;
+    color: #333;
+}
+
+.help-section h3,
+.social-section h3 {
+    font-size: 30px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0 10px; /* Espaciado horizontal entre los títulos */
+}
+
+.help-section a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 5px 0;
+    font-size: 30px;
+}
+.help-section a:hover {
+    text-decoration: underline;
+}
+
+
+/* From Uiverse.io by escannord */ 
+.wrapper {
+    display: inline-flex;
+    list-style: none;
+    height: 120px;
+    width: 100%;
+    padding-top: 40px;
+    font-family: "Poppins", sans-serif;
+    justify-content: center;
+  }
+  
+  .wrapper .icon {
+    position: relative;
+    background: #fff;
+    z-index: 0;
+    border-radius: 50%;
+    margin: 10px;
+    width: 80px;
+    height: 80px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .icon::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    z-index: -1;
+    border-radius: 50%;
+    top: 100%;
+  }
+  .wrapper .icon:hover:after {
+    animation: bg-pos 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1 both;
+    animation-timing-function: ease-in-out;
+  }
+  
+  .wrapper .icon:hover {
+    color: #fff;
+    overflow: unset;
+    transition: color 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: overflow-toggle 0.7s;
+  }
+  
+  .wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #fff;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #fff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  .wrapper .icon:hover span,
+  .wrapper .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  }
+  .wrapper .facebook::after {
+    background-color: #1877f2;
+  }
+  .wrapper .twitter::after {
+    background-color: #1da1f2;
+  }
+  .wrapper .instagram::after {
+    background-color: #e4405f;
+  }
+  
+  .wrapper .facebook:hover .tooltip,
+  .wrapper .facebook:hover .tooltip::before {
+    background: #1877f2;
+    color: #fff;
+  }
+  
+  .wrapper .twitter:hover .tooltip,
+  .wrapper .twitter:hover .tooltip::before {
+    background: #1da1f2;
+    color: #fff;
+  }
+  
+  .wrapper .instagram:hover .tooltip,
+  .wrapper .instagram:hover .tooltip::before {
+    background: #e4405f;
+    color: #fff;
+  }
+  
+  @keyframes bg-pos {
+    0% {
+      top: 100%;
+    }
+    100% {
+      top: 0;
+    }
+  }
+  
+  @keyframes overflow-toggle {
+    0% {
+      overflow: hidden;
+    }
+    100% {
+      overflow: visible;
+    }
+  }
+  .div13 {
+    grid-row: span 3 / span 3;
+    grid-row-start: 2;
+}
+
+.div14 {
+    grid-row: span 3 / span 3;
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+.div15 {
+    grid-row: span 3 / span 3;
+    grid-column-start: 5;
+    grid-row-start: 2;
+}
