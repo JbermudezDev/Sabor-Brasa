@@ -24,24 +24,30 @@ body {
     box-sizing: border-box;
     text-align: center;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.411);
+    background-color: rgba(255, 255, 255, 0.612);
     max-width: 2025px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     height: 120px;
 }
 .header-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    background-image: url('/images/fondo.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  background-image: url('/images/imagendiv3.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%; /* Ajusta la imagen al ancho del contenedor */
+  height: 45%; /* Ajusta la imagen al alto del contenedor */
+  object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
+  border-radius: 5px; /* Mantiene el borde redondeado */
 }
+/* Fondo para toda la página */
+
 
 #header ul {
     display: flex;
@@ -62,6 +68,7 @@ body {
 #header ul a {
     text-decoration: none;
     color: rgb(2, 2, 2);
+    
     font-family: 'Times New Roman', Times, serif;
     font-size: 28px; /* Letra más grande */
     letter-spacing: 2px; /* Espaciado entre letras */
@@ -238,6 +245,31 @@ body {
     margin-top: -80px; /* Reducir este valor para subirlo */
     margin-left: 50px;
 }
+.div20 {
+  grid-column: span 3 / span 3;
+  grid-row: span 5 / span 5;
+  border-radius: 15px;
+  padding: 20px;
+  
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  
+  gap: 50px; /* Espaciado entre imagen y texto */
+}
+
+.div21 {
+  grid-column: span 2 / span 2;
+  grid-row: span 5 / span 5;
+  grid-column-start: 4;
+  
+}
+.div20 img{
+  width: 100%; /* Ajusta la imagen al ancho del contenedor */
+  height: 100%; /* Ajusta la imagen al alto del contenedor */
+  object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
+  border-radius: 5px; /* Mantiene el borde redondeado */
+}
  /* Finaliza seccion acerca de nosotros*/
 
 /* Seccion comida */
@@ -351,6 +383,43 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     text-align: center;
+}
+/* Slider */
+.slider-container {
+  overflow: hidden;
+  position: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: auto;
+}
+
+.slider-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  animation: scroll 30s linear infinite;
+  width: max-content; /* Permite que el contenido se desplace sin romperse */
+}
+
+.slider-wrapper img {
+  width: 400px;
+  height: 400px;
+ 
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+/* Animación continua */
+@keyframes scroll {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-50%);
+  }
 }
 /* Finaliza Sección comida*/
 
@@ -579,58 +648,77 @@ body {
     margin-top: 50px; /* Reducir este valor para subirlo */
     margin-left: 50px;
 }
+css
+/* Footer */
 footer {
-    background-color: #f8f8f8;
-    padding: 30px 0;
-    border-top: 5px solid #1b2522; /* Borde superior oscuro */
+    background: #fff6e5;
+    color: white;
+    padding: 40px 20px;
+    border-top: 2px solid #E67E22;
 }
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
-.footer-section {
-    text-align: center;
+.footer-column {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-width: 150px;
+    margin: 5px;
+    text-align: left;
+    margin-top: 40px;
+}
+.footer-column2 {
+  flex: 1;
+  min-width: 150px;
+  margin: 5px;
+  text-align: left;
+  margin-top: -50px;
+}
+.footer-logo {
+    width: 200px;
+    margin-bottom: 0px;
+    
 }
 
-.logo-section img {
-    max-width: 230px;
-    height: auto;
+.footer-column h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #E67E22;
 }
 
-.logo-section p {
-    font-size: 30px;
-    color: #333;
-}
-
-.help-section h3,
-.social-section h3 {
-    font-size: 30px;
-    font-weight: bold;
-    display: inline-block;
-    margin: 0 10px; /* Espaciado horizontal entre los títulos */
-}
-
-.help-section a {
-    display: block;
-    color: black;
+.footer-column p, .footer-column a {
+    font-size: 16px;
+    color: rgb(47, 26, 4);
     text-decoration: none;
     margin: 5px 0;
-    font-size: 30px;
-}
-.help-section a:hover {
-    text-decoration: underline;
 }
 
+.footer-column a:hover {
+    color: #E67E22;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons img {
+   
+    transition: transform 0.3s ease;
+    max-width: 50px;
+    
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
 
 /* From Uiverse.io by escannord */ 
 .wrapper {
