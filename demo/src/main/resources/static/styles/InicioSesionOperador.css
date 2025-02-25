@@ -231,7 +231,7 @@ body {
     align-items: center;
     padding-left: 10px;
     transition: 0.2s ease-in-out;
-    background-color: rgba(255, 255, 255, 1); /* Fondo blanco */
+    background-color: rgba(255, 255, 255, 1); /* Fondo semitransparente */
     backdrop-filter: blur(10px); /* Efecto de desenfoque */
     width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
 }
@@ -242,7 +242,7 @@ body {
     border: none;
     width: calc(100% - 20px); /* Asegura que el campo de entrada ocupe todo el ancho menos el padding */
     height: 100%;
-    background-color: rgba(255, 255, 255, 1); /* Fondo blanco */
+    background-color: rgba(255, 255, 255, 0.6); /* Fondo semitransparente */
     backdrop-filter: blur(10px); /* Efecto de desenfoque */
     color: #151717; /* Color del texto */
 }
