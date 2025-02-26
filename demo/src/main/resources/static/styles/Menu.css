@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    background-color: #1E2528;
+    color: white;
+}
+
+/* Header */
+#header {
+    background-color: rgba(218, 219, 216, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    width: 95%;
+    margin: 20px auto 0;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.612);
+    max-width: 2025px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    height: 120px;
+}
+
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    background-image: url('/images/imagendiv3.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: 15%; /* Ajusta la imagen al alto del contenedor */
+    object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
+    border-radius: 5px; /* Mantiene el borde redondeado */
+}
+
+/* Fondo para toda la página */
+#header ul {
+    display: flex;
+    justify-content: space-evenly; /* Distribuye los elementos uniformemente */
+    align-items: center;
+    width: 80%; /* Hace que la lista ocupe más espacio */
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+    gap: 50px; /* Separa más los elementos */
+}
+
+#header ul li {
+    display: flex;
+    align-items: center;
+}
+
+#header ul a {
+    text-decoration: none;
+    color: rgb(2, 2, 2);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px; /* Letra más grande */
+    letter-spacing: 2px; /* Espaciado entre letras */
+}
+
+#header ul a:hover {
+    font-size: 30px;
+    text-decoration: underline;
+    color: orange;
+}
+
+#logo {
+    position: relative;
+    top: -10px;
+    left: -10px;
+}
+
+#logo img {
+    max-width: 230px;
+    height: auto;
+}
+
+#menu {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: rgb(12, 12, 12);
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 2px 2px 2px #888888;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #f8f8f8, #e0e0e0);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* From Uiverse.io by Jedi-hongbin */
+button {
+    display: flex;
+    height: 3em;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee4b;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+}
+
+button > svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+}
+
+button:hover > svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+}
+
+button:hover {
+    box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Secciones del menú */
+section {
+    margin: 60px 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: center;
+    z-index: 1;
+    background-color: #1b2522;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos de las secciones */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: white; /* Cambia el color de las letras a blanco */
+    font-weight: lighter;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 1px 1px 3px rgb(63, 63, 63);
+    position: relative;
+}
+
+/* Grid para las tarjetas */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    position: center;
+}
+
+/* Tarjetas */
+.card {
+    position: relative;
+    width: 11.875em;
+    height: 16.5em;
+    box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 120ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 0.5em;
+    padding-bottom: 3.4em;
+}
+
+.card::after {
+    content: "Add to Cart";
+    padding-top: 1.25em;
+    padding-left: 1.25em;
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+    background: #00AC7C;
+    color: #fff;
+    height: 2.5em;
+    width: 90%;
+    transition: all 80ms;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0;
+}
+
+.card .title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+    position: absolute;
+    left: 0.625em;
+    bottom: 1.875em;
+    font-weight: 400;
+    color: #000;
+}
+
+.card .price {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 0.9em;
+    position: absolute;
+    left: 0.625em;
+    bottom: 0.625em;
+    color: #000;
+}
+
+.card:hover::after {
+    bottom: 0;
+    opacity: 1;
+}
+
+.card:active {
+    transform: scale(0.98);
+}
+
+.card:active::after {
+    content: "Added !";
+    height: 3.125em;
+}
+
+.text {
+    max-width: 55px;
+}
+
+.image {
+    background: rgb(241, 241, 241);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+}
+/* Footer */
+footer {
+    background: #fff6e5;
+    color: rgb(0, 0, 0);
+    padding: 40px 20px;
+    border-top: 2px solid #E67E22;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 150px;
+    margin: 5px;
+    text-align: left;
+    margin-top: 40px;
+}
+
+.footer-column2 {
+    flex: 1;
+    min-width: 150px;
+    margin: 5px;
+    text-align: left;
+    margin-top: -50px;
+}
+
+.footer-logo {
+    width: 200px;
+    margin-bottom: 0px;
+}
+
+.footer-column h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #E67E22;
+}
+
+.footer-column p, .footer-column a {
+    font-size: 16px;
+    color: rgb(47, 26, 4);
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.footer-column a:hover {
+    color: #E67E22;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons img {
+    transition: transform 0.3s ease;
+    max-width: 50px;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}

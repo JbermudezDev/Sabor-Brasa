@@ -199,7 +199,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px; /* Puedes ajustar esto también */
+    margin-top: 20px; 
 }
 
 #menu h2 {
@@ -648,7 +648,7 @@ body {
     margin-top: 50px; /* Reducir este valor para subirlo */
     margin-left: 50px;
 }
-css
+
 /* Footer */
 footer {
     background: #fff6e5;
