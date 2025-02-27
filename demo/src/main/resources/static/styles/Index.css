@@ -311,6 +311,25 @@ body {
     margin-top: 20px; /* Reducir este valor para subirlo */
     margin-left: 50px;
 }
+.containermenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 40px;
+  background-color: #000;
+  margin-top: 80px;
+}
+
+/* Card */
+.cardmenu {
+  background-color: rgba(255, 255, 255, 0.1);
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
 .div1 {
     flex-direction: column; /* Apila los elementos verticalmente */
     justify-content: center; /* Centra verticalmente */

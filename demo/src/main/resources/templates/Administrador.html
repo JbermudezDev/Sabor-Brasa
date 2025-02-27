@@ -5,29 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Productos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link rel="stylesheet" href="/styles/Administrador.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="menu-icon">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="menu">
-                <li><i class="fas fa-user-circle"></i> Perfil</li>
-                <li><i class="fas fa-users"></i> Operadores</li>
-                <li><i class="fas fa-biking"></i> Domiciliarios</li>
-                <li class="active"><i class="fas fa-box"></i> Productos</li>
-                <li><i class="fas fa-chart-bar"></i> Dashboard</li>
-                <li><i class="fas fa-cogs"></i> Configuración</li>
-            </ul>
+     <!--=============== HEADER ===============-->
+     <header class="header" id="header">
+        <div class="header__container">
+           
+           <button class="header__toggle" id="header-toggle">
+              <i class="ri-menu-line"></i>
+           </button>
         </div>
+     </header>
 
-        <!-- Contenido Principal -->
+     <!--=============== SIDEBAR ===============-->
+     <nav class="sidebar" id="sidebar">
+        <div class="sidebar__container">
+           <div class="sidebar__user">
+              <div class="sidebar__img">
+                 <img src="/images/administrador.png" alt="image"> 
+              </div>
+  
+              <div class="sidebar__info">
+                 <h3>Juan Jose Bermudez</h3>
+                 <span></span>
+              </div>
+           </div>
+
+           <div class="sidebar__content">
+              <div>
+                 <h3 class="sidebar__title">MANAGE</h3>
+
+                 <div class="sidebar__list">
+                    
+                    <a href="#" class="sidebar__link">
+                        <i class="ri-profile-line"></i>
+                       <span>Mi Perfil</span>
+                    </a>
+
+                    <a href="#" class="sidebar__link">
+                        <i class="ri-walk-line"></i>
+                       <span>Operadores</span>
+                    </a>
+
+                    <a href="#" class="sidebar__link">
+                        <i class="ri-riding-line"></i>
+                       <span>Domiciliarios</span>
+                    </a>
+
+                    <a href="#" class="sidebar__link">
+                        <i class="ri-restaurant-fill"></i>
+                       <span>Productos</span>
+                    </a>
+                    <a href="#" class="sidebar__link active-link">
+                        <i class="ri-pie-chart-2-fill"></i>
+                        <span>Dashboard</span>
+                     </a>
+                 </div>
+              </div>
+
+              <div>
+                 <h3 class="sidebar__title">SETTINGS</h3>
+
+                 <div class="sidebar__list">
+                    <a href="#" class="sidebar__link">
+                       <i class="ri-settings-3-fill"></i>
+                       <span>Settings</span>
+                    </a>
+
+                    
+                 </div>
+              </div>
+           </div>
+
+           <div class="sidebar__actions">
+              <button>
+                 <i class="ri-moon-clear-fill sidebar__link sidebar__theme" id="theme-button">
+                    <span>Theme</span>
+                 </i>
+              </button>
+
+              <button class="sidebar__link">
+                 <i class="ri-logout-box-r-fill"></i>
+                 <span>Log Out</span>
+              </button>
+           </div>
+        </div>
+     </nav>
+
+     <!--=============== MAIN ===============-->
+     <main class="main container" id="main">
         <div class="main-content">
             <h1>Listado de productos</h1>
             <div class="table-container">
@@ -384,6 +454,13 @@
             </div>
         </div>
     </div>
+     </main>
+     
+     <!--=============== MAIN JS ===============-->
+     <script src="js/main.js"></script>
+
+        <!-- Contenido Principal -->
+
 
 </body>
 </html>
