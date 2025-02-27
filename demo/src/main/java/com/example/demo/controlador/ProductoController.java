@@ -4,16 +4,24 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entidades.Producto;
 import com.example.demo.servicio.ProductoService;
+import com.example.demo.repositorio.ProductoRepository;
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/productos")
 public class ProductoController {
     private final ProductoService productoService;
+    private final ProductoRepository productoRepository;
 
-    public ProductoController(ProductoService productoService) {
+    public ProductoController(ProductoService productoService, ProductoRepository productoRepository) {
         this.productoService = productoService;
+        this.productoRepository = productoRepository;
+    }
+    @GetMapping("/productos")
+    public List<Producto> listarProductos() {
+        return productoRepository.findAll(); // Devuelve los productos en formato JSON
     }
 
     @GetMapping

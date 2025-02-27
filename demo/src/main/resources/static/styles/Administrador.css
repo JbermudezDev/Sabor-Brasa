@@ -1,0 +1,120 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: rgba(86, 87, 87, 0.542);
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.menu li i {
+    margin-right: 10px;
+}
+
+.menu li:hover, .menu .active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Contenido principal */
+.main-content {
+    margin-left: 260px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Tabla */
+.table-container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #555;
+    color: white;
+}
+
+tr:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+.btn {
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 16px;
+    color: white;
+}
+
+.green {
+    background: #28a745;
+}
+
+.yellow {
+    background: #ffc107;
+}
+
+.red {
+    background: #dc3545;
+}
+
+/* Imágenes de avatar */
+td img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
