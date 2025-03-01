@@ -19,23 +19,5 @@ public class AdministradorService {
     }
     
 
-    public AdministradorService(AdministradorRepository administradorRepository) {
-        this.administradorRepository = administradorRepository;
-    }
 
-    public List<Administrador> listarTodos() {
-        return administradorRepository.findAll();
-    }
-
-    public Optional<Administrador> buscarPorId(Long id) {
-        return administradorRepository.findById(id);
-    }
-
-    public Administrador guardar(Administrador administrador) {
-        return administradorRepository.save(administrador);
-    }
-
-    public void eliminarPorId(Long id) {
-        administradorRepository.deleteById(id);
-    }
 }

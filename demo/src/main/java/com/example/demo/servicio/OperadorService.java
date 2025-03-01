@@ -14,19 +14,5 @@ public class OperadorService {
         this.operadorRepository = operadorRepository;
     }
 
-    public List<Operador> listarTodos() {
-        return operadorRepository.findAll();
-    }
-
-    public Optional<Operador> buscarPorId(Long id) {
-        return operadorRepository.findById(id);
-    }
-
-    public Operador guardar(Operador operador) {
-        return operadorRepository.save(operador);
-    }
-
-    public void eliminarPorId(Long id) {
-        operadorRepository.deleteById(id);
-    }
+   
 }

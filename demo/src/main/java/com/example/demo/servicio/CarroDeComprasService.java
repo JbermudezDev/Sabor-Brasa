@@ -14,19 +14,5 @@ public class CarroDeComprasService {
         this.carroDeComprasRepository = carroDeComprasRepository;
     }
 
-    public List<CarroDeCompras> listarTodos() {
-        return carroDeComprasRepository.findAll();
-    }
-
-    public Optional<CarroDeCompras> buscarPorId(Long id) {
-        return carroDeComprasRepository.findById(id);
-    }
-
-    public CarroDeCompras guardar(CarroDeCompras carroDeCompras) {
-        return carroDeComprasRepository.save(carroDeCompras);
-    }
-
-    public void eliminarPorId(Long id) {
-        carroDeComprasRepository.deleteById(id);
-    }
+   
 }

@@ -1,6 +1,7 @@
 package com.example.demo.controlador;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.example.demo.entidades.Administrador;
@@ -16,14 +17,14 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/administradores")
-public class AdministradorController {
-    private final AdministradorService administradorService;
-    private final ProductoRepository productoRepository; // Inyección de ProductoRepository
 
-    public AdministradorController(AdministradorService administradorService, ProductoRepository productoRepository) {
-        this.administradorService = administradorService;
-        this.productoRepository = productoRepository;
-    }
+
+public class AdministradorController {
+   @Autowired
+    private AdministradorService administradorService;
+
+    @Autowired
+    private ProductoRepository productoRepository;
 
     
     
@@ -38,28 +39,10 @@ public class AdministradorController {
     
 
         
-    public List<Administrador> listarTodos() {
-        return administradorService.listarTodos();
-    }
+  
+   
 
-    @GetMapping("/{id}")
-    public Optional<Administrador> buscarPorId(@PathVariable Long id) {
-        return administradorService.buscarPorId(id);
-    }
+    
 
-    @PostMapping
-    public Administrador crear(@RequestBody Administrador administrador) {
-        return administradorService.guardar(administrador);
-    }
-
-    @PutMapping("/{id}")
-    public Administrador actualizar(@PathVariable Long id, @RequestBody Administrador administrador) {
-        administrador.setId(id);
-        return administradorService.guardar(administrador);
-    }
-
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
-        administradorService.eliminarPorId(id);
-    }
+   
 }

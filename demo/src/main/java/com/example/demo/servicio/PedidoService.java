@@ -14,19 +14,5 @@ public class PedidoService {
         this.pedidoRepository = pedidoRepository;
     }
 
-    public List<Pedido> listarTodos() {
-        return pedidoRepository.findAll();
-    }
 
-    public Optional<Pedido> buscarPorId(Long id) {
-        return pedidoRepository.findById(id);
-    }
-
-    public Pedido guardar(Pedido pedido) {
-        return pedidoRepository.save(pedido);
-    }
-
-    public void eliminarPorId(Long id) {
-        pedidoRepository.deleteById(id);
-    }
 }

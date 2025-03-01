@@ -14,19 +14,5 @@ public class ProductoService {
         this.productoRepository = productoRepository;
     }
 
-    public List<Producto> listarTodos() {
-        return productoRepository.findAll();
-    }
-
-    public Optional<Producto> buscarPorId(Long id) {
-        return productoRepository.findById(id);
-    }
-
-    public Producto guardar(Producto producto) {
-        return productoRepository.save(producto);
-    }
-
-    public void eliminarPorId(Long id) {
-        productoRepository.deleteById(id);
-    }
+    
 }

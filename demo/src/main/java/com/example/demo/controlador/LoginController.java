@@ -2,7 +2,9 @@ package com.example.demo.controlador;
 
 
 import com.example.demo.entidades.Administrador;
+import com.example.demo.entidades.Cliente;
 import com.example.demo.servicio.AdministradorService;
+import com.example.demo.servicio.ClienteService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -18,7 +20,35 @@ public class LoginController {
 
     @Autowired
     private AdministradorService administradorService;
+    @Autowired
+    private ClienteService clienteService;
 
+    @GetMapping("/loginCliente")
+    public String mostrarFormularioLoginCliente() {
+        return "InicioSesion"; 
+    }
+
+    @PostMapping("/loginCliente")
+    public String loginCliente(@RequestParam String email, 
+                               @RequestParam String password, 
+                               Model model, 
+                               HttpSession session) {
+        Cliente cliente = clienteService.autenticar(email, password);
+    
+        if (cliente != null) {
+            session.setAttribute("clienteLogueado", cliente);
+            return "redirect:/Cliente"; // Asegura que se redirija correctamente
+        } else {
+            model.addAttribute("error", "Credenciales incorrectas");
+            return "InicioSesion"; 
+        }
+    }
+
+    @GetMapping("/Cliente")
+    public String mostrarPaginaCliente() {
+        return "Cliente"; 
+    }
+    
     @GetMapping("/login")
     public String mostrarFormularioLogin() {
         return "IniciarSesionAdministrador"; 
