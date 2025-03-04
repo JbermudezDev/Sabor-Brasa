@@ -18,4 +18,26 @@ public class ClienteService {
         return clienteRepository.findByEmailAndPassword(email, password);
     }
 
+   
+
+    public List<Cliente> searchAll() {
+        return clienteRepository.findAll();
+    }
+
+    public void add(Cliente cliente) {
+        clienteRepository.save(cliente);
+    }
+
+    public void deleteById(Long id) {
+        clienteRepository.deleteById(id);
+    }
+
+    public void update(Cliente cliente) {
+        clienteRepository.save(cliente);
+    }
+
+    public Optional<Cliente> findById(Long id) {
+        return clienteRepository.findById(id);
+    }
+
 }
