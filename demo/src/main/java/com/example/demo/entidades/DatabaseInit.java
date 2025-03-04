@@ -2,6 +2,7 @@ package com.example.demo.entidades;
 
 import com.example.demo.entidades.Administrador;
 import com.example.demo.repositorio.AdministradorRepository;
+import com.example.demo.repositorio.ClienteRepository;
 import com.example.demo.repositorio.ProductoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import jakarta.transaction.Transactional;
 public class DatabaseInit implements ApplicationRunner {
 
     @Autowired
+    private ClienteRepository   clienteRepository;
+
+    @Autowired
     private AdministradorRepository administradorRepository;
 
     @Autowired
@@ -24,7 +28,11 @@ public class DatabaseInit implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         
             administradorRepository.save(new Administrador("Juan Jose Bermudez", "thejuanjo1128@gmail.com", "123456"));
-             // Entradas (5)
+            
+             // Añadir un cliente
+            clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
+            
+            // Entradas (5)
             productoRepository.save(new Producto("Arepa de Maiz", 8.00f, "Deliciosas arepas rellenas de maíz fresco.", "/images/entrada1.png"));
             productoRepository.save(new Producto("Chichanorrada", 18.00f, "Crujientes trozos de cerdo fritos hasta alcanzar el punto perfecto de dorado y jugosidad.", "/images/entrada2.png"));
             productoRepository.save(new Producto("Empanadas", 12.00f, "nuestras empanadas rellenas de carne, pollo o queso te ofrecen un sabor auténtico en cada bocado.", "bruschetta.jpg"));
