@@ -8,8 +8,234 @@
 body {
     margin: 0;
     font-family: 'Playfair Display', serif;
-    background-color: #1b2522;
     color: white;
+    --y-0: 90%;
+    --c-0: hsla(97, 2%, 11%, 1);
+    --x-0: 91%;
+    --y-1: 24%;
+    --c-1: hsla(75, 0%, 0%, 1);
+    --x-1: 17%;
+    --x-2: 11%;
+    --c-2: hsla(359, 37%, 20%, 1);
+    --y-2: 32%;
+    --c-3: hsla(359, 100%, 52%, 1);
+    --y-3: 31%;
+    --x-3: 2%;
+    --c-4: hsla(349, 0%, 0%, 1);
+    --y-4: 93%;
+    --x-4: 74%;
+    background-color: hsla(356, 0%, 0%, 1);
+    background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3)), radial-gradient(circle at var(--x-4) var(--y-4), var(--c-4) var(--s-start-4), transparent var(--s-end-4));
+    animation: hero-gradient-animation 5s linear infinite alternate-reverse;
+    background-blend-mode: normal, normal, normal, normal, normal;
+}
+/* Fondo animado */
+@keyframes hero-gradient-animation {
+    0% {
+        --s-start-0: 1%;
+        --s-end-0: 61%;
+        --y-0: 90%;
+        --c-0: hsla(97, 2%, 11%, 1);
+        --x-0: 91%;
+        --y-1: 24%;
+        --s-start-1: 0%;
+        --s-end-1: 55%;
+        --c-1: hsla(75, 0%, 0%, 1);
+        --x-1: 17%;
+        --x-2: 11%;
+        --s-start-2: 19%;
+        --s-end-2: 54%;
+        --c-2: hsla(359, 37%, 20%, 1);
+        --y-2: 32%;
+        --c-3: hsla(359, 100%, 52%, 1);
+        --y-3: 31%;
+        --x-3: 2%;
+        --s-start-3: 0%;
+        --s-end-3: 67%;
+        --c-4: hsla(349, 0%, 0%, 1);
+        --y-4: 93%;
+        --x-4: 74%;
+        --s-start-4: 12%;
+        --s-end-4: 82%;
+    }
+
+    100% {
+        --s-start-0: 8;
+        --s-end-0: 53;
+        --y-0: 100%;
+        --c-0: hsla(97, 2%, 11%, 1);
+        --x-0: 54%;
+        --y-1: 62%;
+        --s-start-1: 8;
+        --s-end-1: 53;
+        --c-1: hsla(75, 0%, 0%, 1);
+        --x-1: 49%;
+        --x-2: 64%;
+        --s-start-2: 8;
+        --s-end-2: 53;
+        --c-2: hsla(359, 37%, 20%, 1);
+        --y-2: 12%;
+        --c-3: hsla(359, 100%, 52%, 1);
+        --y-3: 35%;
+        --x-3: 85%;
+        --s-start-3: 8;
+        --s-end-3: 53;
+        --c-4: hsla(349, 0%, 0%, 1);
+        --y-4: 79%;
+        --x-4: 68%;
+        --s-start-4: 8;
+        --s-end-4: 53;
+    }
+}
+
+@property --s-start-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 1%
+}
+
+@property --s-end-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 61%
+}
+
+@property --y-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 90%
+}
+
+@property --c-0 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(97, 2%, 11%, 1)
+}
+
+@property --x-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 91%
+}
+
+@property --y-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 24%
+}
+
+@property --s-start-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%
+}
+
+@property --s-end-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 55%
+}
+
+@property --c-1 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(75, 0%, 0%, 1)
+}
+
+@property --x-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 17%
+}
+
+@property --x-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 11%
+}
+
+@property --s-start-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 19%
+}
+
+@property --s-end-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 54%
+}
+
+@property --c-2 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(359, 37%, 20%, 1)
+}
+
+@property --y-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 32%
+}
+
+@property --c-3 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(359, 100%, 52%, 1)
+}
+
+@property --y-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 31%
+}
+
+@property --x-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 2%
+}
+
+@property --s-start-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%
+}
+
+@property --s-end-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 67%
+}
+
+@property --c-4 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(349, 0%, 0%, 1)
+}
+
+@property --y-4 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 93%
+}
+
+@property --x-4 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 74%
+}
+
+@property --s-start-4 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 12%
+}
+
+@property --s-end-4 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 82%
 }
 
 /* Header */
@@ -109,6 +335,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+
 /* From Uiverse.io by karthik092726122003 */ 
 .styled-wrapper .button {
     display: block;
@@ -128,7 +356,7 @@ body {
     position: absolute;
     border-radius: 50%;
     inset: 7px;
-    border: 3px solid black; /* Update dynamically for light/dark mode */
+    border: 3px solid black; 
     transition:
       opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
       transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
@@ -201,6 +429,32 @@ section {
     border-radius: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0);
 }
+/* Clase para los contenedores de las secciones */
+.section-container {
+    --y-0: 90%;
+    --c-0: hsla(97, 2%, 11%, 1);
+    --x-0: 91%;
+    --y-1: 24%;
+    --c-1: hsla(75, 0%, 0%, 1);
+    --x-1: 17%;
+    --x-2: 11%;
+    --c-2: hsla(359, 37%, 20%, 1);
+    --y-2: 32%;
+    --c-3: hsla(359, 100%, 52%, 1);
+    --y-3: 31%;
+    --x-3: 2%;
+    --c-4: hsla(349, 0%, 0%, 1);
+    --y-4: 93%;
+    --x-4: 74%;
+    background-color: hsla(356, 0%, 0%, 1);
+    background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3)), radial-gradient(circle at var(--x-4) var(--y-4), var(--c-4) var(--s-start-4), transparent var(--s-end-4));
+    animation: hero-gradient-animation 5s linear infinite alternate-reverse;
+    background-blend-mode: normal, normal, normal, normal, normal;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
 
 /* Títulos de las secciones */
 h2 {
@@ -223,93 +477,190 @@ h2 {
 }
 
 /* Tarjetas */
+
 .card {
-    position: relative;
-    width: 11.875em;
-    height: 16.5em;
-    box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 120ms;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    padding: 0.5em;
-    padding-bottom: 3.4em;
-}
-
-.card::after {
-    content: "Add to Cart";
-    padding-top: 1.25em;
-    padding-left: 1.25em;
-    position: absolute;
-    left: 0;
-    bottom: -60px;
-    background: #00AC7C;
-    color: #fff;
-    height: 2.5em;
-    width: 90%;
-    transition: all 80ms;
-    font-weight: 600;
-    text-transform: uppercase;
-    opacity: 0;
-}
-
-.card .title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.9em;
-    position: absolute;
-    left: 0.625em;
-    bottom: 1.875em;
-    font-weight: 400;
-    color: #000;
-}
-
-.card .price {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 0.9em;
-    position: absolute;
-    left: 0.625em;
-    bottom: 0.625em;
-    color: #000;
-}
-
-.card:hover::after {
-    bottom: 0;
-    opacity: 1;
-}
-
-.card:active {
-    transform: scale(0.98);
-}
-
-.card:active::after {
-    content: "Added !";
-    height: 3.125em;
-}
-
-.text {
-    max-width: 55px;
-}
-
-.image {
-    background: rgb(241, 241, 241);
+    overflow: visible;
+    width: 190px;
+    height: 254px;
+    margin-bottom: 20px;
+  }
+  
+  .content {
     width: 100%;
     height: 100%;
-    display: grid;
-    place-items: center;
-    background-size: cover;
-    background-position: center;
+    transform-style: preserve-3d;
+    transition: transform 300ms;
+    box-shadow: 0px 0px 10px 1px #000000ee;
+    border-radius: 5px;
+  }
+  
+  .front, .back {
+    background-color: #151515;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 5px;
     overflow: hidden;
-    
-}
-
-.image img {
+  }
+  
+  .back {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .back::before {
+    position: absolute;
+    content: ' ';
+    display: block;
+    width: 160px;
+    height: 160%;
+    background: linear-gradient(90deg, transparent, #ff9966, #ff9966, #ff9966, #ff9966, transparent);
+    animation: rotation_481 5000ms infinite linear;
+  }
+  
+  .back-content {
+    position: absolute;
+    width: 99%;
+    height: 99%;
+    background-color: #151515;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  
+  .back-content img.food-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
-}
+  }
+  
+  .card:hover .content {
+    transform: rotateY(180deg);
+  }
+  
+  @keyframes rotation_481 {
+    0% {
+      transform: rotateZ(0deg);
+    }
+  
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
+  
+  .front {
+    transform: rotateY(180deg);
+    color: white;
+  }
+  
+  .front .front-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* "Comida Típica" */
+  .front-content .badge {
+    background-color: #00000055;
+    padding: 2px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    width: fit-content;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .description {
+    box-shadow: 0px 0px 10px 5px #00000088;
+    width: 100%;
+    padding: 10px;
+    background-color: #00000099;
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+  }
+  
+  .title {
+    font-size: 11px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .title p {
+    width: 50%;
+  }
+  
+  .card-footer {
+    color: #ffffff88;
+    margin-top: 5px;
+    font-size: 8px;
+  }
+  
+  .front .img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #ffbb66;
+    position: relative;
+    filter: blur(15px);
+    animation: floating 2600ms infinite linear;
+  }
+  
+  #bottom {
+    background-color: #ff8866;
+    left: 50px;
+    top: 0px;
+    width: 150px;
+    height: 150px;
+    animation-delay: -800ms;
+  }
+  
+  #right {
+    background-color: #ff2233;
+    left: 160px;
+    top: -80px;
+    width: 30px;
+    height: 30px;
+    animation-delay: -1800ms;
+  }
+  
+  @keyframes floating {
+    0% {
+      transform: translateY(0px);
+    }
+  
+    50% {
+      transform: translateY(10px);
+    }
+  
+    100% {
+      transform: translateY(0px);
+    }
+  }
 /* Footer */
 footer {
     background: #fff6e5;
