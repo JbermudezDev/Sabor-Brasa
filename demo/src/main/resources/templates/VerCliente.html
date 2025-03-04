@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Clientes</title>
+    <title>Detalles del Cliente</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link rel="stylesheet" href="/styles/Administrador.css">
@@ -85,71 +85,14 @@
     <!--=============== MAIN ===============-->
     <main class="main container" id="main">
         <div class="main-content">
-            <h1>Listado de Clientes</h1>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                            <th>Teléfono</th>
-                            <th>Dirección</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="cliente, iterStat : ${clientes}">
-                            <td th:text="${iterStat.count}"></td>
-                            <td th:text="${cliente.nombre}"></td>
-                            <td th:text="${cliente.apellido}"></td>
-                            <td th:text="${cliente.email}"></td>
-                            <td th:text="${cliente.telefono}"></td>
-                            <td th:text="${cliente.direccion}"></td>
-                            <td>
-                                <div class="btn-container">
-                                    <button class="btn yellow" th:onclick="'window.location.href=\'/clientes/view/' + ${cliente.id} + '\';'"><i class="fas fa-eye"></i></button>
-                                    <button class="btn green" th:onclick="'window.location.href=\'/clientes/update/' + ${cliente.id} + '\';'"><i class="fas fa-edit"></i></button>
-                                    <form th:action="@{/clientes/delete/{id}(id=${cliente.id})}" method="post" style="display:inline;">
-                                        <input type="hidden" name="_method" value="delete" />
-                                        <button type="submit" class="btn red"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="form-container">
-                <h2>Agregar Cliente</h2>
-                <form th:action="@{/clientes/add}" method="post">
-                    <div>
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" required>
-                    </div>
-                    <div>
-                        <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellido" name="apellido" required>
-                    </div>
-                    <div>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div>
-                        <label for="password">Contraseña:</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <div>
-                        <label for="telefono">Teléfono:</label>
-                        <input type="text" id="telefono" name="telefono" required>
-                    </div>
-                    <div>
-                        <label for="direccion">Dirección:</label>
-                        <input type="text" id="direccion" name="direccion" required>
-                    </div>
-                    <button type="submit">Agregar Cliente</button>
-                </form>
+            <h1>Detalles del Cliente</h1>
+            <div class="details-container">
+                <p><strong>Nombre:</strong> <span th:text="${cliente.nombre}"></span></p>
+                <p><strong>Apellido:</strong> <span th:text="${cliente.apellido}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${cliente.email}"></span></p>
+                <p><strong>Teléfono:</strong> <span th:text="${cliente.telefono}"></span></p>
+                <p><strong>Dirección:</strong> <span th:text="${cliente.direccion}"></span></p>
+                <a href="/clientes/all" class="btn">Volver al Listado</a>
             </div>
         </div>
     </main>
