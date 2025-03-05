@@ -611,3 +611,77 @@ input:focus {
 .btn-submit:hover {
     background: #0056b3;
 }
+
+.details-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Contenedor de botones */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centra los botones */
+    gap: 15px; /* Espaciado entre los botones */
+    margin-top: 15px;
+}
+
+/* Estilo uniforme para botones */
+.btn {
+    flex: 1; /* Ambos botones ocupan el mismo espacio */
+    max-width: 150px; /* Controla el tamaño máximo */
+    width: 100%; /* Asegura que ambos tengan el mismo ancho */
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+/* Ajuste para enlaces con clase btn */
+.btn[href] {
+    display: inline-flex; /* Hace que los <a> tengan el mismo comportamiento que <button> */
+}
+
+/* Colores de los botones */
+.btn:nth-child(1) {
+    background-color: #28a745; /* Verde para actualizar */
+    color: white;
+}
+
+.btn:nth-child(2) {
+    background-color: #dc3545; /* Rojo para cancelar */
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}

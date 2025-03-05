@@ -54,7 +54,7 @@ body {
 
 h1 {
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: white;
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 10px;
@@ -552,62 +552,108 @@ body.dark-theme {
 }
 
 .form-container {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #fffafa;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #0056b3;
+}
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.details-container {
     width: 100%;
     max-width: 400px;
-    background: #bababa;
+    background: #aeacac9e;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.673);
     margin: 20px auto;
     font-family: Arial, sans-serif;
 }
 
-h2 {
-    text-align: center;
-    color: #020202;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #020202;
-}
-
-input {
-    padding: 8px;
-    border: 1px solid #181818;
-    border-radius: 5px;
+.details-container p {
     font-size: 16px;
+    color: #000000;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.details-container p:last-child {
+    border-bottom: none;
 }
 
-.btn-submit {
-    width: 50%;
+strong {
+    color: #070707;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    width: 100%;
     padding: 10px;
     background: #007bff;
     color: white;
-    border: none;
-    text-align: center;
-    align-items: center;
+    text-decoration: none;
     border-radius: 5px;
-    font-size: 15 px;
-    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
     transition: background 0.3s ease;
-    display: block;
-    margin: 0 auto;
 }
 
-.btn-submit:hover {
+.btn:hover {
     background: #0056b3;
 }

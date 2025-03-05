@@ -2,7 +2,6 @@ package com.example.demo.controlador;
 
 import com.example.demo.entidades.Cliente;
 import com.example.demo.servicio.ClienteService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,13 +41,24 @@ public class ClienteController {
         return "redirect:/clientes/all";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String eliminarCliente(@PathVariable("id") Long id) {
         clienteService.deleteById(id);
-        return "redirect:/ListadoClientes";
+        return "redirect:/clientes/all";
     }
 
-    @PutMapping("/update/{id}")
+    @GetMapping("/update/{id}")
+    public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
+        Optional<Cliente> cliente = clienteService.findById(id);
+        if (cliente.isPresent()) {
+            model.addAttribute("cliente", cliente.get());
+            return "EditarCliente";
+        } else {
+            return "redirect:/clientes/all";
+        }
+    }
+
+    @PostMapping("/update/{id}")
     public String modificarCliente(@ModelAttribute Cliente cliente, @PathVariable("id") Long id) {
         cliente.setId(id);
         clienteService.update(cliente);

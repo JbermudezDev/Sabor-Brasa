@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Cliente</title>
+    <title>Editar Cliente</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-    <link rel="stylesheet" href="/styles/VerCliente.css">
+    <link rel="stylesheet" href="/styles/EditarCliente.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -85,14 +85,30 @@
     <!--=============== MAIN ===============-->
     <main class="main container" id="main">
         <div class="main-content">
-            <h1>Detalles del Cliente</h1>
+            <h1>Editar Cliente</h1>
             <div class="details-container">
-                <p><strong>Nombre:</strong> <span th:text="${cliente.nombre}"></span></p>
-                <p><strong>Apellido:</strong> <span th:text="${cliente.apellido}"></span></p>
-                <p><strong>Email:</strong> <span th:text="${cliente.email}"></span></p>
-                <p><strong>Teléfono:</strong> <span th:text="${cliente.telefono}"></span></p>
-                <p><strong>Dirección:</strong> <span th:text="${cliente.direccion}"></span></p>
-                <a href="/clientes/all" class="btn">Volver al Listado</a>
+                <form th:action="@{/clientes/update/{id}(id=${cliente.id})}" method="post">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" th:value="${cliente.nombre}" required>
+
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" th:value="${cliente.apellido}" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" th:value="${cliente.email}" required>
+
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" th:value="${cliente.telefono}" required>
+
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" th:value="${cliente.direccion}" required>
+
+                    <div class="button-container">
+                        <button type="submit" class="btn btn-green">Actualizar Cliente</button>
+                        
+                    </div>
+                    
+                </form>
             </div>
         </div>
     </main>
