@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Productos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+    <link rel="stylesheet" href="/styles/Administrador.css">
+</head>
+<body>
+
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <div class="header__container">
+            <button class="header__toggle" id="header-toggle">
+                <i class="ri-menu-line"></i>
+            </button>
+        </div>
+    </header>
+
+    <!--=============== SIDEBAR ===============-->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar__container">
+            <div class="sidebar__user">
+                <div class="sidebar__img">
+                    <img src="/images/administrador.png" alt="image"> 
+                </div>
+                <div class="sidebar__info">
+                    <h3>Juan Jose Bermudez</h3>
+                </div>
+            </div>
+            <div class="sidebar__content">
+                <div>
+                    <h3 class="sidebar__title">MANAGE</h3>
+                    <div class="sidebar__list">
+                        <a href="#" class="sidebar__link">
+                            <i class="ri-profile-line"></i>
+                            <span>Mi Perfil</span>
+                        </a>
+                        <a href="#" class="sidebar__link">
+                            <i class="ri-restaurant-fill"></i>
+                            <span>Productos</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar__actions">
+                <button class="sidebar__link">
+                    <i class="ri-logout-box-r-fill"></i>
+                    <span>Log Out</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!--=============== MAIN ===============-->
+    <main class="main container" id="main">
+        <div class="main-content">
+            <h1>Listado de Productos</h1>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Descripción</th>
+                            <th>Imagen</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="producto, iterStat : ${productos}">
+                            <td th:text="${producto.id}"></td>
+                            <td th:text="${producto.nombre}"></td>
+                            <td th:text="${producto.precio}"></td>
+                            <td th:text="${producto.descripcion}"></td>
+                            <td>
+                                <img th:src="${producto.imagen}" alt="Imagen del producto" width="50">
+                            </td>
+                            <td>
+                                <div class="btn-container">
+                                    <button class="btn yellow" th:attr="onclick='window.location.href=\'/productos/view/' + @{${producto.id}} + '\''">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    
+                                    <button class="btn green" th:onclick="'window.location.href=\'/productos/update/' + ${producto.id} + '\';'">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <form th:action="@{/productos/delete/{id}(id=${producto.id})}" method="post" style="display:inline;">
+                                        <input type="hidden" name="_method" value="delete" />
+                                        <button type="submit" class="btn red"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="form-container">
+                <h2>Agregar Producto</h2>
+                <form th:action="@{/productos/add}" method="post">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio:</label>
+                        <input type="number" id="precio" name="precio" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen">Imagen URL:</label>
+                        <input type="text" id="imagen" name="imagen">
+                    </div>
+                    <button type="submit" class="btn-submit">Agregar Producto</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="js/main.js"></script>
+</body>
+</html>
