@@ -1,9 +1,11 @@
 package com.example.demo.entidades;
 
 import com.example.demo.entidades.Administrador;
+import com.example.demo.repositorio.AdicionalRepository;
 import com.example.demo.repositorio.AdministradorRepository;
 import com.example.demo.repositorio.ClienteRepository;
 import com.example.demo.repositorio.ProductoRepository;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -23,15 +25,29 @@ public class DatabaseInit implements ApplicationRunner {
 
     @Autowired
     private ProductoRepository productoRepository;
+    @Autowired
+    private AdicionalRepository adicionalRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+
         
             administradorRepository.save(new Administrador("Juan Jose Bermudez", "thejuanjo1128@gmail.com", "123456"));
             
+           // Guardar adicionales en la base de datos con descripciones
+            adicionalRepository.save(new Adicional("Jamón", 1.00, "Deliciosas lonjas de jamón para darle un toque especial a tu comida."));
+            adicionalRepository.save(new Adicional("Papas Fritas", 2.50, "Crujientes y doradas papas fritas, el acompañamiento perfecto para cualquier plato."));
+            adicionalRepository.save(new Adicional("Queso Extra", 1.00, "Porción adicional de queso derretido para un sabor más cremoso y delicioso."));
+            adicionalRepository.save(new Adicional("Salsa BBQ", 0.75, "Salsa barbacoa con un toque ahumado y dulce para realzar el sabor de tus comidas."));
+            adicionalRepository.save(new Adicional("Hielo Extra", 0.50, "Cubos de hielo adicionales para mantener tus bebidas bien frías."));
+            adicionalRepository.save(new Adicional("Rodaja de Limón", 0.30, "Fresca rodaja de limón para agregar un toque cítrico y refrescante a tu bebida."));
+
+
              // Añadir un cliente
             clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
             
+          
             // Entradas (5)
             productoRepository.save(new Producto("Arepa de Maiz", 8.00f, "Deliciosas arepas rellenas de maíz fresco.", "/images/entrada1.png"));
             productoRepository.save(new Producto("Chichanorrada", 18.00f, "Crujientes trozos de cerdo fritos hasta alcanzar el punto perfecto de dorado y jugosidad.", "/images/entrada2.png"));
@@ -72,7 +88,25 @@ public class DatabaseInit implements ApplicationRunner {
         productoRepository.save(new Producto("Coctel de maracuya", 28.00f, "Refrescante cóctel con el toque tropical y ácido del maracuyá, combinado con ingredientes naturales que harán de tu bebida un verdadero placer.", "/images/beb4.png"));
         productoRepository.save(new Producto("Agua sin gas", 5.00f, "Agua fresca y purificada, la opción más natural y saludable para acompañar tu comida.", "/images/beb5.png"));
         productoRepository.save(new Producto("Coctel Frutos rojos", 28.00f, "Una mezcla vibrante de frutos rojos frescos, ideal para los que disfrutan de una bebida afrutada y ligeramente dulce.", "/images/beb6.png"));
+            
+        // Crear y guardar adicionales
+            Adicional jamon = adicionalRepository.save(new Adicional("Jamón", 1.00, "Deliciosas lonjas de jamón."));
+            Adicional quesoExtra = adicionalRepository.save(new Adicional("Queso Extra", 1.00, "Porción adicional de queso derretido."));
+            Adicional salsaBBQ = adicionalRepository.save(new Adicional("Salsa BBQ", 0.75, "Salsa barbacoa ahumada."));
+            
+            // Crear y guardar productos
+            Producto arepa = productoRepository.save(new Producto("Arepa de Maiz", 8.00f, "Deliciosas arepas rellenas de maíz fresco.", "/images/entrada1.png"));
+            Producto churrasco = productoRepository.save(new Producto("Churrasco", 48.00f, "Corte de res sazonado.", "/images/pf3.png"));
 
+            // Relacionar productos con adicionales
+            arepa.agregarAdicional(jamon);
+            arepa.agregarAdicional(quesoExtra);
+            
+            churrasco.agregarAdicional(salsaBBQ);
+            
+            // Guardar las relaciones
+            productoRepository.save(arepa);
+            productoRepository.save(churrasco);
         }
     }
 
