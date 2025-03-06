@@ -14,19 +14,5 @@ public class DetallePedidoService {
         this.detallePedidoRepository = detallePedidoRepository;
     }
 
-    public List<DetallePedido> listarTodos() {
-        return detallePedidoRepository.findAll();
-    }
-
-    public Optional<DetallePedido> buscarPorId(Long id) {
-        return detallePedidoRepository.findById(id);
-    }
-
-    public DetallePedido guardar(DetallePedido detallePedido) {
-        return detallePedidoRepository.save(detallePedido);
-    }
-
-    public void eliminarPorId(Long id) {
-        detallePedidoRepository.deleteById(id);
-    }
+   
 }

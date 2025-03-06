@@ -1,0 +1,74 @@
+/* styles/error.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+}
+
+div {
+    width: 100%;
+    text-align: center;
+}
+
+.number {
+    background: #fff;
+    position: relative;
+    font: 900 30vmin 'Consolas', monospace;
+    letter-spacing: 5vmin;
+    color: transparent;
+    text-shadow: 2px -1px 0 #000, 4px -2px 0 hsl(0, 0%, 4%), 6px -3px 0 hsl(0, 0%, 6%), 8px -4px 0 hsl(0, 0%, 8%), 10px -5px 0 hsl(0, 0%, 10%), 12px -6px 0 hsl(0, 0%, 12%), 14px -7px 0 hsl(0, 0%, 14%), 16px -8px 0 hsl(0, 0%, 16%);
+}
+
+.number::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: radial-gradient(closest-side at 50% 50%, #f7bf1a 100%, rgba(0, 0, 0, 0)),
+                      radial-gradient(closest-side at 50% 50%, #fd6912 100%, rgba(0, 0, 0, 0));
+    background-repeat: repeat-x;
+    background-size: 40vmin 40vmin;
+    background-position: -100vmin 20vmin, 100vmin -25vmin;
+    mix-blend-mode: screen;
+    animation: moving 10s linear infinite both;
+}
+
+@keyframes moving {
+    to {
+        background-position: 100vmin 20vmin, -100vmin -25vmin;
+    }
+}
+
+.text {
+    font: 400 5vmin 'Courgette', cursive;
+    color: #333;
+}
+
+.text span {
+    font-size: 10vmin;
+}
+
+.me {
+    font-size: 18px;
+    color: #0000ff;
+    text-decoration: none;
+    margin-top: 40px; /* Más espacio arriba */
+    display: inline-block;
+    padding: 10px 20px; /* Padding para que se vea más grande */
+    border: 2px solid #0000ff; /* Borde azul */
+    border-radius: 25px; /* Bordes redondeados */
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+.me:hover {
+    background-color: #0000ff; /* Fondo azul al pasar el cursor */
+    color: #fff; /* Texto blanco al pasar el cursor */
+}

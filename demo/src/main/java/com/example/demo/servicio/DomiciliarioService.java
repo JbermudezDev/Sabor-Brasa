@@ -15,19 +15,5 @@ public class DomiciliarioService {
         this.domiciliarioRepository = domiciliarioRepository;
     }
 
-    public List<Domiciliario> listarTodos() {
-        return domiciliarioRepository.findAll();
-    }
-
-    public Optional<Domiciliario> buscarPorId(Long id) {
-        return domiciliarioRepository.findById(id);
-    }
-
-    public Domiciliario guardar(Domiciliario domiciliario) {
-        return domiciliarioRepository.save(domiciliario);
-    }
-
-    public void eliminarPorId(Long id) {
-        domiciliarioRepository.deleteById(id);
-    }
+   
 }
