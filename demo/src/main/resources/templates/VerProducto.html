@@ -89,9 +89,7 @@
         <div th:if="${producto != null}">
             <div class="details-container">
                 <p><strong>Nombre:</strong> <span th:text="${producto.nombre}"></span></p>
-                <p><strong>Categoría:</strong> <span th:text="${producto.categoria}"></span></p>
                 <p><strong>Precio:</strong> <span th:text="${producto.precio}"></span></p>
-                <p><strong>Stock:</strong> <span th:text="${producto.stock}"></span></p>
                 <p><strong>Descripción:</strong> <span th:text="${producto.descripcion}"></span></p>
                 <a href="/productos/all" class="btn">Volver al Listado</a>
             </div>
