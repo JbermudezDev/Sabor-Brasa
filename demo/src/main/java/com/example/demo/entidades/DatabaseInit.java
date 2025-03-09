@@ -56,7 +56,7 @@ public class DatabaseInit implements ApplicationRunner {
             productoRepository.save(new Producto("Yucas", 8.00f, "Trozos de yuca fritos hasta quedar dorados y crujientes.", "/images/entrada5.png"));
 
 
-        // Platos Fuertes (5)
+            // Platos Fuertes (5)
             productoRepository.save(new Producto("Tomahawk", 62.00f, "Un impresionante corte de carne a la parrilla, con hueso largo y jugoso, ideal para los amantes de la carne roja.", "/images/pf1.png"));
             productoRepository.save(new Producto("BabyBeef", 48.00f, "Corte tierno y jugoso de carne, cuidadosamente asado para ofrecer una textura suave y un sabor delicioso que se derrite en la boca.", "/images/pf2.png"));
             productoRepository.save(new Producto("Churrasco", 48.00f, "Corte de res perfectamente sazonado y asado a la parrilla, que resalta su sabor natural con una jugosidad inigualable.", "/images/pf3.png"));
@@ -64,31 +64,44 @@ public class DatabaseInit implements ApplicationRunner {
             productoRepository.save(new Producto("LomoDeRes", 48.00f, "Un corte fino de res, tierno y jugoso, asado a la perfección para resaltar su sabor natural. Ideal para los que buscan calidad en cada bocado.", "/images/pf5.png"));
 
 
-        // Postres (4)
+            // Postres (7)
             productoRepository.save(new Producto("Maracuyoso", 12.00f, "Una dulce y refrescante crema de maracuyá que combina el sabor ácido de la fruta con la suavidad de la crema, un final perfecto para tu comida.", "/images/pos1.png"));
             productoRepository.save(new Producto("Limonoso", 12.00f, "Delicioso postre de limón, refrescante y con un toque ácido perfecto para equilibrar cualquier comida, ideal para los amantes de los sabores cítricos.", "/images/pos2.png"));
             productoRepository.save(new Producto("Flan de Coco", 12.00f, "Suave flan con un toque de coco rallado, cremoso y con la dulzura justa, que hará que tu paladar disfrute cada cucharada.", "/images/pos3.png"));
             productoRepository.save(new Producto("Miloso", 12.00f, "Un postre cremoso con el sabor único del Milo, un toque de chocolate con malta que te hará recordar los sabores de la infancia.", "/images/pos4.png"));
+            productoRepository.save(new Producto("Tiramisú Clásico", 15.00f, "Delicioso postre italiano con capas de bizcocho empapado en café, crema de mascarpone y cacao en polvo.", "/images/pos5.png"));
+            productoRepository.save(new Producto("Cheesecake de Frutos Rojos", 14.00f, "Suave y cremoso cheesecake con una cobertura de frutos rojos que le da un toque dulce y ácido irresistible.", "/images/pos6.png"));
+            productoRepository.save(new Producto("Brownie con Helado", 16.00f, "Brownie de chocolate caliente acompañado de una bola de helado de vainilla, una combinación perfecta de texturas y sabores.", "/images/pos7.png"));
 
 
-        // Adicionales (7)
-        productoRepository.save(new Producto("Papa Casco", 8.00f, "Papas al estilo tradicional, servidas en su cáscara, fritas hasta quedar doradas y crujientes, una opción sabrosa para acompañar tu plato.", "/images/ad2.png"));
-        productoRepository.save(new Producto("Papas francesas", 8.00f, "Papas fritas en corte fino, crujientes por fuera y suaves por dentro, perfectas para acompañar cualquier plato o disfrutar solas.", "/images/ad3.png"));
-        productoRepository.save(new Producto("Yuquitas", 8.00f, "Papas fritas en corte fino, crujientes por fuera y suaves por dentro, perfectas para acompañar cualquier plato o disfrutar solas.", "/images/ad4.png"));
-        productoRepository.save(new Producto("Papa Horneada", 12.00f, "Papas al horno, suaves por dentro y ligeramente crujientes por fuera, perfectas para acompañar cualquiera de nuestras carnes.", "/images/ad5.png"));
-        productoRepository.save(new Producto("Chimichurri", 12.00f, "Salsa fresca a base de ajo, perejil, vinagre y aceite, el acompañamiento perfecto para realzar el sabor de tu carne a la parrilla.", "/images/ad6.png"));
-        productoRepository.save(new Producto("Arroz", 12.00f, "Arroz esponjoso, ligeramente sazonado, un acompañante clásico que nunca puede faltar en nuestra mesa.", "/images/ad7.png"));
-        productoRepository.save(new Producto("Guacamole", 8.00f, "Crema suave y fresca de aguacate con el toque perfecto de limón, cebolla y cilantro. Ideal para acompañar nuestros platos y disfrutar con totopos.", "/images/ad1.png"));
+            // Adicionales (7)
+            productoRepository.save(new Producto("Papa Casco", 8.00f, "Papas al estilo tradicional, servidas en su cáscara, fritas hasta quedar doradas y crujientes, una opción sabrosa para acompañar tu plato.", "/images/ad2.png"));
+            productoRepository.save(new Producto("Papas francesas", 8.00f, "Papas fritas en corte fino, crujientes por fuera y suaves por dentro, perfectas para acompañar cualquier plato o disfrutar solas.", "/images/ad3.png"));
+            productoRepository.save(new Producto("Yuquitas", 8.00f, "Papas fritas en corte fino, crujientes por fuera y suaves por dentro, perfectas para acompañar cualquier plato o disfrutar solas.", "/images/ad4.png"));
+            productoRepository.save(new Producto("Papa Horneada", 12.00f, "Papas al horno, suaves por dentro y ligeramente crujientes por fuera, perfectas para acompañar cualquiera de nuestras carnes.", "/images/ad5.png"));
+            productoRepository.save(new Producto("Chimichurri", 12.00f, "Salsa fresca a base de ajo, perejil, vinagre y aceite, el acompañamiento perfecto para realzar el sabor de tu carne a la parrilla.", "/images/ad6.png"));
+            productoRepository.save(new Producto("Arroz", 12.00f, "Arroz esponjoso, ligeramente sazonado, un acompañante clásico que nunca puede faltar en nuestra mesa.", "/images/ad7.png"));
+            productoRepository.save(new Producto("Guacamole", 8.00f, "Crema suave y fresca de aguacate con el toque perfecto de limón, cebolla y cilantro. Ideal para acompañar nuestros platos y disfrutar con totopos.", "/images/ad1.png"));
 
 
-        // Bebidas (6)
-        productoRepository.save(new Producto("Coca cola", 5.00f, "La refrescante bebida clásica que no puede faltar, con su sabor único y burbujeante, perfecta para acompañar tu comida.", "/images/beb1.png"));
-        productoRepository.save(new Producto("Coca cola zero", 5.00f, "La opción sin calorías, con el sabor refrescante y delicioso de la Coca-Cola original, ideal para quienes prefieren evitar el azúcar.", "/images/beb2.png"));
-        productoRepository.save(new Producto("Sprite", 5.00f, "Bebida refrescante y cítrica, con el sabor burbujeante de limón-lima, ideal para disfrutar en cualquier momento.", "/images/beb3.png"));
-        productoRepository.save(new Producto("Coctel de maracuya", 28.00f, "Refrescante cóctel con el toque tropical y ácido del maracuyá, combinado con ingredientes naturales que harán de tu bebida un verdadero placer.", "/images/beb4.png"));
-        productoRepository.save(new Producto("Agua sin gas", 5.00f, "Agua fresca y purificada, la opción más natural y saludable para acompañar tu comida.", "/images/beb5.png"));
-        productoRepository.save(new Producto("Coctel Frutos rojos", 28.00f, "Una mezcla vibrante de frutos rojos frescos, ideal para los que disfrutan de una bebida afrutada y ligeramente dulce.", "/images/beb6.png"));
-            
+            // Bebidas (16)
+            productoRepository.save(new Producto("Coca cola", 5.00f, "La refrescante bebida clásica que no puede faltar, con su sabor único y burbujeante, perfecta para acompañar tu comida.", "/images/beb1.png"));
+            productoRepository.save(new Producto("Coca cola zero", 5.00f, "La opción sin calorías, con el sabor refrescante y delicioso de la Coca-Cola original, ideal para quienes prefieren evitar el azúcar.", "/images/beb2.png"));
+            productoRepository.save(new Producto("Sprite", 5.00f, "Bebida refrescante y cítrica, con el sabor burbujeante de limón-lima, ideal para disfrutar en cualquier momento.", "/images/beb3.png"));
+            productoRepository.save(new Producto("Coctel de maracuya", 28.00f, "Refrescante cóctel con el toque tropical y ácido del maracuyá, combinado con ingredientes naturales que harán de tu bebida un verdadero placer.", "/images/beb4.png"));
+            productoRepository.save(new Producto("Agua sin gas", 5.00f, "Agua fresca y purificada, la opción más natural y saludable para acompañar tu comida.", "/images/beb5.png"));
+            productoRepository.save(new Producto("Coctel Frutos rojos", 28.00f, "Una mezcla vibrante de frutos rojos frescos, ideal para los que disfrutan de una bebida afrutada y ligeramente dulce.", "/images/beb6.png"));
+            productoRepository.save(new Producto("Mojito Clásico", 25.00f, "Refrescante combinación de ron, hierbabuena, lima y soda, ideal para disfrutar en cualquier ocasión.", "/images/beb5.png"));
+            productoRepository.save(new Producto("Piña Colada", 30.00f, "Delicioso cóctel tropical con ron, crema de coco y jugo de piña, perfecto para un día soleado.", "/images/beb6.png"));
+            productoRepository.save(new Producto("Daiquiri de Fresa", 27.00f, "Una mezcla dulce y refrescante de ron, fresas naturales y un toque de jugo de limón.", "/images/beb7.png"));
+            productoRepository.save(new Producto("Caipirinha", 26.00f, "El clásico brasileño con cachaça, azúcar y lima, ideal para los amantes de los sabores cítricos.", "/images/beb8.png"));
+            productoRepository.save(new Producto("Tequila Sunrise", 29.00f, "Vibrante combinación de tequila, jugo de naranja y granadina que simula un hermoso amanecer.", "/images/beb9.png"));
+            productoRepository.save(new Producto("Blue Lagoon", 28.00f, "Exótico cóctel azul con vodka, curaçao azul y limón, que te transportará a un paraíso tropical.", "/images/beb10.png"));
+            productoRepository.save(new Producto("Sex on the Beach", 31.00f, "Dulce y afrutado cóctel con vodka, licor de durazno, jugo de arándano y naranja.", "/images/beb11.png"));
+            productoRepository.save(new Producto("Manhattan", 35.00f, "Elegante y sofisticada mezcla de whisky, vermut rojo y angostura, un clásico de la coctelería.", "/images/beb12.png"));
+            productoRepository.save(new Producto("Cosmopolitan", 32.00f, "Famoso cóctel con vodka, licor de naranja, jugo de arándano y limón, ideal para una noche especial.", "/images/beb13.png"));
+            productoRepository.save(new Producto("Mai Tai", 33.00f, "Exótica combinación de ron oscuro, ron blanco, triple sec y jugo de lima, un clásico tiki imprescindible.", "/images/beb14.png"));
+
         // Crear y guardar adicionales
             Adicional jamon = adicionalRepository.save(new Adicional("Jamón", 1.00, "Deliciosas lonjas de jamón."));
             Adicional quesoExtra = adicionalRepository.save(new Adicional("Queso Extra", 1.00, "Porción adicional de queso derretido."));
