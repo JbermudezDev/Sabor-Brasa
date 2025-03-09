@@ -41,6 +41,13 @@ public class ProductoController {
         }
     }
 
+    @GetMapping("/agregar")
+    public String mostrarFormularioAgregarProducto(Model model) {
+        model.addAttribute("producto", new Producto());
+        return "AgregarProducto";
+    }
+
+
     @PostMapping("/add")
     public String agregarProducto(@ModelAttribute Producto producto) {
         productoService.add(producto);

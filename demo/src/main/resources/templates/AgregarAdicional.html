@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Adicionales</title>
+    <title>Listado de Clientes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link rel="stylesheet" href="/styles/Administrador.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
+    <!--=============== HEADER ===============-->
     <header class="header" id="header">
         <div class="header__container">
             <button class="header__toggle" id="header-toggle">
@@ -18,6 +20,7 @@
         </div>
     </header>
 
+    <!--=============== SIDEBAR ===============-->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar__container">
             <div class="sidebar__user">
@@ -26,6 +29,7 @@
                 </div>
                 <div class="sidebar__info">
                     <h3>Juan Jose Bermudez</h3>
+                    <span></span>
                 </div>
             </div>
             <div class="sidebar__content">
@@ -35,6 +39,14 @@
                         <a href="#" class="sidebar__link">
                             <i class="ri-profile-line"></i>
                             <span>Mi Perfil</span>
+                        </a>
+                        <a href="#" class="sidebar__link">
+                            <i class="ri-walk-line"></i>
+                            <span>Operadores</span>
+                        </a>
+                        <a href="#" class="sidebar__link">
+                            <i class="ri-riding-line"></i>
+                            <span>Domiciliarios</span>
                         </a>
                         <a href="/productos/all" class="sidebar__link">
                             <i class="ri-restaurant-fill"></i>
@@ -46,8 +58,22 @@
                         </a>
                     </div>
                 </div>
+                <div>
+                    <h3 class="sidebar__title">SETTINGS</h3>
+                    <div class="sidebar__list">
+                        <a href="#" class="sidebar__link">
+                            <i class="ri-settings-3-fill"></i>
+                            <span>Settings</span>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="sidebar__actions">
+                <button>
+                    <i class="ri-moon-clear-fill sidebar__link sidebar__theme" id="theme-button">
+                        <span>Theme</span>
+                    </i>
+                </button>
                 <button class="sidebar__link">
                     <i class="ri-logout-box-r-fill"></i>
                     <span>Log Out</span>
@@ -55,48 +81,32 @@
             </div>
         </div>
     </nav>
+
+    <!--=============== MAIN ===============-->
     <main class="main container" id="main">
         <div class="main-content">
-            <h1>Listado de Adicionales</h1>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Descripción</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="adicional, iterStat : ${adicionales}">
-                            <td th:text="${iterStat.count}"></td>
-                            <td th:text="${adicional.nombre}"></td>
-                            <td th:text="${adicional.precio}"></td>
-                            <td th:text="${adicional.descripcion}"></td>
-                            <td>
-                                <div class="btn-container">
-                                    <button class="btn yellow" th:onclick="'window.location.href=\'/adicionales/view/' + ${adicional.id} + '\';'"><i class="fas fa-eye"></i></button>
-                                    <button class="btn green" th:onclick="'window.location.href=\'/adicionales/update/' + ${adicional.id} + '\';'"><i class="fas fa-edit"></i></button>
-                                    <form th:action="@{/adicionales/delete/{id}(id=${adicional.id})}" method="post" style="display:inline;">
-                                        <button type="submit" class="btn red"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="form-container">
+                <h2>Agregar Adicional</h2>
+                <form th:action="@{/adicionales/add}" method="post"th:object="${adicional}">
+                    <div class="form-group">
+                    <label>Nombre: <input type="text" name="nombre" required></label>
+                </div>
+                <div class="form-group">
+                    <label>Precio: <input type="number" step="0.01" name="precio" required></label>
+                </div>
+                <div class="form-group">
+                    <label>Descripción: <input type="text" name="descripcion" required></label>
+                </div>
+                    <button type="submit" class="btn-submit">Agregar Adicional</button>
+                </form>
             </div>
-
-            <div class="button-container">
-                <button onclick="window.location.href='/adicionales/agregar'" class="btn-submit">
-                    Agregar Adicional
-                </button>
-            </div>
+           
+        </div>
+            
         </div>
     </main>
 
+    <!--=============== MAIN JS ===============-->
     <script src="js/main.js"></script>
 </body>
 </html>

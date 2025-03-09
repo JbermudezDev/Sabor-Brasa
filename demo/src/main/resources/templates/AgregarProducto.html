@@ -85,47 +85,30 @@
     <!--=============== MAIN ===============-->
     <main class="main container" id="main">
         <div class="main-content">
-            <h1>Listado de Clientes</h1>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                            <th>Teléfono</th>
-                            <th>Dirección</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="cliente, iterStat : ${clientes}">
-                            <td th:text="${iterStat.count}"></td>
-                            <td th:text="${cliente.nombre}"></td>
-                            <td th:text="${cliente.apellido}"></td>
-                            <td th:text="${cliente.email}"></td>
-                            <td th:text="${cliente.telefono}"></td>
-                            <td th:text="${cliente.direccion}"></td>
-                            <td>
-                                <div class="btn-container">
-                                    <button class="btn yellow" th:onclick="'window.location.href=\'/clientes/view/' + ${cliente.id} + '\';'"><i class="fas fa-eye"></i></button>
-                                    <button class="btn green" th:onclick="'window.location.href=\'/clientes/update/' + ${cliente.id} + '\';'"><i class="fas fa-edit"></i></button>
-                                    <form th:action="@{/clientes/delete/{id}(id=${cliente.id})}" method="post" style="display:inline;">
-                                        <input type="hidden" name="_method" value="delete" />
-                                        <button type="submit" class="btn red"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    
+            <div class="form-container">
+                <h2>Agregar Producto</h2>
+                <form th:action="@{/productos/add}" method="post"th:object="${producto}">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio:</label>
+                        <input type="number" id="precio" name="precio" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen">Imagen URL:</label>
+                        <input type="text" id="imagen" name="imagen">
+                    </div>
+                    <button type="submit" class="btn-submit">Agregar Producto</button>
+                </form>
             </div>
-            <div class="button-container">
-                <button onclick="window.location.href='/clientes/agregar'" class="btn-submit">
-                    Agregar Cliente
-                </button>
-            </div>
+        </div>
             
         </div>
     </main>

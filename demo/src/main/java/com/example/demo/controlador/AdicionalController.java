@@ -2,6 +2,7 @@ package com.example.demo.controlador;
 
 import com.example.demo.entidades.Adicional;
 import com.example.demo.entidades.Cliente;
+import com.example.demo.entidades.Producto;
 import com.example.demo.servicio.AdicionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,12 @@ public class AdicionalController {
             return "redirect:/adicionales/all";
         }
     }
+     @GetMapping("/agregar")
+    public String mostrarFormularioAgregarAdicional(Model model) {
+        model.addAttribute("adicional", new Adicional());
+        return "AgregarAdicional";
+    }
+
 
     @PostMapping("/add")
     public String agregarAdicional(@ModelAttribute Adicional adicional) {

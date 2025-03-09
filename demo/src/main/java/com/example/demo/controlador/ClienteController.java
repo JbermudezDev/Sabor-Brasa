@@ -34,6 +34,11 @@ public class ClienteController {
             return "redirect:/clientes/all";
         }
     }
+    @GetMapping("/agregar")
+    public String mostrarFormularioAgregarCliente(Model model) {
+        model.addAttribute("cliente", new Cliente());
+        return "AgregarCliente";
+    }
 
     @PostMapping("/add")
     public String agregarCliente(@ModelAttribute Cliente cliente) {
