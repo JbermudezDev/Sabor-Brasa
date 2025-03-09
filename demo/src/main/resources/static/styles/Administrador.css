@@ -54,10 +54,44 @@ body {
 
 h1 {
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.dashboard {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 200px;
+  border: 2px solid rgba(0, 0, 0, 0.245); /* Añade un borde negro */
+}
+
+.card i {
+  font-size: 2rem;
+  color: #ff9800;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #333;
+}
+.card p {
+  font-size: 1.2rem;
+  margin-top: 5px;
+  color: #666;
 }
 
 /* Tabla */
@@ -285,6 +319,7 @@ body.dark-theme {
   padding-inline: 1.5rem;
   border-radius: 1rem;
   transition: background-color .4s;
+   border: 2px solid rgba(0, 0, 0, 0.245); /* Añade un borde negro */
 }
 
 .header__logo {
@@ -323,6 +358,7 @@ body.dark-theme {
   margin: .75rem;
   border-radius: 1rem;
   transition: left .4s, background-color .4s, width .4s;
+  border: 2px solid rgba(0, 0, 0, 0.245); /* Añade un borde negro */
 }
 
 .sidebar__container, 
@@ -566,7 +602,7 @@ body.dark-theme {
 
 h2 {
     text-align: center;
-    color: #020202;
+    color: #000000;
 }
 
 .form-group {
