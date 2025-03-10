@@ -35,13 +35,7 @@ public class DatabaseInit implements ApplicationRunner {
         
             administradorRepository.save(new Administrador("Juan Jose Bermudez", "thejuanjo1128@gmail.com", "123456"));
             
-           // Guardar adicionales en la base de datos con descripciones
-            adicionalRepository.save(new Adicional("Jamón", 1.00, "Deliciosas lonjas de jamón para darle un toque especial a tu comida."));
-            adicionalRepository.save(new Adicional("Papas Fritas", 2.50, "Crujientes y doradas papas fritas, el acompañamiento perfecto para cualquier plato."));
-            adicionalRepository.save(new Adicional("Queso Extra", 1.00, "Porción adicional de queso derretido para un sabor más cremoso y delicioso."));
-            adicionalRepository.save(new Adicional("Salsa BBQ", 0.75, "Salsa barbacoa con un toque ahumado y dulce para realzar el sabor de tus comidas."));
-            adicionalRepository.save(new Adicional("Hielo Extra", 0.50, "Cubos de hielo adicionales para mantener tus bebidas bien frías."));
-            adicionalRepository.save(new Adicional("Rodaja de Limón", 0.30, "Fresca rodaja de limón para agregar un toque cítrico y refrescante a tu bebida."));
+           
 
 
              // Añadir un cliente
@@ -102,24 +96,7 @@ public class DatabaseInit implements ApplicationRunner {
             productoRepository.save(new Producto("Cosmopolitan", 32.00f, "Famoso cóctel con vodka, licor de naranja, jugo de arándano y limón, ideal para una noche especial.", "/images/beb13.png"));
             productoRepository.save(new Producto("Mai Tai", 33.00f, "Exótica combinación de ron oscuro, ron blanco, triple sec y jugo de lima, un clásico tiki imprescindible.", "/images/beb14.png"));
 
-        // Crear y guardar adicionales
-            Adicional jamon = adicionalRepository.save(new Adicional("Jamón", 1.00, "Deliciosas lonjas de jamón."));
-            Adicional quesoExtra = adicionalRepository.save(new Adicional("Queso Extra", 1.00, "Porción adicional de queso derretido."));
-            Adicional salsaBBQ = adicionalRepository.save(new Adicional("Salsa BBQ", 0.75, "Salsa barbacoa ahumada."));
-            
-            // Crear y guardar productos
-            Producto arepa = productoRepository.save(new Producto("Arepa de Maiz", 8.00f, "Deliciosas arepas rellenas de maíz fresco.", "/images/entrada1.png"));
-            Producto churrasco = productoRepository.save(new Producto("Churrasco", 48.00f, "Corte de res sazonado.", "/images/pf3.png"));
-
-            // Relacionar productos con adicionales
-            arepa.agregarAdicional(jamon);
-            arepa.agregarAdicional(quesoExtra);
-            
-            churrasco.agregarAdicional(salsaBBQ);
-            
-            // Guardar las relaciones
-            productoRepository.save(arepa);
-            productoRepository.save(churrasco);
+        
         }
     }
 

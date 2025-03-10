@@ -1,9 +1,17 @@
 package com.example.demo.entidades;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
+
 
 @Entity
+@Table(name = "adicionales")
 public class Adicional {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +22,7 @@ public class Adicional {
     private String descripcion;
 
     @ManyToMany(mappedBy = "adicionales")
-    private Set<Producto> productos;
+    private List<Producto> productos = new ArrayList<>();
 
     public Adicional() {}
 
@@ -24,19 +32,48 @@ public class Adicional {
         this.descripcion = descripcion;
     }
 
+    public void addProducto(Producto producto) {
+        productos.add(producto);
+        producto.getAdicionales().add(this);
+    }
+
+
     // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() { 
+        return id;
+     }
+    public void setId(Long id) {
+         this.id = id;
+         }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getNombre() { 
+        return nombre;
+     }
+    public void setNombre(String nombre) { 
+        this.nombre = nombre;
+     }
 
-    public double getPrecio() { return precio; }
-    public void setPrecio(double precio) { this.precio = precio; }
+    public double getPrecio() { 
+        return precio; 
+    }
+    public void setPrecio(double precio) { 
+        this.precio = precio; 
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public String getDescripcion() { 
+        return descripcion;
+     }
+    public void setDescripcion(String descripcion) {
+         this.descripcion = descripcion;
+         }
 
-    public Set<Producto> getProductos() { return productos; }
-    public void setProductos(Set<Producto> productos) { this.productos = productos; }
-}
+    public  List<Producto> getProductos() {
+         return productos;
+         }
+    public void setProductos(List<Producto> productos) { 
+        this.productos = productos; 
+    }
+
+    }
+
+    

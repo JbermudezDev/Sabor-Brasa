@@ -1,11 +1,13 @@
 package com.example.demo.entidades;
-
 import jakarta.persistence.*;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
+import com.example.demo.entidades.Adicional;
 
 @Entity
+@Table(name = "productos")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +20,11 @@ public class Producto {
 
     @ManyToMany
     @JoinTable(
-        name = "producto_adicional", 
-        joinColumns = @JoinColumn(name = "producto_id"),
-        inverseJoinColumns = @JoinColumn(name = "adicional_id")
+            name = "producto_adicional",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
-    private Set<Adicional> adicionales;
+    private List<Adicional> adicionales = new ArrayList<>();
 
     public Producto() {}
 
@@ -31,12 +33,14 @@ public class Producto {
         this.precio = precio;
         this.descripcion = descripcion;
         this.imagen = imagen;
-        this.adicionales = new HashSet<>();
     }
 
-    public void agregarAdicional(Adicional adicional) {
-        this.adicionales.add(adicional);
+    public void addAdicional(Adicional adicional) {
+        adicionales.add(adicional);
+        adicional.getProductos().add(this);
     }
+
+  
 
     // Getters y Setters
     public Long getId() { 
@@ -74,10 +78,13 @@ public class Producto {
          this.imagen = imagen;
          }
 
-    public Set<Adicional> getAdicionales() { 
-        return adicionales;
-     }
-    public void setAdicionales(Set<Adicional> adicionales) {
-         this.adicionales = adicionales;
-         }
+    public List<Adicional> getAdicionales() {
+            return adicionales;
+        }
+    
+    public void setAdicionales(List<Adicional> adicionales) {
+            this.adicionales = adicionales;
+        }
+
+   
 }
