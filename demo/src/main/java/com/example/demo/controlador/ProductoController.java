@@ -35,7 +35,7 @@ public class ProductoController {
         
         if (producto.isPresent()) {
             model.addAttribute("producto", producto.get());
-            return "VerProducto"; // Asegúrate de que este es el nombre correcto de la vista
+            return "VerProducto"; 
         } else {
             return "redirect:/productos/all"; // Redirige si el producto no existe
         }
@@ -76,5 +76,23 @@ public class ProductoController {
         producto.setId(id);
         productoService.update(producto);
         return "redirect:/productos/all";
+    }
+
+    @GetMapping("/Menu")
+    public String mostrarMenu(Model model) {
+        List<Producto> productos = productoService.obtenerTodos();
+        model.addAttribute("productos", productos);
+        return "Menu";
+    }
+
+    @GetMapping("/InfoPlato/{id}")
+    public String mostrarInfoPlato(@PathVariable Long id, Model model) {
+        Producto producto = productoService.obtenerPorId(id).orElse(null);
+        if (producto != null) {
+            model.addAttribute("producto", producto);
+            return "InfoPlato";
+        } else {
+            return "redirect:/productos/Menu"; // Si no encuentra el producto, regresa al menú
+        }
     }
 }

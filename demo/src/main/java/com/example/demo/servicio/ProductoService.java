@@ -35,5 +35,14 @@ public class ProductoService {
         return productoRepository.save(producto);
     }
 
+    // Metodo para obtener todos los productos y mostrar en menu
+    public List<Producto> obtenerTodos() {
+        return productoRepository.findAll();
+    }
+
+    public Optional<Producto> obtenerPorId(Long id) {
+        return productoRepository.findById(id);
+    }
+
     
 }
