@@ -100,6 +100,12 @@
                     <label for="imagen">URL de Imagen:</label>
                     <input type="text" id="imagen" name="imagen" th:value="${producto.imagen}" required>
 
+                    <label for="adicionales">Adicionales:</label>
+                    <div th:each="adicional : ${adicionales}">
+                        <input type="checkbox" th:id="${'adicional-' + adicional.id}" th:name="adicionales" th:value="${adicional.id}" th:checked="${producto.adicionales.contains(adicional)}">
+                        <label th:for="${'adicional-' + adicional.id}" th:text="${adicional.nombre}"></label>
+                    </div>
+
                     <div class="button-container">
                         <button type="submit" class="btn btn-green">Actualizar Producto</button>
                     </div>

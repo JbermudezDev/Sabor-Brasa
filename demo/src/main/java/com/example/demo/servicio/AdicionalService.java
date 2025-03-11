@@ -19,6 +19,10 @@ public class AdicionalService {
    public List<Adicional> searchAll() {
         return adicionalRepository.findAll();
     }
+    
+    public List<Adicional> findByIds(List<Long> ids) {
+        return adicionalRepository.findAllById(ids);
+    }
 
     // Método para agregar un adicional
     public void add(Adicional adicional) {

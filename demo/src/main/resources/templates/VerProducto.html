@@ -91,6 +91,10 @@
                 <p><strong>Nombre:</strong> <span th:text="${producto.nombre}"></span></p>
                 <p><strong>Precio:</strong> <span th:text="${producto.precio}"></span></p>
                 <p><strong>Descripción:</strong> <span th:text="${producto.descripcion}"></span></p>
+                <p><strong>Adicionales:</strong></p>
+                <ul>
+                    <li th:each="adicional : ${producto.adicionales}" th:text="${adicional.nombre}"></li>
+                </ul>
                 <a href="/productos/all" class="btn">Volver al Listado</a>
             </div>
         </div>

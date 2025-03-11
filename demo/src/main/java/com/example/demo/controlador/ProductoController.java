@@ -1,13 +1,13 @@
 package com.example.demo.controlador;
 
-import com.example.demo.entidades.Cliente;
+import com.example.demo.entidades.Adicional;
 import com.example.demo.entidades.Producto;
+import com.example.demo.servicio.AdicionalService;
 import com.example.demo.servicio.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.example.demo.repositorio.ProductoRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,7 @@ public class ProductoController {
     private ProductoService productoService;
 
     @Autowired
-    private ProductoRepository productoRepository;
+    private AdicionalService adicionalService;
 
     @GetMapping("/all")
     public String mostrarProductos(Model model) {
@@ -31,13 +31,12 @@ public class ProductoController {
 
     @GetMapping("/view/{id}")
     public String verProducto(@PathVariable("id") Long id, Model model) {
-        Optional<Producto> producto = productoRepository.findById(id);
-        
+        Optional<Producto> producto = productoService.findById(id);
         if (producto.isPresent()) {
             model.addAttribute("producto", producto.get());
-            return "VerProducto"; // Asegúrate de que este es el nombre correcto de la vista
+            return "VerProducto";
         } else {
-            return "redirect:/productos/all"; // Redirige si el producto no existe
+            return "redirect:/productos/all";
         }
     }
 
@@ -46,7 +45,6 @@ public class ProductoController {
         model.addAttribute("producto", new Producto());
         return "AgregarProducto";
     }
-
 
     @PostMapping("/add")
     public String agregarProducto(@ModelAttribute Producto producto) {
@@ -64,7 +62,9 @@ public class ProductoController {
     public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
         Optional<Producto> producto = productoService.findById(id);
         if (producto.isPresent()) {
+            List<Adicional> adicionales = adicionalService.searchAll();
             model.addAttribute("producto", producto.get());
+            model.addAttribute("adicionales", adicionales);
             return "EditarProducto";
         } else {
             return "redirect:/productos/all";
@@ -72,9 +72,20 @@ public class ProductoController {
     }
 
     @PostMapping("/update/{id}")
-    public String modificarProducto(@ModelAttribute Producto producto, @PathVariable("id") Long id) {
-        producto.setId(id);
-        productoService.update(producto);
-        return "redirect:/productos/all";
+    public String modificarProducto(@PathVariable("id") Long id, @ModelAttribute Producto producto, @RequestParam List<Long> adicionales) {
+        Optional<Producto> productoExistente = productoService.findById(id);
+        if (productoExistente.isPresent()) {
+            Producto prod = productoExistente.get();
+            prod.setNombre(producto.getNombre());
+            prod.setPrecio(producto.getPrecio());
+            prod.setDescripcion(producto.getDescripcion());
+            prod.setImagen(producto.getImagen());
+
+            List<Adicional> adicionalesSeleccionados = adicionalService.findByIds(adicionales);
+            prod.setAdicionales(adicionalesSeleccionados);
+
+            productoService.save(prod);
+        }
+        return "redirect:/productos/view/" + id;
     }
 }
