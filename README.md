@@ -1,4 +1,4 @@
-#Sabor Brasa
+# Sabor Brasa
 Bienvenido al repositorio de Sabor Brasa, un proyecto web diseñado para la gestión y visualización de pedidos de un restaurante especializado en parrilla. Esta aplicación permite a los usuarios explorar el menú, realizar pedidos y gestionar su historial de compras de manera eficiente.
 
 Este proyecto busca digitalizar y optimizar el proceso de pedidos de un restaurante, brindando una interfaz intuitiva para los clientes y herramientas administrativas para la gestión de productos y órdenes.
