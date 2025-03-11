@@ -1,5 +1,6 @@
 package com.example.demo.servicio;
 
+import com.example.demo.entidades.Categoria;
 import com.example.demo.entidades.Producto;
 import com.example.demo.repositorio.ProductoRepository;
 
@@ -43,6 +44,11 @@ public class ProductoService {
     public Optional<Producto> obtenerPorId(Long id) {
         return productoRepository.findById(id);
     }
+
+    public List<Producto> obtenerPorCategoria(Categoria categoria) {
+    return productoRepository.findByCategoria(categoria);
+}
+
 
     
 }

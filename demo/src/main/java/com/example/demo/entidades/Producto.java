@@ -16,6 +16,9 @@ public class Producto {
     private String descripcion;
     private String imagen;
 
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
+
     @ManyToMany
     @JoinTable(
         name = "producto_adicional", 
@@ -73,11 +76,21 @@ public class Producto {
     public void setImagen(String imagen) {
          this.imagen = imagen;
          }
+         
+         public Categoria getCategoria() {
+            return categoria;
+        }
+    
+        public void setCategoria(Categoria categoria) {
+            this.categoria = categoria;
+        }
 
     public Set<Adicional> getAdicionales() { 
         return adicionales;
      }
     public void setAdicionales(Set<Adicional> adicionales) {
          this.adicionales = adicionales;
-         }
+    }
+
+
 }

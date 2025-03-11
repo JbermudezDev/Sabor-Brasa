@@ -1,5 +1,6 @@
 package com.example.demo.controlador;
 
+import com.example.demo.entidades.Categoria;
 import com.example.demo.entidades.Cliente;
 import com.example.demo.entidades.Producto;
 import com.example.demo.servicio.ProductoService;
@@ -86,13 +87,22 @@ public class ProductoController {
     }
 
     @GetMapping("/InfoPlato/{id}")
-    public String mostrarInfoPlato(@PathVariable Long id, Model model) {
-        Producto producto = productoService.obtenerPorId(id).orElse(null);
-        if (producto != null) {
-            model.addAttribute("producto", producto);
-            return "InfoPlato";
-        } else {
-            return "redirect:/productos/Menu"; // Si no encuentra el producto, regresa al menú
+public String mostrarInfoPlato(@PathVariable Long id, Model model) {
+    Optional<Producto> productoOpt = productoService.obtenerPorId(id);
+    
+    if (productoOpt.isPresent()) {
+        Producto producto = productoOpt.get();
+        model.addAttribute("producto", producto);
+
+        // Si el producto NO es una bebida, carga la lista de bebidas
+        if (producto.getCategoria() != Categoria.BEBIDA) {
+            List<Producto> bebidas = productoService.obtenerPorCategoria(Categoria.BEBIDA);
+            model.addAttribute("bebidas", bebidas);
         }
+
+        return "InfoPlato";
+    } else {
+        return "redirect:/productos/Menu"; // Si no encuentra el producto, regresa al menú
     }
+}
 }
