@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brasa & Corte</title>
-    <link rel="stylesheet" href="/demo/src/main/resources/static/styles/InfoPlato.css">
+    <link rel="stylesheet" href="/styles/InfoPlato.css">
 </head>
 <body>
     <div id="header">
-        <img src="/demo/src/main/resources/static/images/imagendiv3.jpeg" alt="Imagen de fondo del header" class="header-bg">
+        <img src="/images/imagendiv3.jpeg" alt="Imagen de fondo del header" class="header-bg">
         <div id="logo">
-            <img src="/demo/src/main/resources/static/images/logo brasa.png" alt="Brasa & Corte">
-            </div>
+            <img src="/images/logo brasa.png" alt="Brasa & Corte">
+        </div>
         <ul>
             <li></li>
             <li></li>
@@ -35,7 +35,7 @@
             <li></li>
 
             <div class="styled-wrapper">
-                <a href="Menu.html"> <!-- Cambia "/menu" a la URL correcta de tu menú -->
+                <a th:href="@{/productos/Menu}"> 
                     <button class="button">
                         <div class="button-box">
                             <span class="button-elem">
@@ -52,21 +52,19 @@
                     </button>
                 </a>
             </div>             
-           
         </ul>
-  
     </div>
-<!-- Mostrar Informacion de personalizacion -->
+    <!-- Mostrar Informacion de personalizacion -->
     <main>
         <div class="container">
-                <div class="left-container">
-                    <!-- imagen -->
-                    <img src="/demo/src/main/resources/static/images/pf1.png" alt="Imagen del plato">
-                </div>
-                <div class="right-container">
-                    <div class="inner-container">   
-                    <h2>Churrasco</h2>
-                    <p>Nuestro Churrasco a la Parrilla es una deliciosa experiencia culinaria que combina la jugosidad de un corte premium de res con el auténtico sabor de la parrilla al carbón. Esta suculenta pieza de carne, marinada con una mezcla de especias y hierbas frescas, se cocina al punto perfecto para resaltar su ternura y jugosidad.</p>
+            <div class="left-container">
+                <!-- imagen -->
+                <img th:src="@{${producto.imagen}}" alt="Imagen del plato">
+            </div>
+            <div class="right-container">
+                <div class="inner-container">   
+                    <h2 th:text="${nombre}">Nombre del Plato</h2>
+                    <p th:text="${descripcion}">Descripción del Plato</p>
                     <h3>Acompañamientos</h3>
                     <div class="checkbox-group">
                         <label class="checkbox-container">Papa en Casco
@@ -93,10 +91,10 @@
                             <input type="checkbox" name="ensaladas" value="ensalada-de-repollo">
                             <span class="custom-checkmark"></span>
                         </label>
+                    </div>
+                    <!-- BOTON --> 
+                    <button class="buttonadd">Agregar</button>
                 </div>
-                <!-- BOTON --> 
-                <button class="buttonadd">Agregar</button>
-
             </div>
         </div>
     </main>

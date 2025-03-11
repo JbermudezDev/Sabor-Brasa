@@ -9,7 +9,7 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: 'Playfair Display', serif;
-    background-image: url('/demo/src/main/resources/static/images/imagendiv2.jpeg');
+    background-image: url('/images/imagendiv2.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

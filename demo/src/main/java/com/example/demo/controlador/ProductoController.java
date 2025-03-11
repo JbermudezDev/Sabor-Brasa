@@ -4,6 +4,7 @@ import com.example.demo.entidades.Adicional;
 import com.example.demo.entidades.Producto;
 import com.example.demo.servicio.AdicionalService;
 import com.example.demo.servicio.ProductoService;
+import com.example.demo.entidades.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,5 +88,33 @@ public class ProductoController {
             productoService.save(prod);
         }
         return "redirect:/productos/view/" + id;
+    }
+
+    @GetMapping("/Menu")
+    public String mostrarMenu(Model model) {
+        List<Producto> productos = productoService.obtenerTodos();
+        model.addAttribute("productos", productos);
+        return "Menu";
+    }
+
+    @GetMapping("/InfoPlato/{id}")
+public String mostrarInfoPlato(@PathVariable Long id, Model model) {
+    Optional<Producto> productoOpt = productoService.obtenerPorId(id);
+    
+    if (productoOpt.isPresent()) {
+        Producto producto = productoOpt.get();
+        model.addAttribute("producto", producto);
+
+        // Si el producto NO es una bebida, carga la lista de bebidas
+        if (producto.getCategoria() != Categoria.BEBIDA) {
+            List<Producto> bebidas = productoService.obtenerPorCategoria(Categoria.BEBIDA);
+            model.addAttribute("bebidas", bebidas);
+        }
+
+        return "InfoPlato";
+    } else {
+        return "redirect:/productos/Menu"; // Si no encuentra el producto, regresa al menú
+    }
+
     }
 }

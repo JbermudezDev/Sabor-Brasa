@@ -1,5 +1,6 @@
 package com.example.demo.servicio;
 
+import com.example.demo.entidades.Categoria;
 import com.example.demo.entidades.Producto;
 import com.example.demo.repositorio.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,18 @@ public class ProductoService {
     public void save(Producto producto) {
         productoRepository.save(producto);
     }
+
+     
+    public List<Producto> obtenerTodos() {
+        return productoRepository.findAll();
+    }
+
+    public Optional<Producto> obtenerPorId(Long id) {
+        return productoRepository.findById(id);
+    }
+
+    public List<Producto> obtenerPorCategoria(Categoria categoria) {
+    return productoRepository.findByCategoria(categoria);
+}
+
 }
