@@ -3,14 +3,14 @@ Bienvenido al repositorio de Sabor Brasa, un proyecto web diseñado para la gest
 
 Este proyecto busca digitalizar y optimizar el proceso de pedidos de un restaurante, brindando una interfaz intuitiva para los clientes y herramientas administrativas para la gestión de productos y órdenes.
 
-Objetivos
+# Objetivos
 
 - Facilitar la visualización del menú y detalles de cada platillo.
 - Permitir a los clientes realizar pedidos de forma sencilla.
 - Proporcionar a los administradores control sobre el inventario y las órdenes.
 - Mejorar la experiencia del usuario en el proceso de compra.
 
-Tecnologías Utilizadas
+# Tecnologías Utilizadas
 
 - Frontend: HTML, CSS, JavaScript
 - Backend: Node.js, Express.js
@@ -18,7 +18,7 @@ Tecnologías Utilizadas
 - Autenticación: JWT (JSON Web Tokens)
 - Estilos: Bootstrap / Tailwind CSS
 
-Funcionalidades Principales
+# Funcionalidades Principales
 
 - Explorar el menú: Ver detalles de los productos.
 - Realizar pedidos: Agregar productos al carrito y finalizar la compra.
