@@ -14,14 +14,14 @@ Facilitar el acceso a platos exquisitos con solo unos clics, garantizando rapide
 ### Nuestra Visión
 Ser la aplicación líder en pedidos de comida a domicilio, destacándonos por nuestra excelencia en servicio, tecnología de punta y compromiso con la experiencia del usuario.
 
-# Objetivos
+### Objetivos
 
 - Facilitar la visualización del menú y detalles de cada platillo.
 - Permitir a los clientes realizar pedidos de forma sencilla.
 - Proporcionar a los administradores control sobre el inventario y las órdenes.
 - Mejorar la experiencia del usuario en el proceso de compra.
 
-# Tecnologías Utilizadas
+### Tecnologías Utilizadas
 
 - Frontend: HTML, CSS, JavaScript
 - Backend: Node.js, Express.js
@@ -29,7 +29,7 @@ Ser la aplicación líder en pedidos de comida a domicilio, destacándonos por n
 - Autenticación: JWT (JSON Web Tokens)
 - Estilos: Bootstrap / Tailwind CSS
 
-# Funcionalidades Principales
+### Funcionalidades Principales
 
 - Explorar el menú: Ver detalles de los productos.
 - Realizar pedidos: Agregar productos al carrito y finalizar la compra.
