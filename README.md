@@ -3,6 +3,17 @@ Bienvenido al repositorio de Sabor Brasa, un proyecto web diseñado para la gest
 
 Este proyecto busca digitalizar y optimizar el proceso de pedidos de un restaurante, brindando una interfaz intuitiva para los clientes y herramientas administrativas para la gestión de productos y órdenes.
 
+### Quienes somos
+Bienvenido a Brasa y corte, la forma más rápida, fácil y segura de disfrutar la mejor comida de tu restaurante favorito sin salir de casa.
+Somos una plataforma innovadora diseñada para conectar a los amantes de la buena comida con los sabores más auténticos y deliciosos, ofreciendo una experiencia de pedido y entrega eficiente, cómoda y confiable. 
+### Logo
+![logo](https://github.com/user-attachments/assets/2b47dceb-cd86-4f30-bee1-456e99abc9f8)
+### Nuestra Misión
+Facilitar el acceso a platos exquisitos con solo unos clics, garantizando rapidez, calidad y satisfacción en cada entrega.
+
+### Nuestra Visión
+Ser la aplicación líder en pedidos de comida a domicilio, destacándonos por nuestra excelencia en servicio, tecnología de punta y compromiso con la experiencia del usuario.
+
 # Objetivos
 
 - Facilitar la visualización del menú y detalles de cada platillo.
