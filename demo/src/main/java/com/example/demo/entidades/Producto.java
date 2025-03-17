@@ -21,13 +21,14 @@ public class Producto {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "producto_adicional",
             joinColumns = @JoinColumn(name = "producto_id"),
             inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
     private List<Adicional> adicionales = new ArrayList<>();
+    
 
     public Producto() {}
 
@@ -42,7 +43,11 @@ public class Producto {
         adicionales.add(adicional);
         adicional.getProductos().add(this);
     }
-
+    public void removeAdicional(Adicional adicional) {
+        adicionales.remove(adicional);
+        adicional.getProductos().remove(this);
+    }
+    
   
 
     // Getters y Setters

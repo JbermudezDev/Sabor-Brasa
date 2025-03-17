@@ -685,3 +685,26 @@ input {
 .btn:hover {
     opacity: 0.8;
 }
+.check-container {
+  display: flex;
+  flex-direction: column; /* Acomoda en una columna */
+  gap: 5px; /* Espaciado uniforme */
+  max-width: 300px; /* Ajusta el ancho del contenedor */
+}
+
+.check-item {
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente */
+  justify-content: space-between; /* Separa el texto del checkbox */
+  padding: 5px 10px; /* Espaciado interno */
+  width: 100%; /* Que todos tengan el mismo ancho */
+}
+
+.check-item label {
+  flex-grow: 1; /* Hace que el texto ocupe el espacio disponible */
+  text-align: left; /* Asegura que el texto esté alineado a la izquierda */
+}
+
+.check-item input {
+  transform: scale(1.2); /* Hace el checkbox más grande */
+}

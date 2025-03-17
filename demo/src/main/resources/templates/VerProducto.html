@@ -86,7 +86,8 @@
         <div th:if="${producto != null}">
             <div class="details-container">
                 <p><strong>Nombre:</strong> <span th:text="${producto.nombre}"></span></p>
-                <p><strong>Precio:</strong> <span th:text="${producto.precio}"></span></p>
+                <p><strong>Precio:</strong> <span th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT') + ' COP'}"></span></p>
+
                 <p><strong>Descripción:</strong> <span th:text="${producto.descripcion}"></span></p>
                 <p><strong>Adicionales:</strong></p>
                 <ul>

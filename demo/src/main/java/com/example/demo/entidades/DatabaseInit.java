@@ -70,11 +70,11 @@ public class DatabaseInit implements ApplicationRunner {
             productoRepository.save(producto13);
             Producto producto14 = new Producto("Miloso", 12.00f, "Un postre cremoso con el sabor único del Milo, un toque de chocolate con malta que te hará recordar los sabores de la infancia.", "/images/postre4.png");
             productoRepository.save(producto14);
-            Producto producto15 = new Producto("Tiramisú Clásico", 15.00f, "Delicioso postre italiano con capas de bizcocho empapado en café, crema de mascarpone y cacao en polvo.", "/images/postre5.png");
+            Producto producto15 = new Producto("Tiramisú Clásico", 15.00f, "Delicioso postre italiano con capas de bizcocho empapado en café, crema de mascarpone y cacao en polvo.", "/images/postre5.jpg");
             productoRepository.save(producto15);
-            Producto producto16 = new Producto("Cheesecake de Frutos Rojos", 14.00f, "Suave y cremoso cheesecake con una cobertura de frutos rojos que le da un toque dulce y ácido irresistible.", "/images/postre6.png");
+            Producto producto16 = new Producto("Cheesecake de Frutos Rojos", 14.00f, "Suave y cremoso cheesecake con una cobertura de frutos rojos que le da un toque dulce y ácido irresistible.", "/images/postre6.jpg");
             productoRepository.save(producto16);
-            Producto producto17 = new Producto("Brownie con Helado", 16.00f, "Brownie de chocolate caliente acompañado de una bola de helado de vainilla, una combinación perfecta de texturas y sabores.", "/images/postre7.png");
+            Producto producto17 = new Producto("Brownie con Helado", 16.00f, "Brownie de chocolate caliente acompañado de una bola de helado de vainilla, una combinación perfecta de texturas y sabores.", "/images/postre7.jpg");
             productoRepository.save(producto17);
             Producto producto18 = new Producto("Coca cola", 5.00f, "La refrescante bebida clásica que no puede faltar, con su sabor único y burbujeante, perfecta para acompañar tu comida.", "/images/bebida1.png");
             productoRepository.save(producto18);

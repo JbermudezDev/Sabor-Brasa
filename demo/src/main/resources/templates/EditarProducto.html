@@ -101,13 +101,16 @@
                     <input type="text" id="imagen" name="imagen" th:value="${producto.imagen}" required>
                                 
                     <label>Seleccionar Adicionales:</label>
-                    <div>
+                    <div class="check-container">
                         <th:block th:each="adicional : ${adicionales}">
-                            <input type="checkbox" name="adicionales" th:value="${adicional.id}"
-                                th:checked="${producto.adicionales.contains(adicional)}">
-                            <label th:text="${adicional.nombre}"></label>
+                            <div class="check-item">
+                                <label th:text="${adicional.nombre}"></label>
+                                <input type="checkbox" name="adicionales" th:value="${adicional.id}"
+                                    th:checked="${producto.adicionales.contains(adicional)}">
+                            </div>
                         </th:block>
                     </div>
+
                     
             
                     <!-- Botón para enviar el formulario -->
