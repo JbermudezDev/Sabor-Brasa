@@ -40,6 +40,8 @@ public class DatabaseInit implements ApplicationRunner {
             
             clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
             // Crear y guardar productos
+            clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
+            // Crear y guardar productos
             Producto producto1 = new Producto("Arepa de Maiz", 8.00f, "Deliciosas arepas rellenas de maíz fresco.", "/images/entrada1.png");
             productoRepository.save(producto1);
             Producto producto2 = new Producto("Chichanorrada", 18.00f, "Crujientes trozos de cerdo fritos hasta alcanzar el punto perfecto de dorado y jugosidad.", "/images/entrada2.png");
