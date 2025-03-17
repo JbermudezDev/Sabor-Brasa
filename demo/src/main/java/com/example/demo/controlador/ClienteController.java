@@ -62,7 +62,8 @@ public class ClienteController {
             return "redirect:/clientes/all";
         }
     }
-
+    
+   
     @PostMapping("/update/{id}")
     public String modificarCliente(@ModelAttribute Cliente cliente, @PathVariable("id") Long id) {
         cliente.setId(id);

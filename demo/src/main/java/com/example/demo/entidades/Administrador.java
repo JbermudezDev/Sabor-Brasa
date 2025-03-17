@@ -1,9 +1,9 @@
 package com.example.demo.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Administrador {
@@ -11,8 +11,20 @@ public class Administrador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotBlank
+    @Size(max = 100)
+    @Column(nullable = false, length = 100)
     private String nombre;
+
+    @NotBlank
+    @Email
+    @Size(max = 100)
+    @Column(nullable = false, unique = true, length = 100)
     private String email; // Cambiado de 'usuario' a 'email'
+
+    @NotBlank
+    @Size(min = 6, max = 100)
+    @Column(nullable = false, length = 100)
     private String password; // Cambiado de 'contraseña' a 'password'
 
     // Constructor vacío

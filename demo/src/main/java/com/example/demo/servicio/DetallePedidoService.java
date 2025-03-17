@@ -5,14 +5,12 @@ import com.example.demo.repositorio.DetallePedidoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class DetallePedidoService {
-    private final DetallePedidoRepository detallePedidoRepository;
 
-    public DetallePedidoService(DetallePedidoRepository detallePedidoRepository) {
-        this.detallePedidoRepository = detallePedidoRepository;
-    }
-
+    @Autowired
+    private DetallePedidoRepository detallePedidoRepository;
    
 }

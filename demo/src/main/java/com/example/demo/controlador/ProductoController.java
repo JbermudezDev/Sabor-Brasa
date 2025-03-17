@@ -77,18 +77,26 @@ public class ProductoController {
         Optional<Producto> productoExistente = productoService.findById(id);
         if (productoExistente.isPresent()) {
             Producto prod = productoExistente.get();
+            
+            // Asegurar que el ID se mantenga
+            prod.setId(id);
+            
+            // Actualizar solo los campos permitidos
             prod.setNombre(producto.getNombre());
             prod.setPrecio(producto.getPrecio());
             prod.setDescripcion(producto.getDescripcion());
             prod.setImagen(producto.getImagen());
-
+    
+            // Actualizar adicionales
             List<Adicional> adicionalesSeleccionados = adicionalService.findByIds(adicionales);
             prod.setAdicionales(adicionalesSeleccionados);
-
+    
+            // Guardar los cambios
             productoService.save(prod);
         }
         return "redirect:/productos/view/" + id;
     }
+    
 
     @GetMapping("/Menu")
     public String mostrarMenu(Model model) {

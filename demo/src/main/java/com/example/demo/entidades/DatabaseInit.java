@@ -62,62 +62,62 @@ public class DatabaseInit implements ApplicationRunner {
             productoRepository.save(producto9);
             Producto producto10 = new Producto("LomoDeRes", 48.00f, "Un corte fino de res, tierno y jugoso, asado a la perfección para resaltar su sabor natural. Ideal para los que buscan calidad en cada bocado.", "/images/pf5.png");
             productoRepository.save(producto10);
-            Producto producto11 = new Producto("Maracuyoso", 12.00f, "Una dulce y refrescante crema de maracuyá que combina el sabor ácido de la fruta con la suavidad de la crema, un final perfecto para tu comida.", "/images/pos1.png");
+            Producto producto11 = new Producto("Maracuyoso", 12.00f, "Una dulce y refrescante crema de maracuyá que combina el sabor ácido de la fruta con la suavidad de la crema, un final perfecto para tu comida.", "/images/postre1.png");
             productoRepository.save(producto11);
-            Producto producto12 = new Producto("Limonoso", 12.00f, "Delicioso postre de limón, refrescante y con un toque ácido perfecto para equilibrar cualquier comida, ideal para los amantes de los sabores cítricos.", "/images/pos2.png");
+            Producto producto12 = new Producto("Limonoso", 12.00f, "Delicioso postre de limón, refrescante y con un toque ácido perfecto para equilibrar cualquier comida, ideal para los amantes de los sabores cítricos.", "/images/postre2.png");
             productoRepository.save(producto12);
-            Producto producto13 = new Producto("Flan de Coco", 12.00f, "Suave flan con un toque de coco rallado, cremoso y con la dulzura justa, que hará que tu paladar disfrute cada cucharada.", "/images/pos3.png");
+            Producto producto13 = new Producto("Flan de Coco", 12.00f, "Suave flan con un toque de coco rallado, cremoso y con la dulzura justa, que hará que tu paladar disfrute cada cucharada.", "/images/postre3.png");
             productoRepository.save(producto13);
-            Producto producto14 = new Producto("Miloso", 12.00f, "Un postre cremoso con el sabor único del Milo, un toque de chocolate con malta que te hará recordar los sabores de la infancia.", "/images/pos4.png");
+            Producto producto14 = new Producto("Miloso", 12.00f, "Un postre cremoso con el sabor único del Milo, un toque de chocolate con malta que te hará recordar los sabores de la infancia.", "/images/postre4.png");
             productoRepository.save(producto14);
-            Producto producto15 = new Producto("Tiramisú Clásico", 15.00f, "Delicioso postre italiano con capas de bizcocho empapado en café, crema de mascarpone y cacao en polvo.", "/images/pos5.png");
+            Producto producto15 = new Producto("Tiramisú Clásico", 15.00f, "Delicioso postre italiano con capas de bizcocho empapado en café, crema de mascarpone y cacao en polvo.", "/images/postre5.png");
             productoRepository.save(producto15);
-            Producto producto16 = new Producto("Cheesecake de Frutos Rojos", 14.00f, "Suave y cremoso cheesecake con una cobertura de frutos rojos que le da un toque dulce y ácido irresistible.", "/images/pos6.png");
+            Producto producto16 = new Producto("Cheesecake de Frutos Rojos", 14.00f, "Suave y cremoso cheesecake con una cobertura de frutos rojos que le da un toque dulce y ácido irresistible.", "/images/postre6.png");
             productoRepository.save(producto16);
-            Producto producto17 = new Producto("Brownie con Helado", 16.00f, "Brownie de chocolate caliente acompañado de una bola de helado de vainilla, una combinación perfecta de texturas y sabores.", "/images/pos7.png");
+            Producto producto17 = new Producto("Brownie con Helado", 16.00f, "Brownie de chocolate caliente acompañado de una bola de helado de vainilla, una combinación perfecta de texturas y sabores.", "/images/postre7.png");
             productoRepository.save(producto17);
-            Producto producto18 = new Producto("Coca cola", 5.00f, "La refrescante bebida clásica que no puede faltar, con su sabor único y burbujeante, perfecta para acompañar tu comida.", "/images/beb1.png");
+            Producto producto18 = new Producto("Coca cola", 5.00f, "La refrescante bebida clásica que no puede faltar, con su sabor único y burbujeante, perfecta para acompañar tu comida.", "/images/bebida1.png");
             productoRepository.save(producto18);
-            Producto producto19 = new Producto("Coca cola zero", 5.00f, "La opción sin calorías, con el sabor refrescante y delicioso de la Coca-Cola original, ideal para quienes prefieren evitar el azúcar.", "/images/beb2.png");
+            Producto producto19 = new Producto("Coca cola zero", 5.00f, "La opción sin calorías, con el sabor refrescante y delicioso de la Coca-Cola original, ideal para quienes prefieren evitar el azúcar.", "/images/bebida2.png");
             productoRepository.save(producto19);
-            Producto producto20 = new Producto("Sprite", 5.00f, "Bebida refrescante y cítrica, con el sabor burbujeante de limón-lima, ideal para disfrutar en cualquier momento.", "/images/beb3.png");
+            Producto producto20 = new Producto("Sprite", 5.00f, "Bebida refrescante y cítrica, con el sabor burbujeante de limón-lima, ideal para disfrutar en cualquier momento.", "/images/bebida3.png");
             productoRepository.save(producto20);
-            Producto producto21 = new Producto("Coctel de maracuya", 28.00f, "Refrescante cóctel con el toque tropical y ácido del maracuyá, combinado con ingredientes naturales que harán de tu bebida un verdadero placer.", "/images/beb4.png");
+            Producto producto21 = new Producto("Coctel de maracuya", 28.00f, "Refrescante cóctel con el toque tropical y ácido del maracuyá, combinado con ingredientes naturales que harán de tu bebida un verdadero placer.", "/images/bebida4.png");
             productoRepository.save(producto21);
-            Producto producto22 = new Producto("Agua sin gas", 5.00f, "Agua fresca y purificada, la opción más natural y saludable para acompañar tu comida.", "/images/beb5.png");
+            Producto producto22 = new Producto("Agua sin gas", 5.00f, "Agua fresca y purificada, la opción más natural y saludable para acompañar tu comida.", "/images/bebida5.png");
             productoRepository.save(producto22);
 
-            Producto producto23 = new Producto("Coctel Frutos rojos", 28.00f, "Una mezcla vibrante de frutos rojos frescos, ideal para los que disfrutan de una bebida afrutada y ligeramente dulce.", "/images/beb6.png");
+            Producto producto23 = new Producto("Coctel Frutos rojos", 28.00f, "Una mezcla vibrante de frutos rojos frescos, ideal para los que disfrutan de una bebida afrutada y ligeramente dulce.", "/images/bebida6.png");
             productoRepository.save(producto23);
 
-            Producto producto24 = new Producto("Mojito Clásico", 25.00f, "Refrescante combinación de ron, hierbabuena, lima y soda, ideal para disfrutar en cualquier ocasión.", "/images/beb5.png");
+            Producto producto24 = new Producto("Mojito Clásico", 25.00f, "Refrescante combinación de ron, hierbabuena, lima y soda, ideal para disfrutar en cualquier ocasión.", "/images/bebida7.jpg");
             productoRepository.save(producto24);
 
-            Producto producto25 = new Producto("Piña Colada", 30.00f, "Delicioso cóctel tropical con ron, crema de coco y jugo de piña, perfecto para un día soleado.", "/images/beb6.png");
+            Producto producto25 = new Producto("Piña Colada", 30.00f, "Delicioso cóctel tropical con ron, crema de coco y jugo de piña, perfecto para un día soleado.", "/images/bebida8.jpg");
             productoRepository.save(producto25);
 
-            Producto producto26 = new Producto("Daiquiri de Fresa", 27.00f, "Una mezcla dulce y refrescante de ron, fresas naturales y un toque de jugo de limón.", "/images/beb7.png");
+            Producto producto26 = new Producto("Daiquiri de Fresa", 27.00f, "Una mezcla dulce y refrescante de ron, fresas naturales y un toque de jugo de limón.", "/images/bebida9.jpg");
             productoRepository.save(producto26);
 
-            Producto producto27 = new Producto("Caipirinha", 26.00f, "El clásico brasileño con cachaça, azúcar y lima, ideal para los amantes de los sabores cítricos.", "/images/beb8.png");
+            Producto producto27 = new Producto("Caipirinha", 26.00f, "El clásico brasileño con cachaça, azúcar y lima, ideal para los amantes de los sabores cítricos.", "/images/bebida10.jpg");
             productoRepository.save(producto27);
 
-            Producto producto28 = new Producto("Tequila Sunrise", 29.00f, "Vibrante combinación de tequila, jugo de naranja y granadina que simula un hermoso amanecer.", "/images/beb9.png");
+            Producto producto28 = new Producto("Tequila Sunrise", 29.00f, "Vibrante combinación de tequila, jugo de naranja y granadina que simula un hermoso amanecer.", "/images/bebida11.jpg");
             productoRepository.save(producto28);
 
-            Producto producto29 = new Producto("Blue Lagoon", 28.00f, "Exótico cóctel azul con vodka, curaçao azul y limón, que te transportará a un paraíso tropical.", "/images/beb10.png");
+            Producto producto29 = new Producto("Blue Lagoon", 28.00f, "Exótico cóctel azul con vodka, curaçao azul y limón, que te transportará a un paraíso tropical.", "/images/bebida12.jpg");
             productoRepository.save(producto29);
 
-            Producto producto30 = new Producto("Sex on the Beach", 31.00f, "Dulce y afrutado cóctel con vodka, licor de durazno, jugo de arándano y naranja.", "/images/beb11.png");
+            Producto producto30 = new Producto("Sex on the Beach", 31.00f, "Dulce y afrutado cóctel con vodka, licor de durazno, jugo de arándano y naranja.", "/images/bebida13.jpg");
             productoRepository.save(producto30);
 
-            Producto producto31 = new Producto("Manhattan", 35.00f, "Elegante y sofisticada mezcla de whisky, vermut rojo y angostura, un clásico de la coctelería.", "/images/beb12.png");
+            Producto producto31 = new Producto("Manhattan", 35.00f, "Elegante y sofisticada mezcla de whisky, vermut rojo y angostura, un clásico de la coctelería.", "/images/bebida7.png");
             productoRepository.save(producto31);
 
-            Producto producto32 = new Producto("Cosmopolitan", 32.00f, "Famoso cóctel con vodka, licor de naranja, jugo de arándano y limón, ideal para una noche especial.", "/images/beb13.png");
+            Producto producto32 = new Producto("Cosmopolitan", 32.00f, "Famoso cóctel con vodka, licor de naranja, jugo de arándano y limón, ideal para una noche especial.", "/images/bebida10.png");
             productoRepository.save(producto32);
 
-            Producto producto33 = new Producto("Mai Tai", 33.00f, "Exótica combinación de ron oscuro, ron blanco, triple sec y jugo de lima, un clásico tiki imprescindible.", "/images/beb14.png");
+            Producto producto33 = new Producto("Mai Tai", 33.00f, "Exótica combinación de ron oscuro, ron blanco, triple sec y jugo de lima, un clásico tiki imprescindible.", "/images/bebida8.png");
             productoRepository.save(producto33);
 
 

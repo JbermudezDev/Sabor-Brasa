@@ -6,7 +6,7 @@
     <title>Editar Producto</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-    <link rel="stylesheet" href="/styles/EditarProducto.css">
+    <link rel="stylesheet" href="/styles/editar-producto.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -84,29 +84,38 @@
             <h1>Editar Producto</h1>
             <div class="details-container">
                 <form th:action="@{/productos/update/{id}(id=${producto.id})}" method="post">
+                    
+                    <!-- Campo oculto para el ID del producto -->
+                    <input type="hidden" name="id" th:value="${producto.id}" />
+            
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" th:value="${producto.nombre}" required>
-
+            
                     <label for="precio">Precio:</label>
                     <input type="number" step="0.01" id="precio" name="precio" th:value="${producto.precio}" required>
-
+            
                     <label for="descripcion">Descripción:</label>
                     <textarea id="descripcion" name="descripcion" required th:text="${producto.descripcion}"></textarea>
-
+            
                     <label for="imagen">URL de Imagen:</label>
                     <input type="text" id="imagen" name="imagen" th:value="${producto.imagen}" required>
-
+            
                     <label for="adicionales">Adicionales:</label>
                     <div th:each="adicional : ${adicionales}">
-                        <input type="checkbox" th:id="${'adicional-' + adicional.id}" th:name="adicionales" th:value="${adicional.id}" th:checked="${producto.adicionales.contains(adicional)}">
+                        <input type="checkbox" th:id="${'adicional-' + adicional.id}" 
+                               th:name="adicionales" 
+                               th:value="${adicional.id}" 
+                               th:checked="${producto.adicionales.contains(adicional)}">
                         <label th:for="${'adicional-' + adicional.id}" th:text="${adicional.nombre}"></label>
                     </div>
-
+            
+                    <!-- Botón para enviar el formulario -->
                     <div class="button-container">
                         <button type="submit" class="btn btn-green">Actualizar Producto</button>
                     </div>
                 </form>
             </div>
+            
         </div>
     </main>
 

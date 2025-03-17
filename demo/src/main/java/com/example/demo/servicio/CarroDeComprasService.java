@@ -3,16 +3,15 @@ package com.example.demo.servicio;
 import com.example.demo.entidades.CarroDeCompras;
 import com.example.demo.repositorio.CarroDeComprasRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CarroDeComprasService {
-    private final CarroDeComprasRepository carroDeComprasRepository;
 
-    public CarroDeComprasService(CarroDeComprasRepository carroDeComprasRepository) {
-        this.carroDeComprasRepository = carroDeComprasRepository;
-    }
+    @Autowired
+    private CarroDeComprasRepository carroDeComprasRepository;
 
    
 }
