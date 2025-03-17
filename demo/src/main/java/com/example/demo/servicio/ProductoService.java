@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Service
 public class ProductoService {
-
     @Autowired
     private ProductoRepository productoRepository;
 
@@ -35,7 +34,10 @@ public class ProductoService {
         productoRepository.save(producto);
     }
 
-     
+    public List<Producto> obtenerPorCategoria(Categoria categoria) {
+        return productoRepository.findByCategoria(categoria);
+    }
+
     public List<Producto> obtenerTodos() {
         return productoRepository.findAll();
     }
@@ -44,8 +46,7 @@ public class ProductoService {
         return productoRepository.findById(id);
     }
 
-    public List<Producto> obtenerPorCategoria(Categoria categoria) {
-    return productoRepository.findByCategoria(categoria);
-}
+
+
 
 }

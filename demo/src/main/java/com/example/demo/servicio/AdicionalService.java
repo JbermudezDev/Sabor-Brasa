@@ -16,7 +16,7 @@ public class AdicionalService {
     private AdicionalRepository adicionalRepository;
 
     // Metodo para obtener todos los adicionales
-   public List<Adicional> searchAll() {
+   public List<Adicional> findAll() {
         return adicionalRepository.findAll();
     }
     

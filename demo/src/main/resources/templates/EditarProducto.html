@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,15 +99,16 @@
             
                     <label for="imagen">URL de Imagen:</label>
                     <input type="text" id="imagen" name="imagen" th:value="${producto.imagen}" required>
-            
-                    <label for="adicionales">Adicionales:</label>
-                    <div th:each="adicional : ${adicionales}">
-                        <input type="checkbox" th:id="${'adicional-' + adicional.id}" 
-                               th:name="adicionales" 
-                               th:value="${adicional.id}" 
-                               th:checked="${producto.adicionales.contains(adicional)}">
-                        <label th:for="${'adicional-' + adicional.id}" th:text="${adicional.nombre}"></label>
+                                
+                    <label>Seleccionar Adicionales:</label>
+                    <div>
+                        <th:block th:each="adicional : ${adicionales}">
+                            <input type="checkbox" name="adicionales" th:value="${adicional.id}"
+                                th:checked="${producto.adicionales.contains(adicional)}">
+                            <label th:text="${adicional.nombre}"></label>
+                        </th:block>
                     </div>
+                    
             
                     <!-- Botón para enviar el formulario -->
                     <div class="button-container">

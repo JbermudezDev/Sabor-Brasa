@@ -21,7 +21,7 @@ public class AdicionalController {
 
    @GetMapping("/all")
     public String mostrarAdicional(Model model) {
-        List<Adicional> adicionales = adicionalService.searchAll();
+        List<Adicional> adicionales = adicionalService.findAll();
         model.addAttribute("adicionales", adicionales);
         return "ListadoAdicional";
     }
