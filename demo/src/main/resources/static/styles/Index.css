@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
 }
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap');
 
 body {
   margin: 0;
@@ -37,7 +38,7 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 z-index: -1;
-background-image: url('/images/reservas3.jpeg');
+background-image: url('/images/imagendiv3.jpeg');
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
@@ -185,16 +186,15 @@ border-radius: 5px; /* Mantiene el borde redondeado */
 
 /* Sección principal */
 #menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #121212;
-  padding: 80px 20px;
-  text-align: center;
-  color: white;
-  position: relative;
+  display: flex;   
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   width: 100%;
+  background-color: #1b2522;
+  margin-top: 200px; /* Mantiene el margen superior */
+  height: 500px; /* Aumenta la altura total */
 }
+
 #informacionPrincipal {
   display: flex;
   flex-direction: column;
@@ -204,20 +204,18 @@ border-radius: 5px; /* Mantiene el borde redondeado */
 }
 
 #menu h2 {
-font-size: 55px;
-font-family: "Poltawski Nowy";
-font-weight: bold;
-color: #E4B363; /* Dorado elegante */
-text-transform: uppercase;
-margin-bottom: 30px;
-letter-spacing: 2px;
-
+  text-decoration: none;
+  color: #E4B363; /* Dorado elegante */
+  font-family: "Poltawski Nowy";
+  font-size: 80px; /* Letra más grande */
+  margin-top: 20px; /* Ajusta el margen superior para bajarlo */
+  text-align: center; /* Asegura que esté alineado si es necesario */
 }
 
 #menu p {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  font-family: "Poltawski Nowy";
+  font-family: 'Lora', serif; /* Aplicar la fuente Lora */
   font-size: 40px; /* Letra más grande */
   text-align: center;
   justify-content: center; /* Centrar el texto */
@@ -232,61 +230,46 @@ letter-spacing: 2px;
 
  margin-bottom:0;
 }
-/* Contenedor de contenido */
 .parent {
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-max-width: 1500px; /* Más ancho */
-width: 95%;
-background: rgba(255, 255, 255, 0.1);
-border-radius: 15px;
-overflow: hidden;
-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-transition: transform 0.3s ease-in-out;
-min-height: 250px; 
-padding: 20px; 
+  display: flex;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 0.8fr); /* Reducir tamaño de filas */
+  gap: 20px; /* Reducir separación */
+  border-radius: 15px;
+  padding: 10px; /* Reducir padding */
+  background-color: rgba(0, 0, 0, 0.477);
+  max-width: 1800px;
+  max-height: 500px; /* Reducir altura máxima */
+  width: 100%;
+  height: 50%; /* Ajustar altura */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: -80px; /* Reducir este valor para subirlo */
+  margin-left: 50px;
 }
-/* Evita que se salga de su contenedor */
-.parent:hover {
-transform: scale(1.02);
-}
-/* Contenedor de imagen */
 .div20 {
-flex-basis: 50%;
-max-width: 50%;
-overflow: hidden;
-}
+grid-column: span 3 / span 3;
+grid-row: span 5 / span 5;
+border-radius: 15px;
+padding: 20px;
 
-/* Texto */
-.div21 {
-flex-basis: 55%;
-max-width: 55%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-padding: 30px; 
-text-align: justify; 
-font-family: 'Lora', serif;
-}
-.div21 p {
-font-size: 20px;
-line-height: 1.5;
-color: #ffffff;
-font-weight: 300;
-max-width: 90%; 
-margin: 0 auto; 
-}
-.div20 img {
+max-width: 1200px;
 width: 100%;
 height: 100%;
-object-fit: cover;
-border-top-left-radius: 15px;
-border-bottom-left-radius: 15px;
+
+gap: 50px; /* Espaciado entre imagen y texto */
 }
-.about-btn:hover {
-background: #d9a145;
+
+.div21 {
+grid-column: span 2 / span 2;
+grid-row: span 5 / span 5;
+grid-column-start: 4;
+
+}
+.div20 img{
+width: 100%; /* Ajusta la imagen al ancho del contenedor */
+height: 100%; /* Ajusta la imagen al alto del contenedor */
+object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
+border-radius: 5px; /* Mantiene el borde redondeado */
 }
 /* Finaliza seccion acerca de nosotros*/
 
@@ -306,10 +289,10 @@ background: #d9a145;
 
 #comida h2 {
   text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-family: "Lily Script One";
+  color: #E4B363; /* Dorado elegante */
+  font-family: "Poltawski Nowy";
   font-size: 80px;
-  margin-top: -10px; /* Usa un valor negativo para subirlo */
+  margin-top: -80px; /* Usa un valor negativo para subirlo */
   text-align: center;
 }
 
@@ -328,25 +311,6 @@ background: #d9a145;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   margin-top: 20px; /* Reducir este valor para subirlo */
   margin-left: 50px;
-}
-.containermenu {
-display: flex;
-justify-content: center;
-align-items: center;
-flex-grow: 1;
-padding: 40px;
-background-color: #000;
-margin-top: 80px;
-}
-
-/* Card */
-.cardmenu {
-background-color: rgba(255, 255, 255, 0.1);
-max-width: 1200px;
-width: 100%;
-padding: 20px;
-border-radius: 15px;
-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 .div1 {
   flex-direction: column; /* Apila los elementos verticalmente */
@@ -417,14 +381,12 @@ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   color: white; /* Color del texto */
   padding: 10px 20px;
   border-radius: 10px; /* Bordes redondeados */
-  font-family: "Poltawski Nowy";
+  font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
   text-align: center;
 }
 /* Slider */
 .slider-container {
-width: 250%; /* Aumenta el ancho para ocupar más espacio */
-max-width: 1600px; /* Define un límite máximo */
 overflow: hidden;
 position: center;
 width: 100%;
@@ -445,6 +407,7 @@ width: max-content; /* Permite que el contenido se desplace sin romperse */
 .slider-wrapper img {
 width: 400px;
 height: 400px;
+
 object-fit: cover;
 border-radius: 10px;
 margin: 0 10px;
@@ -475,7 +438,7 @@ margin: 0 10px;
 }
 
 #reservas h2 {
-  color: rgb(255, 255, 255);
+  color: #E4B363; /* Dorado elegante */
   font-family: "Poltawski Nowy";
   font-size: 80px;
   text-align: center;
@@ -551,7 +514,7 @@ margin: 0 10px;
   background-color: #FF8C00; /* Naranja */
   color: white; /* Texto blanco */
   text-align: center; /* Centrado */
-  font-family: "Poltawski Nowy";
+  font-family: 'Playfair Display', serif; /* Tipografía elegante */
   font-size: 40px; /* Tamaño de fuente */
   padding: 15px 20px; /* Espaciado interno */
   width: 50%; /* Ancho del título */
@@ -576,7 +539,7 @@ margin: 0 10px;
   
 }
 #galleria h2 {
-  color: rgb(255, 255, 255);
+  color: #E4B363; /* Dorado elegante */
   font-family: "Poltawski Nowy";
   font-size: 80px;
   text-align: center;
@@ -650,14 +613,14 @@ margin: 0 10px;
   justify-content: center; /* Centra verticalmente el contenido */
   align-items: flex-start; /* Alinea el contenido al inicio (izquierda) */
   padding-left: 15%; /* Añade espacio a la izquierda para mover el texto hacia el centro */
-  font-family: "Nunito", sans-serif;
+  font-family: "Poltawski Nowy";
 }
 
 
 .info h2 {
   font-size: 50px;
   font-family: "Poltawski Nowy";
-  color: white;
+  color: #E4B363; /* Dorado elegante */
 }
 
 .info p{
@@ -695,10 +658,6 @@ footer {
   border-top: 2px solid #E67E22;
 }
 
-.footer p{
-  color: black;
-}
-
 .footer-container {
   display: flex;
   justify-content: space-around;
@@ -722,20 +681,11 @@ margin: 5px;
 text-align: left;
 margin-top: -50px;
 }
-.footer-colum2 p{
-  color: black;
-}
 .footer-logo {
   width: 200px;
   margin-bottom: 0px;
   
 }
-.footer-column h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  color: #000000;
-}
-
 
 .footer-column h3 {
   font-size: 24px;
@@ -745,7 +695,7 @@ margin-top: -50px;
 
 .footer-column p, .footer-column a {
   font-size: 16px;
-  color: rgb(0, 0, 0);
+  color: rgb(47, 26, 4);
   text-decoration: none;
   margin: 5px 0;
 }
@@ -784,7 +734,7 @@ margin-top: -50px;
 
 .wrapper .icon {
   position: relative;
-  background: #000000;
+  background: #fff;
   z-index: 0;
   border-radius: 50%;
   margin: 10px;
@@ -921,4 +871,16 @@ margin-top: -50px;
   grid-row: span 3 / span 3;
   grid-column-start: 5;
   grid-row-start: 2;
+}
+
+
+.parent img {
+  width: 350px; /* Ajusta el tamaño de la imagen según necesites */
+  height: auto;
+  border-radius: 10px; /* Bordes redondeados opcionales */
+}
+
+.parent p {
+  flex: 1; /* Permite que el texto ocupe el espacio disponible */
+  font-size: 18px;
 }

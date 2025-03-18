@@ -120,24 +120,23 @@ public String modificarProducto(@PathVariable("id") Long id, @ModelAttribute Pro
         model.addAttribute("productos", productos);
         return "Menu";
     }
-
-    // Ver información de un plato
     @GetMapping("/InfoPlato/{id}")
     public String mostrarInfoPlato(@PathVariable Long id, Model model) {
-        Optional<Producto> productoOpt = productoService.obtenerPorId(id);
+        Optional<Producto> productoOpt = productoService.findById(id);
         
         if (productoOpt.isPresent()) {
             Producto producto = productoOpt.get();
             model.addAttribute("producto", producto);
 
-            if (producto.getCategoria() != Categoria.BEBIDA) {
-                List<Producto> bebidas = productoService.obtenerPorCategoria(Categoria.BEBIDA);
-                model.addAttribute("bebidas", bebidas);
-            }
+            List<Adicional> adicionales = adicionalService.findAll();
+            model.addAttribute("adicionales", adicionales);
 
             return "InfoPlato";
         } else {
             return "redirect:/productos/Menu";
         }
     }
+
+    // Ver información de un plato
+   
 }

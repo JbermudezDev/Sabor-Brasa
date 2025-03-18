@@ -58,45 +58,33 @@
     <main>
         <div class="container">
             <div class="left-container">
-                <!-- imagen -->
+                <!-- Imagen del plato -->
                 <img th:src="@{${producto.imagen}}" alt="Imagen del plato">
             </div>
             <div class="right-container">
                 <div class="inner-container">   
-                    <h2 th:text="${nombre}">Nombre del Plato</h2>
-                    <p th:text="${descripcion}">Descripción del Plato</p>
-                    <h3>Acompañamientos</h3>
-                    <div class="checkbox-group">
-                        <label class="checkbox-container">Papa en Casco
-                            <input type="checkbox" name="acompaniamientos" value="papa-en-casco">
-                            <span class="custom-checkmark"></span>
-                        </label>
-                        <label class="checkbox-container">Papas a la Francesa
-                            <input type="checkbox" name="acompaniamientos" value="papas-a-la-francesa">
-                            <span class="custom-checkmark"></span>
-                        </label>
-                        <label class="checkbox-container">Papa Criolla
-                            <input type="checkbox" name="acompaniamientos" value="papa-criolla">
-                            <span class="custom-checkmark"></span>
-                        </label>
+                    <h2 th:text="${producto.nombre}">Nombre del Plato</h2>
+                    <p th:text="${producto.descripcion}">Descripción del Plato</p>
+                    
+                    <!-- Mostrar adicionales como checkboxes -->
+                    <div>
+                        <h3>Seleccionar Adicionales:</h3>
+                        <div class="check-container">
+                            <th:block th:each="adicional : ${adicionales}">
+                                <div class="check-item">
+                                    <label th:text="${adicional.nombre}"></label>
+                                    <input type="checkbox" name="adicionales" th:value="${adicional.id}">
+                                </div>
+                            </th:block>
+                        </div>
                     </div>
-
-                    <h3>Ensaladas</h3>
-                    <div class="checkbox-group">
-                        <label class="checkbox-container">Ensalada de la casa
-                            <input type="checkbox" name="ensaladas" value="ensalada-de-la-casa">
-                            <span class="custom-checkmark"></span>
-                        </label>
-                        <label class="checkbox-container">Ensalada de repollo
-                            <input type="checkbox" name="ensaladas" value="ensalada-de-repollo">
-                            <span class="custom-checkmark"></span>
-                        </label>
-                    </div>
-                    <!-- BOTON --> 
+                    
+                    <!-- Botón -->
                     <button class="buttonadd">Agregar</button>
                 </div>
             </div>
         </div>
     </main>
+    
 </body>
 </html>
