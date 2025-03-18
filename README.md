@@ -9,6 +9,10 @@ Somos una plataforma innovadora diseñada para conectar a los amantes de la buen
 ### Logo
 ![logo](https://github.com/user-attachments/assets/41f99a21-4e37-461a-b3c3-9de71a248ed0)
 
+### Paleta de Colores 
+
+![17423022017976121927801800546776](https://github.com/user-attachments/assets/b1f863d5-1fa4-4df3-8ff9-42b986334018)
+
 ### Nuestra Misión
 Facilitar el acceso a platos exquisitos con solo unos clics, garantizando rapidez, calidad y satisfacción en cada entrega.
 
