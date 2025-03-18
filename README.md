@@ -7,7 +7,8 @@ Este proyecto busca digitalizar y optimizar el proceso de pedidos de un restaura
 Bienvenido a Brasa y corte, la forma más rápida, fácil y segura de disfrutar la mejor comida de tu restaurante favorito sin salir de casa.
 Somos una plataforma innovadora diseñada para conectar a los amantes de la buena comida con los sabores más auténticos y deliciosos, ofreciendo una experiencia de pedido y entrega eficiente, cómoda y confiable. 
 ### Logo
-![logo](https://github.com/user-attachments/assets/2b47dceb-cd86-4f30-bee1-456e99abc9f8)
+![logo](https://github.com/user-attachments/assets/41f99a21-4e37-461a-b3c3-9de71a248ed0)
+
 ### Nuestra Misión
 Facilitar el acceso a platos exquisitos con solo unos clics, garantizando rapidez, calidad y satisfacción en cada entrega.
 
@@ -43,4 +44,8 @@ Ser la aplicación líder en pedidos de comida a domicilio, destacándonos por n
 
 ![IMG-20250317-WA0004](https://github.com/user-attachments/assets/f75636f2-dc78-41d8-a732-fea95163d3ef)
 
+### Integrantes 
 
+Alejandro Pinzon Fajardo
+Juan Jose Bermudez
+Paula Malagon 
