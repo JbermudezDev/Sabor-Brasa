@@ -36,3 +36,11 @@ Ser la aplicación líder en pedidos de comida a domicilio, destacándonos por n
 - Gestión de usuarios: Autenticación y perfiles.
 - Administración de productos: Agregar, editar y eliminar elementos del menú.
 - Historial de pedidos: Consulta de órdenes previas.
+
+### Diagramas 
+
+![IMG-20250317-WA0005](https://github.com/user-attachments/assets/879b18c6-f985-4ac6-b6a7-022bf6314afd)
+
+![IMG-20250317-WA0004](https://github.com/user-attachments/assets/f75636f2-dc78-41d8-a732-fea95163d3ef)
+
+
