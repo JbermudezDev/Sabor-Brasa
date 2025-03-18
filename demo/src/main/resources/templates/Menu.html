@@ -1,267 +1,228 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brasa & Corte</title>
-    <link rel="stylesheet" href="/demo/src/main/resources/static/styles/Menu.css">
+    <link rel="stylesheet" href="/styles/menu.css">
 </head>
 <body>
     <div id="header">
-        <img src="/demo/src/main/resources//static/images/bgmenu.png" alt="Imagen de fondo del header" class="header-bg">
+        <img src="/images/reservas2.jpeg" alt="Imagen de fondo del header" class="header-bg">
         <div id="logo">
-            <img src="/demo/src/main/resources/static/images/logo brasa.png" alt="Brasa & Corte">
+            <img src="/images/logo brasa.png" alt="Brasa & Corte">
         </div>
-        <h1 id="menu">Menú</h1>
-                    <button>
-                        <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
-                        <span>Atras</span>
-                    </button>             
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li><h1>Menu</h1></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+
+            <div class="styled-wrapper">
+                <a href="/"> 
+                    <button class="button">
+                        <div class="button-box">
+                            <span class="button-elem">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                                    <path fill="black" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                                </svg>
+                            </span>
+                            <span class="button-elem">
+                                <svg fill="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </ul>
     </div>
 
     <!-- Secciones del menú -->
     <main class="p-8">
-        <section class="mb-8">
+        <section class="section-container mb-8">
             <h2 id="entradas">Entradas</h2>
             <div class="grid grid-cols-2 gap-4">
-                <div class="card">
-                    <div class="image">
-                        <img src="/demo/src/main/resources/static/images/entrada1.png" alt="Arepas de Maiz">
-                    </div>
-                    <span class="title">Arepas de Maiz</span>
-                    <span class="price">$8.000</span>
+                <div th:each="producto : ${productos}" class="card">
+                    <a th:href="@{/productos/InfoPlato/{id}(id=${producto.id})}">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img th:src="@{${producto.imagen}}" th:alt="${producto.nombre}" class="food-image">
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle"></div>
+                                    <div class="circle" id="right"></div>
+                                    <div class="circle" id="bottom"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge" th:text="${producto.descripcion}"></small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title" th:text="${producto.nombre}"></p>
+                                            <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                                        </div>
+                                        <p class="card-footer" th:text="'Precio: $' + ${producto.precio}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/entrada2.png" alt="Chicharronada">
-                        </div>
-                          <span class="title">Chicharronada</span>
-                          <span class="price">$18.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/entrada3.png" alt="Empanadas">
-                        </div>
-                          <span class="title">Empanadas</span>
-                          <span class="price">$12.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/entrada4.png" alt="Chorizada">
-                        </div>
-                          <span class="title">Chorizada</span>
-                          <span class="price">$18.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/entrada5.png" alt="Yucas">
-                        </div>
-                          <span class="title">Yucas</span>
-                          <span class="price">$8.000</span>
-                    </div>   
             </div>
         </section>
 
-        <section class="mb-8">
+        <!-- Repite la estructura de la sección para las demás categorías -->
+        <section class="section-container mb-8">
             <h2 id="platos-fuertes">Platos Fuertes</h2>
             <div class="grid grid-cols-2 gap-4">
-                <div class="card">
-                    <div class="image">
-                        <img src="/demo/src/main/resources/static/images/pf1.png" alt="Tomahawk">
-                    </div>
-                      <span class="title">Tomahawk</span>
-                      <span class="price">$62.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/pf2.png" alt="Baby Beef">
+                <div th:each="producto : ${productos}" class="card">
+                    <a th:href="@{/productos/InfoPlato/{id}(id=${producto.id})}">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img th:src="@{${producto.imagen}}" th:alt="${producto.nombre}" class="food-image">
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle"></div>
+                                    <div class="circle" id="right"></div>
+                                    <div class="circle" id="bottom"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge" th:text="${producto.descripcion}"></small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title" th:text="${producto.nombre}"></p>
+                                            <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                                        </div>
+                                        <p class="card-footer" th:text="'Precio: $' + ${producto.precio}"></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                          <span class="title">Baby Beef</span>
-                          <span class="price">$48.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/pf3.png" alt="Churrasco">
-                        </div>
-                          <span class="title">Churrasco</span>
-                          <span class="price">$48.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/pf4.png" alt="Costillas BBQ">
-                        </div>
-                          <span class="title">Costillas BBQ</span>
-                          <span class="price">$58.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/pf5.png" alt="Lomo de Res">
-                        </div>
-                          <span class="title">Lomo de Res</span>
-                          <span class="price">$48.000</span>
-                    </div>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="mb-8">
-            <h2 class="text-3xl font-semibold mb-4">Postres</h2>
+        <section class="section-container mb-8">
+            <h2 id="postres">Postres</h2>
             <div class="grid grid-cols-2 gap-4">
-                <div class="card">
-                    <div class="image">
-                        <img src="/demo/src/main/resources/static/images/pos1.png" alt="Maracuyoso">
-                    </div>
-                      <span class="title">Maracuyoso</span>
-                      <span class="price">$12.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/pos2.png" alt="Limonoso">
+                <div th:each="producto : ${productos}" class="card">
+                    <a th:href="@{/productos/InfoPlato/{id}(id=${producto.id})}">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img th:src="@{${producto.imagen}}" th:alt="${producto.nombre}" class="food-image">
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle"></div>
+                                    <div class="circle" id="right"></div>
+                                    <div class="circle" id="bottom"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge" th:text="${producto.descripcion}"></small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title" th:text="${producto.nombre}"></p>
+                                            <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                                        </div>
+                                        <p class="card-footer" th:text="'Precio: $' + ${producto.precio}"></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                          <span class="title">Limonoso</span>
-                          <span class="price">$12.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/pos3.png" alt="Flan de Coco">
-                        </div>
-                          <span class="title">Flan de Coco</span>
-                          <span class="price">$12.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/pos4.png" alt="Miloso">
-                        </div>
-                          <span class="title">Miloso</span>
-                          <span class="price">$12.000</span>
-                    </div>
-
+                    </a>
                 </div>
+            </div>
         </section>
 
-        <section class="mb-8">
+        <section class="section-container mb-8">
             <h2 id="adicionales">Adicionales</h2>
             <div class="grid grid-cols-2 gap-4">
-
-                <div class="card">
-                    <div class="image">
-                        <img src="/demo/src/main/resources/static/images/ad1.png" alt="Guacamole">
-                    </div>
-                      <span class="title">Guacamole</span>
-                      <span class="price">$10.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/ad2.png" alt="Papa Casco">
+                <div th:each="producto : ${productos}" class="card">
+                    <a th:href="@{/productos/InfoPlato/{id}(id=${producto.id})}">
+                        <div class="content">
+                            <div class="back-content">
+                                <img th:src="@{${producto.imagen}}" th:alt="${producto.nombre}" class="food-image">
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle"></div>
+                                    <div class="circle" id="right"></div>
+                                    <div class="circle" id="bottom"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge" th:text="${producto.descripcion}"></small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title" th:text="${producto.nombre}"></p>
+                                            <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                                        </div>
+                                        <p class="card-footer" th:text="'Precio: $' + ${producto.precio}"></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                          <span class="title">Papa Casco</span>
-                          <span class="price">$8.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/ad3.png" alt="Fapas Francesas">
-                        </div>
-                          <span class="title">Fapas Francesas</span>
-                          <span class="price">$8.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/ad4.png" alt="Yuquitas">
-                        </div>
-                          <span class="title">Yuquitas</span>
-                          <span class="price">$8.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/ad5.png" alt="Papa Horneada">
-                        </div>
-                          <span class="title">Papa Horneada</span>
-                          <span class="price">$10.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/ad6.png" alt="Chimichurri">
-                        </div>
-                          <span class="title">Chimichurri</span>
-                          <span class="price">$5.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/ad7.png" alt="Arroz">
-                        </div>
-                          <span class="title">Arroz</span>
-                          <span class="price">$12.000</span>
-                    </div>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="mb-8">
-            <h2 class="bebidas">Bebidas</h2>
+        <section class="section-container mb-8">
+            <h2 id="bebidas">Bebidas</h2>
             <div class="grid grid-cols-2 gap-4">
-
-                <div class="card">
-                    <div class="image">
-                        <img src="/demo/src/main/resources/static/images/beb1.png" alt="Coca Cola">
-                    </div>
-                      <span class="title">Coca Cola</span>
-                      <span class="price">$5.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/beb2.png" alt="Coca Cola Zero">
+                <div th:each="producto : ${productos}" class="card">
+                    <a th:href="@{/productos/InfoPlato/{id}(id=${producto.id})}">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img th:src="@{${producto.imagen}}" th:alt="${producto.nombre}" class="food-image">
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle"></div>
+                                    <div class="circle" id="right"></div>
+                                    <div class="circle" id="bottom"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge" th:text="${producto.descripcion}"></small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title" th:text="${producto.nombre}"></p>
+                                            <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                                        </div>
+                                        <p class="card-footer" th:text="'Precio: $' + ${producto.precio}"></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                          <span class="title">Coca Cola Zero</span>
-                          <span class="price">$5.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/beb3.png" alt="Sprite">
-                        </div>
-                          <span class="title">Sprite</span>
-                          <span class="price">$5.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/beb4.png" alt="Maracuya">
-                        </div>
-                          <span class="title">Cooctel de Maracuya</span>
-                          <span class="price">$28.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/beb5.png" alt="Agua sin gas">
-                        </div>
-                          <span class="title">Agua sin gas</span>
-                          <span class="price">$5.000</span>
-                    </div>
-
-                    <div class="card">
-                        <div class="image">
-                            <img src="/demo/src/main/resources/static/images/beb6.png" alt="Frutos Rojos">
-                        </div>
-                          <span class="title">Coctel Frutos Rojos</span>
-                          <span class="price">$28.000</span>
-                        </div>
+                    </a>
+                </div>
             </div>
         </section>
     </main>
@@ -270,7 +231,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-column2">
-                <img src="/demo/src/main/resources/static/images/logo brasa.png" alt="Logo de Brasa y Corte" class="footer-logo">
+                <img src="/images/logo brasa.png" alt="Logo de Brasa y Corte" class="footer-logo">
                 <p>&copy; 2025 Brasa y Corte. Todos los derechos reservados.</p>
             </div>
             <div class="footer-column">
@@ -287,9 +248,9 @@
             <div class="footer-column social-links">
                 <h3>Síguenos</h3>
                 <div class="social-icons">
-                    <a href="#facebook"><img src="/demo/src/main/resources/static/images/facebook.png" alt="Facebook"></a>
-                    <a href="#instagram"><img src="/demo/src/main/resources/static/images/instagram.png" alt="Instagram"></a>
-                    <a href="#x"><img src="/demo/src/main/resources/static/images/logotipos.png" alt="X"></a>
+                    <a href="#facebook"><img src="/images/facebook.png" alt="Facebook"></a>
+                    <a href="#instagram"><img src="/images/instagram.png" alt="Instagram"></a>
+                    <a href="#x"><img src="/images/logotipos.png" alt="X"></a>
                 </div>
             </div>
         </div>

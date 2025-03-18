@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Clientes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+    <link rel="stylesheet" href="/styles/administrador.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <div class="header__container">
+            <button class="header__toggle" id="header-toggle">
+                <i class="ri-menu-line"></i>
+            </button>
+        </div>
+    </header>
+
+    <!--=============== SIDEBAR ===============-->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar__container">
+            <div class="sidebar__user">
+                <div class="sidebar__img">
+                    <img src="/images/administrador.png" alt="image"> 
+                </div>
+                <div class="sidebar__info">
+                    <h3>Juan Jose Bermudez</h3>
+                    <span></span>
+                </div>
+            </div>
+            <div class="sidebar__content">
+                <div>
+                    <h3 class="sidebar__title">MANAGE</h3>
+                    <div class="sidebar__list">
+                        <a href="#" class="sidebar__link">
+                            <a href="/Administrador" class="sidebar__link">
+                                <i class="ri-vip-crown-fill"></i>
+                                <span>Administrador</span>
+                            </a>
+                            <a href="/adicionales/all" class="sidebar__link">
+                                <i class="ri-goblet-2-fill"></i>
+                               <span>Adicionales</span>
+                              </a>
+                            <a href="/productos/all" class="sidebar__link">
+                                <i class="ri-restaurant-fill"></i>
+                               <span>Productos</span>
+                            </a>
+                            <a href="/clientes/all" class="sidebar__link">
+                                <i class="ri-user-fill"></i>
+                                <span>Clientes</span>
+                            </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="sidebar__title">SETTINGS</h3>
+                    <div class="sidebar__list">
+                        <a href="#" class="sidebar__link">
+                           
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar__actions">
+                <button>
+                   
+                </button>
+                <button class="sidebar__link">
+                    <i class="ri-logout-box-r-fill"></i>
+                    <span>Log Out</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!--=============== MAIN ===============-->
+    <main class="main container" id="main">
+        <div class="main-content">
+    
+            <div class="form-container">
+                <h2>Agregar Cliente</h2>
+                <form th:action="@{/clientes/add}" method="post" th:object="${cliente}">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Agregar Cliente</button>
+                </form>
+            </div>
+            
+        </div>
+    </main>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="js/main.js"></script>
+</body>
+</html>
