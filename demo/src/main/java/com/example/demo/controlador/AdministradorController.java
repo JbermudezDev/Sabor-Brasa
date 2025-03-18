@@ -34,6 +34,11 @@ public class AdministradorController {
         model.addAttribute("productos", productos);
         return "Administrador";  // Renderiza Administrador.html
     }
+    @GetMapping("/logout")
+    public String cerrarSesion(HttpSession session) {
+    session.invalidate(); // Invalida la sesión actual
+    return "Index"; // Redirige a la página de inicio (index)
+}
     
     
     
