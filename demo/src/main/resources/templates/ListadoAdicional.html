@@ -62,6 +62,10 @@
     <main class="main container" id="main">
         <div class="main-content">
             <h1>Listado de Adicionales</h1>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar adicionales..." onkeyup="buscarProductos()">
+                <i class="fas fa-search"></i>
+            </div>
             <div class="table-container">
                 <table>
                     <thead>
@@ -101,6 +105,7 @@
         </div>
     </main>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/producto.js"></script>
 </body>
 </html>
