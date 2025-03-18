@@ -205,18 +205,19 @@ border-radius: 5px; /* Mantiene el borde redondeado */
 
 #menu h2 {
 font-size: 55px;
-font-family: 'Playfair Display', serif;
+font-family: "Poltawski Nowy";
 font-weight: bold;
 color: #E4B363; /* Dorado elegante */
 text-transform: uppercase;
 margin-bottom: 30px;
 letter-spacing: 2px;
+
 }
 
 #menu p {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  font-family: 'Lora', serif; /* Aplicar la fuente Lora */
+  font-family: "Poltawski Nowy";
   font-size: 40px; /* Letra más grande */
   text-align: center;
   justify-content: center; /* Centrar el texto */
@@ -306,7 +307,7 @@ background: #d9a145;
 #comida h2 {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  font-family: 'Playfair Display', serif;
+  font-family: "Lily Script One";
   font-size: 80px;
   margin-top: -10px; /* Usa un valor negativo para subirlo */
   text-align: center;
@@ -416,7 +417,7 @@ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   color: white; /* Color del texto */
   padding: 10px 20px;
   border-radius: 10px; /* Bordes redondeados */
-  font-family: 'Playfair Display', serif;
+  font-family: "Poltawski Nowy";
   font-size: 1.5rem;
   text-align: center;
 }
@@ -475,7 +476,7 @@ margin: 0 10px;
 
 #reservas h2 {
   color: rgb(255, 255, 255);
-  font-family: 'Playfair Display', serif;
+  font-family: "Poltawski Nowy";
   font-size: 80px;
   text-align: center;
   position: relative;
@@ -550,7 +551,7 @@ margin: 0 10px;
   background-color: #FF8C00; /* Naranja */
   color: white; /* Texto blanco */
   text-align: center; /* Centrado */
-  font-family: 'Playfair Display', serif; /* Tipografía elegante */
+  font-family: "Poltawski Nowy";
   font-size: 40px; /* Tamaño de fuente */
   padding: 15px 20px; /* Espaciado interno */
   width: 50%; /* Ancho del título */
@@ -576,7 +577,7 @@ margin: 0 10px;
 }
 #galleria h2 {
   color: rgb(255, 255, 255);
-  font-family: 'Playfair Display', serif;
+  font-family: "Poltawski Nowy";
   font-size: 80px;
   text-align: center;
   position: relative;
@@ -655,14 +656,14 @@ margin: 0 10px;
 
 .info h2 {
   font-size: 50px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Poltawski Nowy";
   color: white;
 }
 
 .info p{
   font-size: 28px;
   color: white;
-  font-family: "Nunito", sans-serif;
+  font-family: "Poltawski Nowy";
 }
 .mapa {
   margin-right: 50px;
@@ -694,6 +695,10 @@ footer {
   border-top: 2px solid #E67E22;
 }
 
+.footer p{
+  color: black;
+}
+
 .footer-container {
   display: flex;
   justify-content: space-around;
@@ -717,11 +722,20 @@ margin: 5px;
 text-align: left;
 margin-top: -50px;
 }
+.footer-colum2 p{
+  color: black;
+}
 .footer-logo {
   width: 200px;
   margin-bottom: 0px;
   
 }
+.footer-column h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
 
 .footer-column h3 {
   font-size: 24px;
@@ -731,7 +745,7 @@ margin-top: -50px;
 
 .footer-column p, .footer-column a {
   font-size: 16px;
-  color: rgb(47, 26, 4);
+  color: rgb(0, 0, 0);
   text-decoration: none;
   margin: 5px 0;
 }
@@ -770,7 +784,7 @@ margin-top: -50px;
 
 .wrapper .icon {
   position: relative;
-  background: #fff;
+  background: #000000;
   z-index: 0;
   border-radius: 50%;
   margin: 10px;
