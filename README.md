@@ -46,6 +46,6 @@ Ser la aplicación líder en pedidos de comida a domicilio, destacándonos por n
 
 ### Integrantes 
 
-Alejandro Pinzon Fajardo
-Juan Jose Bermudez
-Paula Malagon 
+- Alejandro Pinzon Fajardo
+- Juan Jose Bermudez
+- Paula Malagon 
