@@ -43,7 +43,7 @@
                         <a href="/adicionales/all" class="sidebar__link">
                             <i class="ri-goblet-2-fill"></i>
                            <span>Adicionales</span>
-                          </a>
+                        </a>
                         <a href="/productos/all" class="sidebar__link">
                             <i class="ri-restaurant-fill"></i>
                            <span>Productos</span>
@@ -83,16 +83,43 @@
         <div class="main-content">
             <h1>Detalles del Cliente</h1>
             <div class="details-container">
-                <p><strong>Nombre:</strong> <span th:text="${cliente.nombre}"></span></p>
-                <p><strong>Apellido:</strong> <span th:text="${cliente.apellido}"></span></p>
-                <p><strong>Email:</strong> <span th:text="${cliente.email}"></span></p>
-                <p><strong>Teléfono:</strong> <span th:text="${cliente.telefono}"></span></p>
-                <p><strong>Dirección:</strong> <span th:text="${cliente.direccion}"></span></p>
-                <a href="/clientes/all" class="btn">Volver al Listado</a>
+                <div class="detail-item">
+                    <i class="ri-user-line"></i>
+                    <span class="detail-label">Nombre:</span>
+                    <span class="detail-value" th:text="${cliente.nombre}"></span>
+                </div>
+                <div class="detail-item">
+                    <i class="ri-user-line"></i>
+                    <span class="detail-label">Apellido:</span>
+                    <span class="detail-value" th:text="${cliente.apellido}"></span>
+                </div>
+                <div class="detail-item">
+                    <i class="ri-mail-line"></i>
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value" th:text="${cliente.email}"></span>
+                </div>
+                <div class="detail-item">
+                    <i class="ri-phone-line"></i>
+                    <span class="detail-label">Teléfono:</span>
+                    <span class="detail-value" th:text="${cliente.telefono}"></span>
+                </div>
+                <div class="detail-item">
+                    <i class="ri-map-pin-line"></i>
+                    <span class="detail-label">Dirección:</span>
+                    <span class="detail-value" th:text="${cliente.direccion}"></span>
+                </div>
+                <div class="actions-container">
+                    <a href="/clientes/all" class="btn btn-back">
+                        <i class="ri-arrow-left-line"></i> Volver al Listado
+                    </a>
+                    <button class="btn green" th:onclick="'window.location.href=\'/clientes/update/' + ${cliente.id} + '\';'">
+                        <i class="ri-edit-line"></i> Editar
+                    </button>
+                </div>
             </div>
         </div>
     </main>
-
+    
     <!--=============== MAIN JS ===============-->
     <script src="js/main.js"></script>
 </body>

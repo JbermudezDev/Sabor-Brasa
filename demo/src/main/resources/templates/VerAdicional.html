@@ -6,7 +6,7 @@
     <title>Detalles del Adicional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-    <link rel="stylesheet" href="/styles/ver-producto.css">
+    <link rel="stylesheet" href="/styles/ver-adicional.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -82,17 +82,44 @@
     <main class="main container" id="main">
         <div class="main-content">
             <h1>Detalles del Adicional</h1>
-            <div class="details-container">
-               
-                <p><strong>Nombre:</strong> <span th:text="${adicional.nombre}"></span></p>
-                <p><strong>Descripción:</strong> <span th:text="${adicional.descripcion}"></span></p>
-                <p><strong>Precio:</strong> $<span th:text="${adicional.precio}"></span></p>
-                
+            
+            <div th:if="${adicional != null}">
+                <div class="product-container">
+                    <div class="product-details">
+                        <h2 th:text="${adicional.nombre}" class="product-title"></h2>
+                        
+                        <div class="detail-item">
+                            <i class="ri-file-text-line"></i>
+                            <span class="detail-label">Descripcion:</span>
+                            <span class="detail-value" th:text="${adicional.descripcion}"></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="ri-money-dollar-circle-line"></i>
+                            <span class="detail-label">Precio:</span>
+                            <span class="detail-value" th:text="${#numbers.formatDecimal(adicional.precio, 0, 'COMMA', 2, 'POINT') + ' COP'}"></span>
+                        </div>
+                        
+                        <div class="actions-container">
+                            <a href="/adicionales/all" class="btn btn-back">
+                                <i class="ri-arrow-left-line"></i> Volver al Listado
+                            </a>
+                            <button class="btn green" th:onclick="'window.location.href=\'/adicionales/update/' + ${adicional.id} + '\';'">
+                                <i class="ri-edit-line"></i> Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div th:unless="${adicional != null}" class="error-container">
+                <i class="ri-error-warning-line error-icon"></i>
+                <p>Adicional no encontrado.</p>
                 <a href="/adicionales/all" class="btn">Volver al Listado</a>
             </div>
         </div>
     </main>
-
+    
     <!--=============== MAIN JS ===============-->
     <script src="js/main.js"></script>
 </body>

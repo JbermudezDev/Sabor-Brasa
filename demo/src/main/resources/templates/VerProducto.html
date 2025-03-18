@@ -80,29 +80,60 @@
 
     <!--=============== MAIN ===============-->
     <main class="main container" id="main">
-    <div class="main-content">
-        <h1>Detalles del Producto</h1>
-    
-        <div th:if="${producto != null}">
-            <div class="details-container">
-                <p><strong>Nombre:</strong> <span th:text="${producto.nombre}"></span></p>
-                <p><strong>Precio:</strong> <span th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT') + ' COP'}"></span></p>
-
-                <p><strong>Descripción:</strong> <span th:text="${producto.descripcion}"></span></p>
-                <p><strong>Adicionales:</strong></p>
-                <ul>
-                    <li th:each="adicional : ${producto.adicionales}" th:text="${adicional.nombre}"></li>
-                </ul>
+        <div class="main-content">
+            <h1>Detalles del Producto</h1>
+            
+            <div th:if="${producto != null}">
+                <div class="product-container">
+                    <div class="product-image">
+                        <!-- Imagen del producto usando Thymeleaf -->
+                        <img th:src="@{${producto.imagen}}" alt="Imagen del plato">
+                    </div>
+                    
+                    <div class="product-details">
+                        <h2 th:text="${producto.nombre}" class="product-title"></h2>
+                        
+                        <div class="detail-item">
+                            <i class="ri-money-dollar-circle-line"></i>
+                            <span class="detail-label">Precio:</span>
+                            <span class="detail-value" th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT') + ' COP'}"></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="ri-file-text-line"></i>
+                            <span class="detail-label">Descripción:</span>
+                            <span class="detail-value" th:text="${producto.descripcion}"></span>
+                        </div>
+                        
+                        <div class="detail-item adicionales-section">
+                            <i class="ri-list-check"></i>
+                            <span class="detail-label">Adicionales:</span>
+                            <ul class="adicionales-list">
+                                <li th:each="adicional : ${producto.adicionales}" th:text="${adicional.nombre}"></li>
+                                <li th:if="${#lists.isEmpty(producto.adicionales)}">No hay adicionales disponibles</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="actions-container">
+                            <a href="/productos/all" class="btn btn-back">
+                                <i class="ri-arrow-left-line"></i> Volver al Listado
+                            </a>
+                            <button class="btn green" th:onclick="'window.location.href=\'/productos/update/' + ${producto.id} + '\';'">
+                                <i class="ri-edit-line"></i> Editar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div th:unless="${producto != null}" class="error-container">
+                <i class="ri-error-warning-line error-icon"></i>
+                <p>Producto no encontrado.</p>
                 <a href="/productos/all" class="btn">Volver al Listado</a>
             </div>
         </div>
+    </main>
     
-        <div th:unless="${producto != null}">
-            <p>Producto no encontrado.</p>
-            <a href="/productos/all" class="btn">Volver al Listado</a>
-        </div>
-    </div>
-</main>
     <!--=============== MAIN JS ===============-->
     <script src="js/main.js"></script>
 </body>
