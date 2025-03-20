@@ -87,7 +87,8 @@
                     <input type="text" id="nombre" name="nombre" th:value="${adicional.nombre}" required>
 
                     <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" required>[[${adicional.descripcion}]]</textarea>
+                    <input type="text" id="descripcion" name="descripcion" required th:value="${adicional.descripcion}">
+                    
 
                     <label for="precio">Precio:</label>
                     <input type="number" step="0.01" id="precio" name="precio" th:value="${adicional.precio}" required>

@@ -6,7 +6,7 @@
     <title>Listado de Clientes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-    <link rel="stylesheet" href="/styles/administrador.css">
+    <link rel="stylesheet" href="/styles/agregar-producto.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -34,7 +34,7 @@
             </div>
             <div class="sidebar__content">
                 <div>
-                    <h3 class="sidebar__title">MANAGE</h3>
+                    
                     <div class="sidebar__list">
                         <a href="/Administrador" class="sidebar__link">
                             <i class="ri-vip-crown-fill"></i>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="sidebar__title">SETTINGS</h3>
+                    
                     <div class="sidebar__list">
                         <a href="#" class="sidebar__link">
                             
@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion" required></textarea>
+                        <input type="text" id="descripcion" name="descripcion" required th:value="${producto.descripcion}">
                     </div>
                     <div class="form-group">
                         <label for="imagen">Imagen URL:</label>

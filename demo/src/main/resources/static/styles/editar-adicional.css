@@ -58,12 +58,12 @@ box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera para resaltar */
 
 h1 {
   text-align: center;
-  color: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 10px;
+  color: #000000;
+  background-color: rgb(253, 183, 81);
+  font-family: "Poltawski Nowy";
+  font-size: 24px;
+  margin-bottom: 20px;
 }
-
 /* Tabla */
 .table-container {
   background: rgba(255, 255, 255, 0.8);
@@ -617,14 +617,15 @@ outline: none;
 }
 
 .details-container {
-background: #aca9a9;
-padding: 25px;
-border-radius: 12px;
-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-max-width: 500px;
-margin: 30px auto; /* Centrando el formulario */
-font-family: "Nunito Sans", sans-serif;
-}
+  background: #c8c8c882;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 20px auto; /* Separación con el margen superior */
+  border: 1px solid rgba(0, 0, 0, 0.71);
+  font-family: "Poltaski Nowy";
+  }
 
 form {
 display: flex;

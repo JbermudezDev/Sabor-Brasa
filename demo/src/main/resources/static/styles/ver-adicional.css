@@ -73,7 +73,8 @@ h1 {
 
 /* Título del producto */
 .product-title {
-  color: var(--title-color);
+  color:#000000;
+  font-family: "Poltawski Nowy";
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
@@ -140,12 +141,14 @@ h1 {
 
 .detail-label {
   font-weight: 600;
-  color: var(--title-color);
+  color:#000000;
+  font-family: "Poltawski Nowy";
   min-width: 120px;
 }
 
 .detail-value {
-  color: var(--text-color);
+  color:#000000;
+  font-family: "Poltawski Nowy";
   flex-grow: 1;
 }
 
@@ -785,7 +788,8 @@ body.dark-theme {
 
 h2 {
   text-align: center;
-  color: #333;
+  color:#000000;
+  font-family: "Poltawski Nowy";
 }
 
 .form-group {
@@ -827,12 +831,16 @@ input:focus {
 .btn-submit:hover {
   background: #0056b3;
 }
+
 h1 {
-    text-align: center;
-    color: #ffffff;
-    font-size: 24px;
-    margin-bottom: 20px;
+  text-align: center;
+  color: #000000;
+  background-color: rgb(253, 183, 81);
+  font-family: "Poltawski Nowy";
+  font-size: 24px;
+  margin-bottom: 20px;
 }
+
 
 .details-container {
     width: 100%;

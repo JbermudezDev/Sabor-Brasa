@@ -42,7 +42,7 @@ public class DatabaseInit implements ApplicationRunner {
             // Crear y guardar productos
             clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
             // Crear y guardar productos
-            Producto producto1 = new Producto("Arepa de Maiz", 8.00f, "Deliciosas arepas rellenas de maíz fresco.", "/images/entrada1.png");
+            Producto producto1 = new Producto("Arepa de Maiz", 8.000, "Deliciosas arepas rellenas de maíz fresco.", "/images/entrada1.png");
             productoRepository.save(producto1);
             Producto producto2 = new Producto("Chichanorrada", 18.00f, "Crujientes trozos de cerdo fritos hasta alcanzar el punto perfecto de dorado y jugosidad.", "/images/entrada2.png");
             productoRepository.save(producto2);
@@ -50,7 +50,7 @@ public class DatabaseInit implements ApplicationRunner {
             productoRepository.save(producto3);
             Producto producto4 = new Producto("Chorizada", 18.00f, "Sabroso chorizo artesanal con el toque justo de especias.", "/images/entrada4.png");
             productoRepository.save(producto4);
-            Producto producto5 = new Producto("Yucas", 8.00f, "Trozos de yuca fritos hasta quedar dorados y crujientes.", "/images/entrada5.png");
+            Producto producto5 = new Producto("Yucas", 8.000, "Trozos de yuca fritos hasta quedar dorados y crujientes.", "/images/entrada5.png");
             productoRepository.save(producto5);
             Producto producto6 = new Producto("Tomahawk", 62.00f, "Un impresionante corte de carne a la parrilla, con hueso largo y jugoso, ideal para los amantes de la carne roja.", "/images/pf1.png");
             productoRepository.save(producto6);
