@@ -23,6 +23,12 @@ public class MainController {
         return "Index";
     }
 
+    @GetMapping("/Perfilcliente")
+    public String mainCliente() {
+        return "PerfilCliente";
+    }
+
+
     
     @GetMapping("/Menu")
     public String menu(Model model) {

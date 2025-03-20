@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Cliente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+    <link rel="stylesheet" href="/styles/ver-cliente.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <div class="header__container">
+            <button class="header__toggle" id="header-toggle">
+                <i class="ri-menu-line"></i>
+            </button>
+        </div>
+    </header>
+
+    <!--=============== SIDEBAR ===============-->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar__container">
+            <div class="sidebar__user">
+                <div class="sidebar__img">
+                    <img src="/images/administrador.png" alt="image"> 
+                </div>
+                <div class="sidebar__info">
+                    <h3>Juan Jose Bermudez</h3>
+                    <span></span>
+                </div>
+            </div>
+            <div class="sidebar__content">
+                <div>
+                    <div class="sidebar__list">
+                        <a href="/Administrador" class="sidebar__link">
+                            <i class="ri-vip-crown-fill"></i>
+                            <span>Administrador</span>
+                        </a>
+                        <a href="/adicionales/all" class="sidebar__link">
+                            <i class="ri-goblet-2-fill"></i>
+                           <span>Adicionales</span>
+                        </a>
+                        <a href="/productos/all" class="sidebar__link">
+                            <i class="ri-restaurant-fill"></i>
+                           <span>Productos</span>
+                        </a>
+                        <a href="/clientes/all" class="sidebar__link">
+                            <i class="ri-user-fill"></i>
+                            <span>Clientes</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar__actions">
+                <button class="sidebar__link">
+                    <i class="ri-logout-box-r-fill"></i>
+                    <span>Log Out</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!--=============== MAIN ===============-->
+    <main class="main container" id="main">
+        <div class="main-content">
+            <h1>Editar Perfil</h1>
+            <form th:action="@{/clientes/perfil/update/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
+                <div class="details-container">
+                    <div class="detail-item">
+                        <i class="ri-user-line"></i>
+                        <label for="nombre" class="detail-label">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required>
+                    </div>
+                    <div class="detail-item">
+                        <i class="ri-user-line"></i>
+                        <label for="apellido" class="detail-label">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" th:field="*{apellido}" required>
+                    </div>
+                    <div class="detail-item">
+                        <i class="ri-mail-line"></i>
+                        <label for="email" class="detail-label">Email:</label>
+                        <input type="email" id="email" name="email" th:field="*{email}" required>
+                    </div>
+                    <div class="detail-item">
+                        <i class="ri-phone-line"></i>
+                        <label for="telefono" class="detail-label">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" th:field="*{telefono}" required>
+                    </div>
+                    <div class="detail-item">
+                        <i class="ri-map-pin-line"></i>
+                        <label for="direccion" class="detail-label">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion" th:field="*{direccion}" required>
+                    </div>
+                    <div class="actions-container">
+                        <button type="submit" class="btn green">
+                            <i class="ri-save-line"></i> Guardar
+                        </button>
+                        <a href="/Cliente/{id}" class="btn btn-back">
+                            <i class="ri-arrow-left-line"></i> Cancelar
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <!--=============== MAIN JS ===============-->
+    <script src="js/main.js"></script>
+</body>
+</html>
