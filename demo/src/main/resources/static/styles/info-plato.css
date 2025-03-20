@@ -239,8 +239,21 @@ html, body {
     margin-bottom: 5px;
 }
 
+/* Contenedor general de los checkboxes */
 .checkbox-group {
     margin-bottom: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo con transparencia */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+}
+
+/* Título de la sección */
+.checkbox-group h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-align: center;
 }
 
 /* CHECKBOX */
@@ -249,17 +262,15 @@ html, body {
     display: none;
 }
 
+/* Contenedor de los checkboxes */
 .checkbox-container {
-    display: block;
-    position: relative;
-    padding-left: 1.8em;
-    margin-bottom: 0.5em;
-    cursor: pointer;
-    font-size: 20px;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    color: white; /* Se mantiene el color blanco del tema */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Diseño responsivo */
+    gap: 20px; /* Espaciado entre las columnas */
+    justify-items: stretch; /* Asegura que las columnas se alineen uniformemente */
+    align-items: center; /* Centra los elementos verticalmente */
 }
+
 
 /* Estilos para el checkmark personalizado */
 .custom-checkmark {
@@ -273,21 +284,76 @@ html, body {
     border: 2px solid #2196F3;
     transition: all 0.25s;
 }
-
-/* Cambio de color cuando está seleccionado */
-.checkbox-container input:checked ~ .custom-checkmark {
-    background-color: #2196F3;
+/* Estilo para cada checkbox */
+/* Estilo para cada checkbox */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 2.5em; /* Espaciado para el checkmark */
+    cursor: pointer;
+    font-size: 1rem;
+    color: #ffffff;
+    user-select: none;
+    transition: all 0.3s ease;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+}
+/* Ocultar el checkbox original */
+.checkbox-item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 }
 
-/* Checkmark visible cuando está seleccionado */
+/* Estilo del checkmark personalizado */
+.custom-checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 1.5em;
+    width: 1.5em;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+
+
+/* Cambiar el color del checkmark cuando está seleccionado */
+.checkbox-item input:checked ~ .custom-checkmark {
+    background-color: #2196F3;
+    border-color: #2196F3;
+}
+
+
+/* Icono del checkmark */
 .custom-checkmark:after {
     content: "";
     position: absolute;
     display: none;
+    left: 0.5em;
+    top: 0.2em;
+    width: 0.4em;
+    height: 0.8em;
+    border: solid white;
+    border-width: 0 0.2em 0.2em 0;
+    transform: rotate(45deg);
 }
-
 .checkbox-container input:checked ~ .custom-checkmark:after {
     display: block;
+}
+/* Etiqueta del checkbox */
+.checkbox-label {
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+/* Efecto hover */
+.checkbox-item:hover .checkbox-label {
+    color: #2196F3;
 }
 
 /* Icono del checkmark */

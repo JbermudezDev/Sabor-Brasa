@@ -128,8 +128,8 @@ public String modificarProducto(@PathVariable("id") Long id, @ModelAttribute Pro
             Producto producto = productoOpt.get();
             model.addAttribute("producto", producto);
 
-            List<Adicional> adicionales = adicionalService.findAll();
-            model.addAttribute("adicionales", adicionales);
+            // Solo pasamos los adicionales que fueron seleccionados por el administrador
+            model.addAttribute("adicionales", producto.getAdicionales());
 
             return "InfoPlato";
         } else {

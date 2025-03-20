@@ -67,17 +67,20 @@
                     <p th:text="${producto.descripcion}">Descripción del Plato</p>
                     
                     <!-- Mostrar adicionales como checkboxes -->
-                    <div>
+                    <div class="checkbox-group">
                         <h3>Seleccionar Adicionales:</h3>
-                        <div class="check-container">
+                        <div class="checkbox-container">
                             <th:block th:each="adicional : ${adicionales}">
-                                <div class="check-item">
-                                    <label th:text="${adicional.nombre}"></label>
+                                <label class="checkbox-item">
                                     <input type="checkbox" name="adicionales" th:value="${adicional.id}">
-                                </div>
+                                    <span class="custom-checkmark"></span>
+                                    <span class="checkbox-label" th:text="${adicional.nombre}"></span>
+                                </label>
                             </th:block>
                         </div>
                     </div>
+                    
+                    
                     
                     <!-- Botón -->
                     <button class="buttonadd">Agregar</button>
