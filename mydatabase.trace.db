@@ -448,3 +448,7 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/JUAN JO
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 65 more
+2025-03-25 10:00:10.218827-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "DOMICILIARIOS" no encontrada
+Table "DOMICILIARIOS" not found; SQL statement:
+select * from domiciliarios [42102-224]
