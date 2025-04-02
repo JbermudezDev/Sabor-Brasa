@@ -6,6 +6,7 @@ import com.example.demo.repositorio.AdministradorRepository;
 import com.example.demo.repositorio.ClienteRepository;
 import com.example.demo.repositorio.DomiciliarioRepository;
 import com.example.demo.repositorio.ProductoRepository;
+import com.example.demo.repositorio.OperadorRepository;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class DatabaseInit implements ApplicationRunner {
 
     @Autowired
     private DomiciliarioRepository domiciliarioRepository;
+
+    @Autowired
+    private OperadorRepository operadorRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -65,7 +69,20 @@ public class DatabaseInit implements ApplicationRunner {
              domiciliarioRepository.save(new Domiciliario("Lucía Cárdenas", "3008900000", "1234567818", true));
              domiciliarioRepository.save(new Domiciliario("Juan Esteban", "3009010000", "1234567819", true));
              domiciliarioRepository.save(new Domiciliario("Paula Mejía", "3000120000", "1234567820", true));
-            // Crear y guardar productos
+            
+            
+            operadorRepository.save(new Operador("Operador 1", "operador1", "password1"));
+            operadorRepository.save(new Operador("Operador 2", "operador2", "password2"));
+            operadorRepository.save(new Operador("Operador 3", "operador3", "password3"));
+            operadorRepository.save(new Operador("Operador 4", "operador4", "password4"));
+            operadorRepository.save(new Operador("Operador 5", "operador5", "password5"));
+            operadorRepository.save(new Operador("Operador 6", "operador6", "password6"));
+            operadorRepository.save(new Operador("Operador 7", "operador7", "password7"));
+            operadorRepository.save(new Operador("Operador 8", "operador8", "password8"));
+            operadorRepository.save(new Operador("Operador 9", "operador9", "password9"));
+            operadorRepository.save(new Operador("Operador 10", "operador10", "password10"));
+
+             // Crear y guardar productos
             clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
             // Crear y guardar productos
             Producto producto1 = new Producto("Arepa de Maiz", 8.000, "Deliciosas arepas rellenas de maíz fresco.", "/images/entrada1.png");
