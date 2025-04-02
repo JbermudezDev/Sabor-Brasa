@@ -30,12 +30,7 @@ public class MainController {
 
 
     
-    @GetMapping("/Menu")
-    public String menu(Model model) {
-        List<Producto> productos = productoService.obtenerTodos(); // Recupera los productos
-        model.addAttribute("productos", productos);
-        return "Menu"; // Retorna la vista del menú
-    }
+    
    
     
 }
