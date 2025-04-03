@@ -7,6 +7,8 @@ import com.example.demo.repositorio.ClienteRepository;
 import com.example.demo.repositorio.DomiciliarioRepository;
 import com.example.demo.repositorio.ProductoRepository;
 import com.example.demo.repositorio.OperadorRepository;
+import com.example.demo.repositorio.PedidoRepository;
+import com.example.demo.entidades.Adicional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import jakarta.transaction.Transactional;
+import java.util.Date;
 
 @Component
 @Transactional
@@ -35,6 +38,8 @@ public class DatabaseInit implements ApplicationRunner {
 
     @Autowired
     private OperadorRepository operadorRepository;
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -43,11 +48,41 @@ public class DatabaseInit implements ApplicationRunner {
         
             administradorRepository.save(new Administrador("Juan Jose Bermudez", "thejuanjo1128@gmail.com", "123456"));
             
-             // Añadir un cliente
-            clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
-            
-            clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
-            
+            // Crear y guardar clientes
+            Cliente cliente1 = clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
+            Cliente cliente2 = clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
+
+            // Crear y guardar pedidos asociados a los clientes
+            Pedido pedido1 = new Pedido(new Date(), "Pendiente", cliente1);
+            pedidoRepository.save(pedido1);
+
+            Pedido pedido2 = new Pedido(new Date(), "En preparación", cliente1);
+            pedidoRepository.save(pedido2);
+
+            Pedido pedido3 = new Pedido(new Date(), "En camino", cliente1);
+            pedidoRepository.save(pedido3);
+
+            Pedido pedido4 = new Pedido(new Date(), "Entregado", cliente1);
+            pedidoRepository.save(pedido4);
+
+            Pedido pedido5 = new Pedido(new Date(), "Cancelado", cliente1);
+            pedidoRepository.save(pedido5);
+
+            Pedido pedido6 = new Pedido(new Date(), "Pendiente", cliente2);
+            pedidoRepository.save(pedido6);
+
+            Pedido pedido7 = new Pedido(new Date(), "En preparación", cliente2);
+            pedidoRepository.save(pedido7);
+
+            Pedido pedido8 = new Pedido(new Date(), "En camino", cliente2);
+            pedidoRepository.save(pedido8);
+
+            Pedido pedido9 = new Pedido(new Date(), "Entregado", cliente2);
+            pedidoRepository.save(pedido9);
+
+            Pedido pedido10 = new Pedido(new Date(), "Cancelado", cliente2);
+            pedidoRepository.save(pedido10);
+                        
              // Crear y guardar 20 domiciliarios
              domiciliarioRepository.save(new Domiciliario("Carlos Pérez", "3001234567", "1234567891", true));
              domiciliarioRepository.save(new Domiciliario("Ana Gómez", "3002345678", "1234567892", true));
@@ -71,16 +106,16 @@ public class DatabaseInit implements ApplicationRunner {
              domiciliarioRepository.save(new Domiciliario("Paula Mejía", "3000120000", "1234567820", true));
             
             
-            operadorRepository.save(new Operador("Operador 1", "operador1", "password1"));
-            operadorRepository.save(new Operador("Operador 2", "operador2", "password2"));
-            operadorRepository.save(new Operador("Operador 3", "operador3", "password3"));
-            operadorRepository.save(new Operador("Operador 4", "operador4", "password4"));
-            operadorRepository.save(new Operador("Operador 5", "operador5", "password5"));
-            operadorRepository.save(new Operador("Operador 6", "operador6", "password6"));
-            operadorRepository.save(new Operador("Operador 7", "operador7", "password7"));
-            operadorRepository.save(new Operador("Operador 8", "operador8", "password8"));
-            operadorRepository.save(new Operador("Operador 9", "operador9", "password9"));
-            operadorRepository.save(new Operador("Operador 10", "operador10", "password10"));
+             operadorRepository.save(new Operador("María González", "maria.gonzalez", "maria123"));
+             operadorRepository.save(new Operador("Carlos Ramírez", "carlos.ramirez", "carlos123"));
+             operadorRepository.save(new Operador("Ana López", "ana.lopez", "ana123"));
+             operadorRepository.save(new Operador("Luis Martínez", "luis.martinez", "luis123"));
+             operadorRepository.save(new Operador("Sofía Torres", "sofia.torres", "sofia123"));
+             operadorRepository.save(new Operador("Jorge Pérez", "jorge.perez", "jorge123"));
+             operadorRepository.save(new Operador("Isabel Sánchez", "isabel.sanchez", "isabel123"));
+             operadorRepository.save(new Operador("Diego Castro", "diego.castro", "diego123"));
+             operadorRepository.save(new Operador("Valentina Morales", "valentina.morales", "valentina123"));
+             operadorRepository.save(new Operador("Andrés Herrera", "andres.herrera", "andres123"));
 
              // Crear y guardar productos
             clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
