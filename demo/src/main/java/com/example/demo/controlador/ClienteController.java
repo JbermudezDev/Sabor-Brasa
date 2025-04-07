@@ -27,11 +27,11 @@ public class ClienteController {
         return clienteService.searchAll();
     }
 
-    @GetMapping("/view/{id}")
-    public Cliente verCliente(@RequestParam("id") Long id) {
-        Cliente cliente = clienteService.findById(id).orElse(null);
-        return cliente;
-    }
+    @GetMapping("/find/{id}")
+    public Cliente verCliente(@PathVariable("id") Long id) {
+            return clienteService.findById(id).orElse(null);
+    }       
+
 
     
     
