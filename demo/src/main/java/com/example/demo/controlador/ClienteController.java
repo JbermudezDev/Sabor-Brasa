@@ -13,31 +13,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/clientes")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
 
+
     @GetMapping("/all")
-    public String mostrarClientes(Model model) {
-        List<Cliente> clientes = clienteService.searchAll();
-        model.addAttribute("clientes", clientes);
-        return "ListadoClientes";
+    public List<Cliente> mostrarClientes(Model model) {
+        return clienteService.searchAll();
     }
 
     @GetMapping("/view/{id}")
-    public String verCliente(@PathVariable("id") Long id, Model model) {
-        Optional<Cliente> cliente = clienteService.findById(id);
-        if (cliente.isPresent()) {
-            model.addAttribute("cliente", cliente.get());
-            return "VerCliente";
-        } else {
-            return "redirect:/clientes/all";
-        }
+    public Cliente verCliente(@RequestParam("id") Long id) {
+        Cliente cliente = clienteService.findById(id).orElse(null);
+        return cliente;
     }
 
+    
+    
+    
     @GetMapping("/agregar")
     public String mostrarFormularioAgregarCliente(Model model) {
         model.addAttribute("cliente", new Cliente());
@@ -45,15 +43,14 @@ public class ClienteController {
     }
 
     @PostMapping("/add")
-    public String agregarCliente(@ModelAttribute Cliente cliente) {
+    public void agregarCliente(@RequestBody Cliente cliente) {
         clienteService.add(cliente);
-        return "redirect:/clientes/all";
     }
 
-    @PostMapping("/delete/{id}")
-    public String eliminarCliente(@PathVariable("id") Long id) {
+    @DeleteMapping("/delete/{id}")
+    public void eliminarCliente(@PathVariable("id") Long id) {
         clienteService.deleteById(id);
-        return "redirect:/clientes/all";
+        
     }
 
     @GetMapping("/update/{id}")
@@ -67,12 +64,12 @@ public class ClienteController {
         }
     }
 
-    @PostMapping("/update/{id}")
-    public String modificarCliente(@ModelAttribute Cliente cliente, @PathVariable("id") Long id) {
-        cliente.setId(id);
+    @PutMapping("/update/{id}")
+    public void modificarCliente(@RequestBody Cliente cliente) {
         clienteService.update(cliente);
-        return "redirect:/clientes/all";
     }
+
+
     @GetMapping("/perfil/{id}")
 public String mostrarPerfilCliente(@PathVariable("id") Long id, Model model, HttpSession session) {
     // Verifica si el cliente está autenticado
