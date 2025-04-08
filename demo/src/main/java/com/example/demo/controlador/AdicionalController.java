@@ -18,8 +18,7 @@ public class AdicionalController {
     // Obtener todos los adicionales
     @GetMapping("/all")
 public List<Adicional> getAllAdicionales() {
-    List<Adicional> adicionales = adicionalService.findAll();
-    adicionales.forEach(adicional -> {
+    return adicionalService.findAll().stream().map(adicional -> {
         if (adicional.getNombre() == null) {
             adicional.setNombre("Sin nombre"); // Valor predeterminado para nombre
         }
@@ -29,9 +28,9 @@ public List<Adicional> getAllAdicionales() {
         if (adicional.getDescripcion() == null) {
             adicional.setDescripcion("Sin descripción"); // Valor predeterminado para descripción
         }
-    });
-    return adicionales;
-    }
+        return adicional;
+    }).toList();
+}
 
     // Obtener un adicional por ID
     @GetMapping("/view/{id}")
