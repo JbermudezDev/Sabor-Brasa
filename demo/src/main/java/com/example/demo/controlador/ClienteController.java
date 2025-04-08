@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@RestController // Cambiado a RestController para manejar JSON
 @RequestMapping("/clientes")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200") // Cambiado para permitir solicitudes desde Angular
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
 
 
-    @GetMapping("/all")
+    @GetMapping("/all") // Cambiado a /all para evitar conflictos con el método mostrarClientes
     public List<Cliente> mostrarClientes(Model model) {
         return clienteService.searchAll();
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/find/{id}") // Cambiado a /find/{id} para evitar conflictos con el método verCliente
     public Cliente verCliente(@PathVariable("id") Long id) {
             return clienteService.findById(id).orElse(null);
     }       
@@ -42,12 +42,12 @@ public class ClienteController {
         return "AgregarCliente";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add") // Cambiado a /add para evitar conflictos con el método agregarCliente
     public void agregarCliente(@RequestBody Cliente cliente) {
         clienteService.add(cliente);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}") // Cambiado a /delete/{id} para evitar conflictos con el método eliminarCliente
     public void eliminarCliente(@PathVariable("id") Long id) {
         clienteService.deleteById(id);
         
@@ -64,7 +64,7 @@ public class ClienteController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/{id}") // Cambiado a /update/{id} para evitar conflictos con el método modificarCliente
     public void modificarCliente(@RequestBody Cliente cliente) {
         clienteService.update(cliente);
     }
