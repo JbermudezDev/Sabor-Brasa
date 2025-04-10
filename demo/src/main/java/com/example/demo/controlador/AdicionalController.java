@@ -47,9 +47,9 @@ public class AdicionalController {
     // Eliminar un adicional por ID
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> eliminarAdicional(@PathVariable Long id) {
-    adicionalService.deleteById(id);
-    return ResponseEntity.noContent().build(); // Devuelve un código 204 (No Content)
-}
+        adicionalService.deleteById(id);
+        return ResponseEntity.noContent().build(); // Devuelve un código 204 (No Content)
+    }
 
     // Formulario de edición de un adicional
     @PutMapping("/update/{id}")
