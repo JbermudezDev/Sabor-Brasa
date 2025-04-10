@@ -14,9 +14,10 @@ public class ProductoService {
   @Autowired
   private ProductoRepository productoRepository;
 
-  public List<Producto> searchAll() {
-    return productoRepository.findAll();
-  }
+   // Obtener todos los productos
+   public List<Producto> searchAll() {
+    return productoRepository.findAll(); // Devuelve todos los registros
+}
 
   public Optional<Producto> findById(Long id) {
     return productoRepository.findByIdWithAdicionales(id);

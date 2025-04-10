@@ -36,14 +36,14 @@ public class ProductoController {
   // Listar productos
 
   @GetMapping("/all")
-  public List<Producto> mostrarProductos(Model model) {
-    return productoService.searchAll();
-  }
+    public List<Producto> mostrarProductos() {
+    return productoService.searchAll(); 
+    }
 
   // Ver detalles de un producto
 
   @GetMapping("/find/{id}")
-  public Producto veProducto(@PathVariable("id") Long id) {
+  public Producto verProducto(@PathVariable("id") Long id) {
     return productoService.findById(id).orElse(null);
   }
 
