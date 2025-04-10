@@ -18,4 +18,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     // Metodo correcto para traer un producto con sus adicionales seleccionados
     @Query("SELECT p FROM Producto p LEFT JOIN FETCH p.adicionales WHERE p.id = :id")
     Optional<Producto> findByIdWithAdicionales(@Param("id") Long id);
+    
+    
 }

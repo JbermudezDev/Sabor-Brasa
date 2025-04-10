@@ -23,9 +23,9 @@ public class ProductoService {
     return productoRepository.findByIdWithAdicionales(id);
   }
 
-  public void add(Producto producto) {
-    productoRepository.save(producto);
-  }
+  public Producto add(Producto producto) {
+    return productoRepository.save(producto);
+}
 
   public void deleteById(Long id) {
     productoRepository.deleteById(id);
@@ -34,7 +34,7 @@ public class ProductoService {
   public void save(Producto producto) {
     productoRepository.save(producto);
   }
-
+ 
   public List<Producto> obtenerPorCategoria(Categoria categoria) {
     return productoRepository.findByCategoria(categoria);
   }
@@ -42,6 +42,8 @@ public class ProductoService {
   public List<Producto> obtenerTodos() {
     return productoRepository.findAll();
   }
+  
+  
 
   public Optional<Producto> obtenerPorId(Long id) {
     return productoRepository.findById(id);

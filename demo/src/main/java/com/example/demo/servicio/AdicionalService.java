@@ -24,7 +24,8 @@ public class AdicionalService {
     public List<Adicional> findAll() {
         return adicionalRepository.findAll(); 
     }
-
+   
+   
     // Obtener un adicional por ID
     public Optional<Adicional> findById(Long id) {
         return adicionalRepository.findById(id);

@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class Adicional {
     private String descripcion;
     
     @ManyToMany(mappedBy = "adicionales")
+    @JsonBackReference
     private List<Producto> productos = new ArrayList<>();
 
     public Adicional() {}
