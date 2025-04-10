@@ -1,5 +1,5 @@
 package com.example.demo.controlador;
-
+import org.springframework.ui.Model;
 import com.example.demo.entidades.Adicional;
 import com.example.demo.servicio.AdicionalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +17,9 @@ public class AdicionalController {
 
     // Obtener todos los adicionales
     @GetMapping("/all")
-public List<Adicional> getAllAdicionales() {
-    return adicionalService.findAll().stream().map(adicional -> {
-        if (adicional.getNombre() == null) {
-            adicional.setNombre("Sin nombre"); // Valor predeterminado para nombre
-        }
-        if (adicional.getPrecio() == 0.0) {
-            adicional.setPrecio(0.0); // Valor predeterminado para precio
-        }
-        if (adicional.getDescripcion() == null) {
-            adicional.setDescripcion("Sin descripción"); // Valor predeterminado para descripción
-        }
-        return adicional;
-    }).toList();
-}
+    public List<Adicional> listarAdicionales() {
+        return adicionalService.findAll(); 
+    }
 
     // Obtener un adicional por ID
     @GetMapping("/view/{id}")

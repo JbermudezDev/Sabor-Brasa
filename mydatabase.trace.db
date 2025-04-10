@@ -452,3 +452,7 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/JUAN JO
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "DOMICILIARIOS" no encontrada
 Table "DOMICILIARIOS" not found; SQL statement:
 select * from domiciliarios [42102-224]
+2025-04-09 20:27:12.052748-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM ADICIONALES ADICIONAL [*]ADICIONALES"
+Syntax error in SQL statement "SELECT * FROM ADICIONALES ADICIONAL [*]ADICIONALES"; SQL statement:
+SELECT * FROM ADICIONALES ADICIONAL ADICIONALES [42000-224]
