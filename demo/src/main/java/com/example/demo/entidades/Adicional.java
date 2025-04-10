@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.util.List;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 
@@ -21,19 +24,19 @@ public class Adicional {
     private String nombre;
     private double precio;
     private String descripcion;
-   
+    
     @ManyToMany(mappedBy = "adicionales")
     private List<Producto> productos = new ArrayList<>();
 
     public Adicional() {}
-
+    
     public Adicional( String nombre, double precio, String descripcion) {
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
         
     }
-
+    
     public void addProducto(Producto producto) {
         productos.add(producto);
         producto.getAdicionales().add(this);

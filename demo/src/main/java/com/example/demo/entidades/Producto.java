@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 import com.example.demo.entidades.Adicional;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "productos")
@@ -20,13 +21,14 @@ public class Producto {
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
-
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "producto_adicional",
             joinColumns = @JoinColumn(name = "producto_id"),
             inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
+ 
     private List<Adicional> adicionales = new ArrayList<>();
     
 
