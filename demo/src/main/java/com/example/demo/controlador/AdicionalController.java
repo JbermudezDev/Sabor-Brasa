@@ -3,58 +3,83 @@ package com.example.demo.controlador;
 import com.example.demo.entidades.Adicional;
 import com.example.demo.servicio.AdicionalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/adicionales")  // Esta es la ruta base para todas las solicitudes relacionadas con 'adicionales'
-@CrossOrigin(origins = "http://localhost:4200")  // Permite solicitudes desde tu frontend Angular
+@RequestMapping("/adicionales")
+@CrossOrigin(origins = "http://localhost:4200") // Permitir solicitudes desde Angular
 public class AdicionalController {
 
     @Autowired
     private AdicionalService adicionalService;
 
-    // Obtener todos los adicionales
-    @GetMapping("/all")  // Esto ahora será la ruta completa 'http://localhost:8090/adicionales/all'
-    public List<Adicional> getAllAdicionales() {
-        List<Adicional> adicionales = adicionalService.findAll();
-        adicionales.forEach(adicional -> {
-            if (adicional.getNombre() == null) {
-                adicional.setNombre("Sin nombre");  // Valor predeterminado para nombre
-            }
-            if (adicional.getPrecio() == 0.0) {
-                adicional.setPrecio(0.0);  // Valor predeterminado para precio
-            }
-            if (adicional.getDescripcion() == null) {
-                adicional.setDescripcion("Sin descripción");  // Valor predeterminado para descripción
-            }
-        });
-        return adicionales;
+    // Listar todos los adicionales
+    @GetMapping("/all")
+    public List<Adicional> listarAdicionales() {
+        return adicionalService.findAll();
     }
 
-    // Obtener un adicional por ID
-    @GetMapping("/view/{id}")  // Ruta para obtener un adicional por su ID
-    public Adicional getAdicionalById(@PathVariable("id") Long id) {
-        return adicionalService.findById(id).orElse(null);  // Devuelve el adicional por ID
+    // Ver detalles de un adicional por ID
+    @GetMapping("/find/{id}")
+    public Adicional verAdicional(@PathVariable("id") Long id) {
+        return adicionalService.findById(id).orElse(null);
     }
 
-    // Agregar un nuevo adicional
-    @PostMapping("/add")  // Ruta para agregar un adicional
-    public void addAdicional(@RequestBody Adicional adicional) {
-        adicionalService.add(adicional);  // Agrega el adicional
+    // Formulario para agregar un adicional
+    @GetMapping("/agregar")
+    public String mostrarFormularioAgregarAdicional(Model model) {
+        model.addAttribute("adicional", new Adicional());
+        return "AgregarAdicional";
+    }
+
+    // Guardar un nuevo adicional
+    @PostMapping("/add")
+    public void agregarAdicional(@RequestBody Adicional adicional) {
+        adicionalService.add(adicional);
     }
 
     // Eliminar un adicional por ID
-    @DeleteMapping("/delete/{id}")  // Ruta para eliminar un adicional
-    public void deleteAdicional(@PathVariable("id") Long id) {
-        adicionalService.deleteById(id);  // Elimina el adicional por ID
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> eliminarAdicional(@PathVariable Long id) {
+    adicionalService.deleteById(id);
+    return ResponseEntity.noContent().build(); // Devuelve un código 204 (No Content)
+}
+
+    // Formulario de edición de un adicional
+    @PutMapping("/update/{id}")
+    public void modificarAdicional(@RequestBody Adicional adicional, @PathVariable("id") Long id) {
+        adicional.setId(id);
+        adicionalService.update(adicional);
     }
 
-    // Actualizar un adicional
-    @PutMapping("/update/{id}")  // Ruta para actualizar un adicional
-    public void updateAdicional(@RequestBody Adicional adicional, @PathVariable("id") Long id) {
-        adicional.setId(id);  // Establece el ID para asegurarse de que se actualice el correcto
-        adicionalService.update(adicional);  // Actualiza el adicional
+    // Guardar cambios de un adicional
+    @PostMapping("/update/{id}")
+    public String modificarAdicional(
+        @PathVariable("id") Long id,
+        @ModelAttribute Adicional adicional,
+        Model model
+    ) {
+        Optional<Adicional> adicionalExistente = adicionalService.findById(id);
+        if (adicionalExistente.isPresent()) {
+            Adicional adicionalActualizado = adicionalExistente.get();
+            adicionalActualizado.setNombre(adicional.getNombre());
+            adicionalActualizado.setPrecio(adicional.getPrecio());
+            adicionalActualizado.setDescripcion(adicional.getDescripcion());
+
+            // Guardar los cambios
+            adicionalService.update(adicionalActualizado);
+
+            return "redirect:/adicionales/view/" + id;
+        } else {
+            model.addAttribute("error", "El adicional no existe.");
+            model.addAttribute("adicional", adicional);
+            return "EditarAdicional";
+        }
     }
 }
