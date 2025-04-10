@@ -4,18 +4,17 @@ import com.example.demo.entidades.Administrador;
 import com.example.demo.entidades.Cliente;
 import com.example.demo.servicio.AdministradorService;
 import com.example.demo.servicio.ClienteService;
-
+import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/login")
+@CrossOrigin(origins = "http://localhost:4200") // Permitir solicitudes desde Angular
 public class LoginController {
 
     @Autowired
@@ -24,13 +23,13 @@ public class LoginController {
     @Autowired
     private ClienteService clienteService;
 
-    // Muestra formulario de login del cliente
+    // Muestra formulario de login del cliente (sin cambios, ya que es para vistas)
     @GetMapping("/loginCliente")
     public String mostrarFormularioLoginCliente() {
         return "InicioSesion"; 
     }
 
-    // Autenticación del Cliente
+    // Autenticación del Cliente (sin cambios, ya que es para vistas)
     @PostMapping("/loginCliente")
     public String loginCliente(@RequestParam String email, 
                                @RequestParam String password, 
@@ -46,9 +45,8 @@ public class LoginController {
             return "InicioSesion"; 
         }
     }
-    
 
-    // Página del Cliente (requiere autenticación)
+    // Página del Cliente (sin cambios, ya que es para vistas)
     @GetMapping("/Cliente/{id}")
     public String mostrarPaginaCliente(@PathVariable Long id, Model model, HttpSession session) {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogueado");
@@ -61,30 +59,32 @@ public class LoginController {
         return "Cliente"; 
     }
 
-    // Muestra formulario de login del administrador
-    @GetMapping("/login")
-    public String mostrarFormularioLogin() {
-        return "IniciarSesionAdministrador"; 
-    }
-
-    // Autenticación del Administrador
-    @PostMapping("/login")
-    public String loginAdministrador(@RequestParam String email, 
-                                     @RequestParam String password, 
-                                     Model model, 
-                                     HttpSession session) {
+    // Autenticación del Administrador (modificado para Angular)
+    @PostMapping("/admin")
+    public ResponseEntity<?> loginAdministrador(@RequestBody Administrador credenciales, HttpSession session) {
+        // Extraer email y password del objeto recibido
+        String email = credenciales.getEmail();
+        String password = credenciales.getPassword();
+    
+        // Autenticar al administrador
         Administrador admin = administradorService.autenticar(email, password);
-
+    
         if (admin != null) {
-            session.setAttribute("adminLogueado", admin);
-            return "redirect:/Administrador"; 
+            session.setAttribute("adminLogueado", admin); // Guardar administrador en la sesión
+            return ResponseEntity.ok(admin); // Devuelve el administrador autenticado en formato JSON
         } else {
-            model.addAttribute("error", "Credenciales incorrectas");
-            return "IniciarSesionAdministrador"; 
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
         }
     }
 
-    // Página del Administrador
+    // Cerrar sesión del Administrador (nuevo método para Angular)
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpSession session) {
+        session.invalidate(); // Invalida la sesión
+        return ResponseEntity.ok("Sesión cerrada correctamente");
+    }
+
+    // Página del Administrador (sin cambios, ya que es para vistas)
     @GetMapping("/Administrador")
     public String mostrarPaginaAdministrador() {
         return "Administrador"; 
