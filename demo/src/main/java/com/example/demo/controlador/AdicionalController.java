@@ -2,6 +2,8 @@ package com.example.demo.controlador;
 
 import com.example.demo.entidades.Adicional;
 import com.example.demo.servicio.AdicionalService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -18,7 +20,7 @@ public class AdicionalController {
 
     @Autowired
     private AdicionalService adicionalService;
-
+    
     // Listar todos los adicionales
     @GetMapping("/all")
     public List<Adicional> listarAdicionales() {
