@@ -1,5 +1,6 @@
 package com.example.demo.controlador;
 
+
 import com.example.demo.entidades.Adicional;
 import com.example.demo.entidades.Producto;
 import com.example.demo.servicio.AdicionalService;
@@ -27,19 +28,20 @@ public class ProductoController {
 
     // Listar productos
     @GetMapping("/all")
-    public ResponseEntity<?> mostrarProductos() {
+    public ResponseEntity<ProductosResponse> mostrarProductos() {
         try {
+            // Obtén la lista de productos y adicionales desde los servicios
             List<Producto> productos = productoService.searchAll();
             List<Adicional> adicionales = adicionalService.findAll();
 
-            return ResponseEntity.ok(new Object() {
-                public List<Producto> productosList = productos;
-                public List<Adicional> adicionalesList = adicionales;
-            });
+            // Crea una instancia de ProductosResponse
+            ProductosResponse response = new ProductosResponse(productos, adicionales);
+
+            // Devuelve la respuesta
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al obtener los productos y adicionales");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
@@ -94,22 +96,13 @@ public class ProductoController {
             if (productoExistente.isPresent()) {
                 Producto prod = productoExistente.get();
 
-                // Datos básicos
+                // Actualiza los datos básicos del producto
                 prod.setNombre(producto.getNombre());
                 prod.setPrecio(producto.getPrecio());
                 prod.setDescripcion(producto.getDescripcion());
                 prod.setImagen(producto.getImagen());
-                prod.setCategoria(producto.getCategoria());
 
-                // Logs para depuración
-                System.out.println("Producto ID a actualizar: " + id);
-                System.out.println("Adicionales recibidos:");
-                if (producto.getAdicionales() != null) {
-                    producto.getAdicionales().forEach(a ->
-                            System.out.println(" - Adicional ID: " + a.getId()));
-                }
-
-                // Asociar adicionales
+                // Actualiza los adicionales
                 if (producto.getAdicionales() != null && !producto.getAdicionales().isEmpty()) {
                     List<Adicional> adicionalesSeleccionados = adicionalService.findByIds(
                             producto.getAdicionales().stream().map(Adicional::getId).toList());

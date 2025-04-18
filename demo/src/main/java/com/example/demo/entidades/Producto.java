@@ -30,6 +30,7 @@ public class Producto {
         inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
 @JsonManagedReference
+@JsonIgnore
 private List<Adicional> adicionales = new ArrayList<>();
     public Producto() {}
 
