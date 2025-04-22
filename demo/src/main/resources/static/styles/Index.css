@@ -31,21 +31,18 @@ body {
   height: 120px;
 }
 .header-bg {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-object-fit: cover;
-z-index: -1;
-background-image: url('/images/imagendiv3.jpeg');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-width: 100%; /* Ajusta la imagen al ancho del contenedor */
-height: 45%; /* Ajusta la imagen al alto del contenedor */
-object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
-border-radius: 5px; /* Mantiene el borde redondeado */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Mantiene el ancho completo */
+  height: 20%; /* Reduce la altura al 30% */
+  object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
+  z-index: -1;
+  background-image: url('/images/imagendiv3.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 5px; /* Mantiene el borde redondeado */
 }
 /* Fondo para toda la página */
 
@@ -190,9 +187,9 @@ border-radius: 5px; /* Mantiene el borde redondeado */
   justify-content: space-evenly;
   flex-wrap: wrap;
   width: 100%;
-  background-color: #1b2522;
-  margin-top: 200px; /* Mantiene el margen superior */
-  height: 500px; /* Aumenta la altura total */
+  background-color: #ffffff;
+  margin-top: -10px; /* Mantiene el margen superior */
+  height: 1100px; /* Aumenta la altura total */
 }
 
 #informacionPrincipal {
@@ -205,9 +202,9 @@ border-radius: 5px; /* Mantiene el borde redondeado */
 
 #menu h2 {
   text-decoration: none;
-  color: #E4B363; /* Dorado elegante */
+  color: #000000; /* Dorado elegante */
   font-family: "Poltawski Nowy";
-  font-size: 80px; /* Letra más grande */
+  font-size: 60px; /* Letra más grande */
   margin-top: 20px; /* Ajusta el margen superior para bajarlo */
   text-align: center; /* Asegura que esté alineado si es necesario */
 }
@@ -230,322 +227,21 @@ border-radius: 5px; /* Mantiene el borde redondeado */
 
  margin-bottom:0;
 }
-.parent {
-  display: flex;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 0.8fr); /* Reducir tamaño de filas */
-  gap: 20px; /* Reducir separación */
-  border-radius: 15px;
-  padding: 10px; /* Reducir padding */
-  background-color: rgba(0, 0, 0, 0.477);
-  max-width: 1800px;
-  max-height: 500px; /* Reducir altura máxima */
-  width: 100%;
-  height: 50%; /* Ajustar altura */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  margin-top: -80px; /* Reducir este valor para subirlo */
-  margin-left: 50px;
-}
-.div20 {
-grid-column: span 3 / span 3;
-grid-row: span 5 / span 5;
-border-radius: 15px;
-padding: 20px;
-
-max-width: 1200px;
-width: 100%;
-height: 100%;
-
-gap: 50px; /* Espaciado entre imagen y texto */
-}
-
-.div21 {
-grid-column: span 2 / span 2;
-grid-row: span 5 / span 5;
-grid-column-start: 4;
-
-}
-.div20 img{
-width: 100%; /* Ajusta la imagen al ancho del contenedor */
-height: 100%; /* Ajusta la imagen al alto del contenedor */
-object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
-border-radius: 5px; /* Mantiene el borde redondeado */
-}
-/* Finaliza seccion acerca de nosotros*/
-
-/* Seccion comida */
-#comida {
-  display: flex;
-  justify-content: center; /* Centra los elementos horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  flex-wrap: wrap; /* Permite que el contenido se ajuste si es necesario */
-  width: 100%;
-  background-color: #1b2522;
-  padding: 50px 20px; /* Espaciado uniforme */
-  box-sizing: border-box;
-  font-family: "Nunito", sans-serif;
-  text-align: center; /* Asegura que el texto dentro se centre */
-}
-
-#comida h2 {
-  text-decoration: none;
-  color: #E4B363; /* Dorado elegante */
-  font-family: "Poltawski Nowy";
-  font-size: 80px;
-  margin-top: -80px; /* Usa un valor negativo para subirlo */
-  text-align: center;
-}
-
-.parent2 {
-  display: flex;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 0.8fr); /* Reducir tamaño de filas */
-  gap: 20px; /* Reducir separación */
-  border-radius: 15px;
-  padding: 10px; /* Reducir padding */
-  background-color: rgba(0, 0, 0, 0.477);
-  max-width: 1800px;
-  max-height: 500px; /* Reducir altura máxima */
-  width: 100%;
-  height: 50%; /* Ajustar altura */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  margin-top: 20px; /* Reducir este valor para subirlo */
-  margin-left: 50px;
-}
-.div1 {
-  flex-direction: column; /* Apila los elementos verticalmente */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  grid-row: span 3 / span 3;
-  grid-row-start: 2;
-  border-radius: 15px;
-  padding: 20px;
-  
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
-  
-  gap: 50px; /* Espaciado entre imagen y texto */
-}
-
-.div2 {
-  flex-direction: column; /* Apila los elementos verticalmente */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  grid-row: span 3 / span 3;
-  grid-column-start: 3;
-  grid-row-start: 2;
-  border-radius: 15px;
-  padding: 20px;
-  
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
- 
-  gap: 50px; /* Espaciado entre imagen y texto */
-}
-
-.div3 {
-  flex-direction: column; /* Apila los elementos verticalmente */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  grid-row: span 3 / span 3;
-  grid-column-start: 5;
-  grid-row-start: 2;
-  border-radius: 15px;
-  padding: 20px;
- 
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
- 
-  gap: 50px; /* Espaciado entre imagen y texto */
-}
-
-.div1 img, .div2 img, .div3 img {
-  width: 100%; /* Ajusta la imagen al ancho del contenedor */
-  height: 100%; /* Ajusta la imagen al alto del contenedor */
-  object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
-  border-radius: 5px; /* Mantiene el borde redondeado */
-}
-.title-container {
-  display: flex;
-  justify-content: center; /* Centra el título horizontalmente */
-  align-items: center;
- 
-  padding: 10px;
-}
-
-.title-box {
-  background-color: #FF8C00; /* Color de fondo naranja */
-  color: white; /* Color del texto */
-  padding: 10px 20px;
-  border-radius: 10px; /* Bordes redondeados */
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  text-align: center;
-}
-/* Slider */
-.slider-container {
-overflow: hidden;
-position: center;
-width: 100%;
-max-width: 1000px;
-margin: 0 auto;
-border-radius: 15px;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-padding: auto;
-}
-
-.slider-wrapper {
-display: flex;
-flex-wrap: nowrap;
-animation: scroll 30s linear infinite;
-width: max-content; /* Permite que el contenido se desplace sin romperse */
-}
-
-.slider-wrapper img {
-width: 400px;
-height: 400px;
-
-object-fit: cover;
-border-radius: 10px;
-margin: 0 10px;
-}
-
-/* Animación continua */
-@keyframes scroll {
-0% {
-    transform: translateX(0);
-}
-100% {
-    transform: translateX(-50%);
-}
-}
-/* Finaliza Sección comida*/
-
-/* Inicia Sección Reservas*/
-#reservas {
-  display: flex;
-  flex-direction: column; /* Acomoda los elementos en columna */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  width: 100%;
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
-  background-color: #1b2522;
-  box-sizing: border-box;
-  padding: 20px;
-}
-
-#reservas h2 {
-  color: #E4B363; /* Dorado elegante */
-  font-family: "Poltawski Nowy";
-  font-size: 80px;
-  text-align: center;
-  position: relative;
-  margin-top: -350px;
-  margin-bottom: 100px; /* Aumenta el espacio debajo del h2 */
-}
-
 .parent3 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 0.8fr); /* Tamaño de filas */
-  gap: 20px; /* Reducir separación */
+  grid-template-rows: repeat(5, 1fr); /* Mantener tamaño de filas */
+  gap: 20px; /* Mantener separación */
   border-radius: 15px;
-  padding: 10px; /* Reducir padding */
-  background-color: rgba(0, 0, 0, 0.477);
-  max-width: 1800px;
-  max-height: 500px; /* Reducir altura máxima */
-  width: 100%;
-  height: 50%; /* Ajustar altura */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  margin-top: -80px; /* Reducir este valor para subirlo */
-  margin-left: 50px;
-}
-
-.div4 {
-  grid-column: span 3 / span 3;
-  grid-row: span 5 / span 5;
-  grid-column-start: 3;
-  grid-row-start: 1;
-  border-radius: 15px;
-  padding: 20px;
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
-  gap: 50px; /* Espaciado entre imagen y texto */
-}
-
-.div5 {
-  grid-column: span 2 / span 2;
-  grid-row: span 3 / span 3;
-  grid-column-start: 1;
-  grid-row-start: 1;
-  border-radius: 15px;
-  padding: 20px;
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
-  gap: 50px; /* Espaciado entre imagen y texto */
-}
-
-.div6 {
-  grid-column: span 2 / span 2;
-  grid-row: span 2 / span 2;
-  grid-row-start: 4;
-  border-radius: 15px;
-  padding: 20px;
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
-  gap: 50px; /* Espaciado entre imagen y texto */
-}
-
-.div4 img, .div5 img, .div6 img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-
-.titulo-naranja {
-  background-color: #FF8C00; /* Naranja */
-  color: white; /* Texto blanco */
-  text-align: center; /* Centrado */
-  font-family: 'Playfair Display', serif; /* Tipografía elegante */
-  font-size: 40px; /* Tamaño de fuente */
-  padding: 15px 20px; /* Espaciado interno */
-  width: 50%; /* Ancho del título */
-  margin: 30px auto; /* Centrado horizontalmente y espacio superior */
-  border-radius: 10px; /* Bordes redondeados */
-}
-
-/* Finaliza Sección Reservas*/
-
-/* Inicia Sesion Galeria */
-
-
-#galleria {
+  padding: 10px; /* Mantener padding */
   
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
+  max-width: 1950px; /* Aumentar el ancho máximo */
+  max-height: 800px; /* Aumentar la altura máxima */
   width: 100%;
-  background-color: #1b2522;
-  font-family: "Nunito", sans-serif;
-  
-}
-#galleria h2 {
-  color: #E4B363; /* Dorado elegante */
-  font-family: "Poltawski Nowy";
-  font-size: 80px;
-  text-align: center;
-  position: relative;
-  margin-top: -350px;
-  margin-bottom: 100px; /* Aumenta el espacio debajo del h2 */
+  height: 1000px; /* Aumentar la altura */
+ 
+  margin-top: -120px; /* Subir el contenedor más */
+  margin-left: 20px; /* Mantener margen izquierdo */
 }
 .div7 {
   grid-row: span 5 / span 5;
@@ -585,6 +281,329 @@ margin: 0 10px;
   object-fit: cover;
   border-radius: 5px;
 }
+
+/* Finaliza seccion acerca de nosotros*/
+#steak {
+  display: flex;   
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 90vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+  background-color: #3f3c3c;
+  background-image: url('/images/steak2.png'); /* Ruta de la imagen */
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center; /* Centra la imagen dentro del contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+.overlay {
+  display: flex;
+  flex-direction: column; /* Acomoda los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  height: 100%; /* Asegura que ocupe todo el espacio del contenedor */
+}
+
+#steak h1 {
+  font-size: 4rem; /* Agranda el tamaño del título */
+  font-weight: bold;
+  margin-top: -80px; /* Baja más el título hacia abajo */
+  color: #ffffff;
+  
+}
+
+#steak p {
+  font-size: 2rem; /* Agranda el tamaño del texto */
+  margin-top: 30px; /* Baja más el texto hacia abajo */
+  
+}
+
+
+#steak .btn {
+  display: inline-block;
+  background-color: #6b2c1a; /* Color del botón */
+  color: white;
+  padding: 20px 50px; /* Tamaño del botón */
+  text-decoration: none;
+  font-size: 1.5rem; /* Tamaño del texto del botón */
+  border-radius: 10px; /* Bordes redondeados */
+  transition: background-color 0.3s ease;
+  margin: 80px 0 0 0; /* Baja el botón con margen superior */
+}
+
+#steak .btn:hover {
+  background-color: #8c3b24; /* Color del botón al pasar el mouse */
+}
+#informacionPrincipal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; 
+}
+
+#steak h2 {
+  text-decoration: none;
+  color: #000000; /* Dorado elegante */
+  font-family: "Poltawski Nowy";
+  font-size: 60px; /* Letra más grande */
+  margin-top: 20px; /* Ajusta el margen superior para bajarlo */
+  text-align: center; /* Asegura que esté alineado si es necesario */
+}
+
+#steak p {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-family: 'Lora', serif; /* Aplicar la fuente Lora */
+  font-size: 40px; /* Letra más grande */
+  text-align: center;
+  justify-content: center; /* Centrar el texto */
+}
+#informacionPrincipal p{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+#imagenPrincipal img{
+
+ margin-bottom:0;
+}
+.parent5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr); /* Mantener tamaño de filas */
+  gap: 20px; /* Mantener separación */
+  border-radius: 15px;
+  padding: 10px; /* Mantener padding */
+  
+  max-width: 1950px; /* Aumentar el ancho máximo */
+  max-height: 800px; /* Aumentar la altura máxima */
+  width: 100%;
+  height: 1000px; /* Aumentar la altura */
+ 
+  margin-top: -120px; /* Subir el contenedor más */
+  margin-left: 20px; /* Mantener margen izquierdo */
+}
+.div7 {
+  grid-row: span 5 / span 5;
+}
+
+.div8 {
+  grid-column: span 2 / span 2;
+  grid-row: span 2 / span 2;
+  grid-column-start: 4;
+  grid-row-start: 4;
+}
+
+.div9 {
+  grid-column: span 2 / span 2;
+  grid-row: span 2 / span 2;
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.div10 {
+  grid-column: span 2 / span 2;
+  grid-row: span 3 / span 3;
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+.div11 {
+  grid-column: span 2 / span 2;
+  grid-row: span 3 / span 3;
+  grid-column-start: 4;
+  grid-row-start: 1;
+}
+
+.div7 img, .div8 img, .div9 img, .div10 img, .div11 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+/* Seccion comida */
+#comida {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  flex-wrap: wrap; /* Permite que el contenido se ajuste si es necesario */
+  width: 100%;
+  background-color: #ffffff;
+  padding: 50px 20px; /* Espaciado uniforme */
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  text-align: center; /* Asegura que el texto dentro se centre */
+  margin-top: -80px; /* Subir el contenedor */
+}
+
+#comida h2 {
+  text-decoration: none;
+  color: #000000; /* Dorado elegante */
+  font-family: "Poltawski Nowy";
+  font-size: 50px;
+  margin-top: -80px; /* Usa un valor negativo para subirlo */
+  text-align: center;
+}
+
+.parent2 {
+  display: flex;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 0.8fr); /* Reducir tamaño de filas */
+  gap: 20px; /* Reducir separación */
+  border-radius: 15px;
+  padding: 10px; /* Reducir padding */
+ 
+  max-width: 1950px; /* Aumentar el ancho máximo */
+  max-height: 800px; /* Aumentar la altura máxima */
+  width: 100%;
+  height: 50%; /* Ajustar altura */
+  
+  margin-top: 20px; /* Reducir este valor para subirlo */
+  margin-left: 50px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center; /* Centra el título horizontalmente */
+  align-items: center;
+ 
+  padding: 10px;
+}
+
+.title-box {
+  background-color: #FF8C00; /* Color de fondo naranja */
+  color: white; /* Color del texto */
+  padding: 10px 20px;
+  border-radius: 10px; /* Bordes redondeados */
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  text-align: center;
+}
+/* Slider */
+.slider-container {
+  overflow: hidden;
+  position: center;
+  width: 100%;
+  max-width: 2200px; /* Aumentar el ancho máximo */
+  margin: 0 auto;
+  border-radius: 15px;
+  
+  padding: auto;
+  height: 1100px; /* Aumentar la altura del contenedor */
+}
+
+.slider-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  animation: scroll 30s linear infinite;
+  width: max-content; /* Permite que el contenido se desplace sin romperse */
+}
+
+.slider-wrapper img {
+  width: 500px; /* Aumentar el ancho de las imágenes */
+  height: 500px; /* Aumentar la altura de las imágenes */
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 15px; /* Aumentar el espacio entre imágenes */
+}
+/* Animación continua */
+@keyframes scroll {
+0% {
+    transform: translateX(0);
+}
+100% {
+    transform: translateX(-50%);
+}
+}
+/* Finaliza Sección comida*/
+
+/* Inicia Sección Reservas*/
+#reservas {
+  display: flex;
+  flex-direction: column; /* Acomoda los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  width: 100%;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 20px;
+  margin-top: -120px; /* Subir el contenedor */
+}
+#reservas h2 {
+  color: #fe4a18; /* Dorado elegante */
+  font-family: "Poltawski Nowy";
+  font-size: 80px;
+  text-align: center;
+  position: relative;
+  margin-top: -350px;
+  margin-bottom: 100px; /* Aumenta el espacio debajo del h2 */
+}
+
+.card {
+  background: linear-gradient(145deg, #7777776b, #414141); /* Degradado negro a gris */
+  color: #fff; /* Texto blanco para contraste */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+  margin-top: 20px; /* Baja las cartas */
+}
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  color: #e9e9e9;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.card button {
+  background-color: #a42d0c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.card button:hover {
+  background-color: #8c3b24;
+}
+
+
+
+.titulo-naranja {
+  background-color: #FF8C00; /* Naranja */
+  color: white; /* Texto blanco */
+  text-align: center; /* Centrado */
+  font-family: 'Playfair Display', serif; /* Tipografía elegante */
+  font-size: 40px; /* Tamaño de fuente */
+  padding: 15px 20px; /* Espaciado interno */
+  width: 50%; /* Ancho del título */
+  margin: 30px auto; /* Centrado horizontalmente y espacio superior */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Finaliza Sección Reservas*/
+
+
 /* finaliza seccion galleria */
 
 #encuentranos {
@@ -593,9 +612,10 @@ margin: 0 10px;
   align-items: center; /* Centra verticalmente los elementos */
   flex-direction: row-reverse; /* Invierte el orden de los elementos */
   width: 100%;
-  background-color: #1b2522;
+  background-color: #1c1b1b;
   padding: 20px; /* Añade un poco de espacio alrededor del contenido */
   box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+  margin-top: 250px; /* Baja el contenedor */
 }
 
 .contenido {
@@ -640,12 +660,12 @@ margin: 0 10px;
   gap: 20px; /* Reducir separación */
   border-radius: 15px;
   padding: 10px; /* Reducir padding */
-  background-color: rgba(0, 0, 0, 0.477);
+  
   max-width: 1800px;
-  max-height: 500px; /* Reducir altura máxima */
+  max-height: 800px; /* Reducir altura máxima */
   width: 100%;
   height: 50%; /* Ajustar altura */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  
   margin-top: 50px; /* Reducir este valor para subirlo */
   margin-left: 50px;
 }
@@ -655,7 +675,7 @@ footer {
   background: #fff6e5;
   color: white;
   padding: 40px 20px;
-  border-top: 2px solid #E67E22;
+  
 }
 
 .footer-container {

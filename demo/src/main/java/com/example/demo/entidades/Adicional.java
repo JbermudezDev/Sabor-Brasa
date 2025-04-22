@@ -24,7 +24,7 @@ public class Adicional {
     private String nombre;
     private float precio;
     private String descripcion;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "adicionales")
     private List<Producto> productos = new ArrayList<>();
 
