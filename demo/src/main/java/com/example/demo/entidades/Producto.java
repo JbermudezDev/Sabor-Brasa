@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name = "productos")
+@Table(name = "producto")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,17 +22,16 @@ public class Producto {
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
-    @JsonIgnore
+   //@JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-@JoinTable(
-    name = "producto_adicional",
-    joinColumns = @JoinColumn(name = "producto_id"),
-    inverseJoinColumns = @JoinColumn(name = "adicional_id")
-)
+    @JoinTable(
+        name = "producto_adicional",
+        joinColumns = @JoinColumn(name = "producto_id"),
+        inverseJoinColumns = @JoinColumn(name = "adicional_id")
+    )
 @JsonManagedReference
+@JsonIgnore
 private List<Adicional> adicionales = new ArrayList<>();
-    
-
     public Producto() {}
 
     public Producto(String nombre, float precio, String descripcion, String imagen) {
@@ -43,8 +42,10 @@ private List<Adicional> adicionales = new ArrayList<>();
     }
 
     public void addAdicional(Adicional adicional) {
-        adicionales.add(adicional);
-        adicional.getProductos().add(this);
+        if (!adicionales.contains(adicional)) {
+            adicionales.add(adicional);
+            adicional.getProductos().add(this);
+        }
     }
     public void removeAdicional(Adicional adicional) {
         adicionales.remove(adicional);
