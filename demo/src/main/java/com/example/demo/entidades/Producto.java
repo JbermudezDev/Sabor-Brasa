@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import com.example.demo.entidades.Adicional;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -24,14 +25,14 @@ public class Producto {
     private Categoria categoria;
    //@JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-        name = "producto_adicional",
-        joinColumns = @JoinColumn(name = "producto_id"),
-        inverseJoinColumns = @JoinColumn(name = "adicional_id")
-    )
-@JsonManagedReference
-@JsonIgnore
+@JoinTable(
+    name = "producto_adicional",
+    joinColumns = @JoinColumn(name = "producto_id"),
+    inverseJoinColumns = @JoinColumn(name = "adicional_id")
+)
+@JsonIgnoreProperties("productos")
 private List<Adicional> adicionales = new ArrayList<>();
+
     public Producto() {}
 
     public Producto(String nombre, float precio, String descripcion, String imagen) {
@@ -105,6 +106,5 @@ private List<Adicional> adicionales = new ArrayList<>();
     public void setAdicionales(List<Adicional> adicionales) {
             this.adicionales = adicionales;
         }
-
-   
+ 
 }
