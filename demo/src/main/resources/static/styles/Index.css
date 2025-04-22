@@ -31,21 +31,18 @@ body {
   height: 120px;
 }
 .header-bg {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-object-fit: cover;
-z-index: -1;
-background-image: url('/images/imagendiv3.jpeg');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-width: 100%; /* Ajusta la imagen al ancho del contenedor */
-height: 45%; /* Ajusta la imagen al alto del contenedor */
-object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
-border-radius: 5px; /* Mantiene el borde redondeado */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Mantiene el ancho completo */
+  height: 20%; /* Reduce la altura al 30% */
+  object-fit: cover; /* Recorta la imagen para llenar el contenedor sin deformarla */
+  z-index: -1;
+  background-image: url('/images/imagendiv3.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 5px; /* Mantiene el borde redondeado */
 }
 /* Fondo para toda la página */
 
@@ -191,7 +188,7 @@ border-radius: 5px; /* Mantiene el borde redondeado */
   flex-wrap: wrap;
   width: 100%;
   background-color: #ffffff;
-  margin-top: 200px; /* Mantiene el margen superior */
+  margin-top: -10px; /* Mantiene el margen superior */
   height: 1100px; /* Aumenta la altura total */
 }
 
@@ -286,7 +283,145 @@ border-radius: 5px; /* Mantiene el borde redondeado */
 }
 
 /* Finaliza seccion acerca de nosotros*/
+#steak {
+  display: flex;   
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 90vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+  background-color: #3f3c3c;
+  background-image: url('/demo/src/main/resources/static/images/steak2.png'); /* Ruta de la imagen */
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center; /* Centra la imagen dentro del contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+.overlay {
+  display: flex;
+  flex-direction: column; /* Acomoda los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  height: 100%; /* Asegura que ocupe todo el espacio del contenedor */
+}
 
+#steak h1 {
+  font-size: 4rem; /* Agranda el tamaño del título */
+  font-weight: bold;
+  margin-top: -80px; /* Baja más el título hacia abajo */
+  color: #ffffff;
+  
+}
+
+#steak p {
+  font-size: 2rem; /* Agranda el tamaño del texto */
+  margin-top: 30px; /* Baja más el texto hacia abajo */
+  
+}
+
+
+#steak .btn {
+  display: inline-block;
+  background-color: #6b2c1a; /* Color del botón */
+  color: white;
+  padding: 20px 50px; /* Tamaño del botón */
+  text-decoration: none;
+  font-size: 1.5rem; /* Tamaño del texto del botón */
+  border-radius: 10px; /* Bordes redondeados */
+  transition: background-color 0.3s ease;
+  margin: 80px 0 0 0; /* Baja el botón con margen superior */
+}
+
+#steak .btn:hover {
+  background-color: #8c3b24; /* Color del botón al pasar el mouse */
+}
+#informacionPrincipal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; 
+}
+
+#steak h2 {
+  text-decoration: none;
+  color: #000000; /* Dorado elegante */
+  font-family: "Poltawski Nowy";
+  font-size: 60px; /* Letra más grande */
+  margin-top: 20px; /* Ajusta el margen superior para bajarlo */
+  text-align: center; /* Asegura que esté alineado si es necesario */
+}
+
+#steak p {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-family: 'Lora', serif; /* Aplicar la fuente Lora */
+  font-size: 40px; /* Letra más grande */
+  text-align: center;
+  justify-content: center; /* Centrar el texto */
+}
+#informacionPrincipal p{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+#imagenPrincipal img{
+
+ margin-bottom:0;
+}
+.parent5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr); /* Mantener tamaño de filas */
+  gap: 20px; /* Mantener separación */
+  border-radius: 15px;
+  padding: 10px; /* Mantener padding */
+  
+  max-width: 1950px; /* Aumentar el ancho máximo */
+  max-height: 800px; /* Aumentar la altura máxima */
+  width: 100%;
+  height: 1000px; /* Aumentar la altura */
+ 
+  margin-top: -120px; /* Subir el contenedor más */
+  margin-left: 20px; /* Mantener margen izquierdo */
+}
+.div7 {
+  grid-row: span 5 / span 5;
+}
+
+.div8 {
+  grid-column: span 2 / span 2;
+  grid-row: span 2 / span 2;
+  grid-column-start: 4;
+  grid-row-start: 4;
+}
+
+.div9 {
+  grid-column: span 2 / span 2;
+  grid-row: span 2 / span 2;
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.div10 {
+  grid-column: span 2 / span 2;
+  grid-row: span 3 / span 3;
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+.div11 {
+  grid-column: span 2 / span 2;
+  grid-row: span 3 / span 3;
+  grid-column-start: 4;
+  grid-row-start: 1;
+}
+
+.div7 img, .div8 img, .div9 img, .div10 img, .div11 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
 /* Seccion comida */
 #comida {
   display: flex;
