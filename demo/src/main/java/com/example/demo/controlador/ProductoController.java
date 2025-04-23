@@ -135,13 +135,15 @@ public class ProductoController {
     }
 
     // Menú
-    @GetMapping("/Menu")
-    public ResponseEntity<?> mostrarMenu() {
+    @GetMapping("/menu")
+    public ResponseEntity<List<Producto>> obtenerMenu() {
         try {
             List<Producto> productos = productoService.obtenerTodos();
             return ResponseEntity.ok(productos);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al cargar el menú");
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(null);
         }
     }
 
