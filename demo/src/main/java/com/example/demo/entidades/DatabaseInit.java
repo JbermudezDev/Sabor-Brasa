@@ -52,7 +52,18 @@ public class DatabaseInit implements ApplicationRunner {
             Cliente cliente1 = clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
             Cliente cliente2 = clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
 
-           
+            
+            
+            //Crear y guardar operadores
+            Operador operador1 = new Operador(null, "Carlos Operador", "carlos123", "password123", null);
+            operadorRepository.save(operador1);
+
+            Operador operador2 = new Operador(null, "Ana Operadora", "ana456", "password456", null);
+            operadorRepository.save(operador2);
+
+            Operador operador3 = new Operador(null, "Luis Operador", "luis789", "password789", null);
+            operadorRepository.save(operador3);
+
                         
              
             
