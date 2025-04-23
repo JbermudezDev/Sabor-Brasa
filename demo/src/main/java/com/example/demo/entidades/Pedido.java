@@ -1,56 +1,74 @@
 package com.example.demo.entidades;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 
 @Entity
+@Table(name = "pedido")
 public class Pedido {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private String estado;
+
     @Column(nullable = false)
     private Date fechaCreacion;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date fechaEntrega;
 
-    @NotNull
-    @Size(max = 50)
-    @Column(nullable = false, length = 50)
-    private String estado;
-
-    @NotNull
     @ManyToOne
-    private Cliente cliente;
+    @JoinColumn(name = "operador_id")
+    @JsonManagedReference
+    private Operador operador;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<DetallePedido> detalles;
+    @ManyToOne
+    @JoinColumn(name = "domiciliario_id")
+    @JsonManagedReference
+    private Domiciliario domiciliario;
 
-    public Pedido() {}
+    @OneToOne
+    @JoinColumn(name = "carrito_id", nullable = false, unique = true)
+    @JsonManagedReference
+    private CarritoCompras carrito;
 
-    public Pedido(Date fechaCreacion, String estado, Cliente cliente) {
-        this.fechaCreacion = fechaCreacion;
-        this.estado = estado;
-        this.cliente = cliente;
+    public Pedido() {
     }
 
-    // Getters y Setters
-    public Long getId() {
+    public Pedido(Integer id, String estado, Date fechaCreacion, Date fechaEntrega, Operador operador, Domiciliario domiciliario, CarritoCompras carrito) {
+        this.id = id;
+        this.estado = estado;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaEntrega = fechaEntrega;
+        this.operador = operador;
+        this.domiciliario = domiciliario;
+        this.carrito = carrito;
+    }
+
+    public Integer getId() {
         return id;
     }
-    public void setId(Long id) {
+
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Date getFechaCreacion() {
         return fechaCreacion;
     }
+
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
@@ -58,28 +76,32 @@ public class Pedido {
     public Date getFechaEntrega() {
         return fechaEntrega;
     }
+
     public void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public Operador getOperador() {
+        return operador;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setOperador(Operador operador) {
+        this.operador = operador;
     }
 
-    public List<DetallePedido> getDetalles() {
-        return detalles;
+    public Domiciliario getDomiciliario() {
+        return domiciliario;
     }
-    public void setDetalles(List<DetallePedido> detalles) {
-        this.detalles = detalles;
+
+    public void setDomiciliario(Domiciliario domiciliario) {
+        this.domiciliario = domiciliario;
+    }
+
+    public CarritoCompras getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(CarritoCompras carrito) {
+        this.carrito = carrito;
     }
 }
