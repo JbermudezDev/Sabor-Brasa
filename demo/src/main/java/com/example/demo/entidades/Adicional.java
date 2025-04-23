@@ -26,7 +26,9 @@ public class Adicional {
     private String descripcion;
 
     @ManyToMany(mappedBy = "adicionales")
+    @JsonBackReference
     private List<Producto> productos = new ArrayList<>();
+
 
     // Constructor vacío
     public Adicional() {}

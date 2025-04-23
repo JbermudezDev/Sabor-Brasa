@@ -150,11 +150,13 @@ public class ProductoController {
     // Info detallada de un plato
     @GetMapping("/info/{id}")
     public ResponseEntity<?> mostrarInfoPlato(@PathVariable Long id) {
-        Optional<Producto> productoOpt = productoService.findById(id);
-        if (productoOpt.isPresent()) {
-            return ResponseEntity.ok(productoOpt.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
-        }
+    Optional<Producto> productoOpt = productoService.findById(id);
+
+    if (productoOpt.isPresent()) {
+        Producto producto = productoOpt.get();
+        return ResponseEntity.ok(producto); // Devuelve el producto con sus adicionales
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
     }
+}
 }
