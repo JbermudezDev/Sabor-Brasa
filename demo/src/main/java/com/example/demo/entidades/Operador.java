@@ -1,49 +1,53 @@
 package com.example.demo.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import java.util.List;
 
 @Entity
+@Table(name = "operador")
 public class Operador {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @NotBlank
-    @Size(max = 100)
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String nombre;
 
-    @NotBlank
-    @Size(max = 100)
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(unique = true)
     private String usuario;
 
-    @NotBlank
-    @Size(min = 6, max = 100)
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String contraseña;
 
-    public Operador() {}
+    @OneToMany(mappedBy = "operador", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Pedido> pedidos;
 
-    public Operador(String nombre, String usuario, String contraseña) {
+    public Operador() {
+    }
+
+    public Operador(Integer id, String nombre, String usuario, String contraseña, List<Pedido> pedidos) {
+        this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.pedidos = pedidos;
     }
 
-    // Getters y Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(Long id) {
+
+    public void setId(Integer id) {
         this.id = id;
     }
 
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -51,6 +55,7 @@ public class Operador {
     public String getUsuario() {
         return usuario;
     }
+
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
@@ -58,7 +63,16 @@ public class Operador {
     public String getContraseña() {
         return contraseña;
     }
+
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

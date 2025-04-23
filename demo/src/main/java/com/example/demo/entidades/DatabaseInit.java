@@ -52,70 +52,12 @@ public class DatabaseInit implements ApplicationRunner {
             Cliente cliente1 = clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
             Cliente cliente2 = clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
 
-            // Crear y guardar pedidos asociados a los clientes
-            Pedido pedido1 = new Pedido(new Date(), "Pendiente", cliente1);
-            pedidoRepository.save(pedido1);
-
-            Pedido pedido2 = new Pedido(new Date(), "En preparación", cliente1);
-            pedidoRepository.save(pedido2);
-
-            Pedido pedido3 = new Pedido(new Date(), "En camino", cliente1);
-            pedidoRepository.save(pedido3);
-
-            Pedido pedido4 = new Pedido(new Date(), "Entregado", cliente1);
-            pedidoRepository.save(pedido4);
-
-            Pedido pedido5 = new Pedido(new Date(), "Cancelado", cliente1);
-            pedidoRepository.save(pedido5);
-
-            Pedido pedido6 = new Pedido(new Date(), "Pendiente", cliente2);
-            pedidoRepository.save(pedido6);
-
-            Pedido pedido7 = new Pedido(new Date(), "En preparación", cliente2);
-            pedidoRepository.save(pedido7);
-
-            Pedido pedido8 = new Pedido(new Date(), "En camino", cliente2);
-            pedidoRepository.save(pedido8);
-
-            Pedido pedido9 = new Pedido(new Date(), "Entregado", cliente2);
-            pedidoRepository.save(pedido9);
-
-            Pedido pedido10 = new Pedido(new Date(), "Cancelado", cliente2);
-            pedidoRepository.save(pedido10);
+           
                         
-             // Crear y guardar 20 domiciliarios
-             domiciliarioRepository.save(new Domiciliario("Carlos Pérez", "3001234567", "1234567891", true));
-             domiciliarioRepository.save(new Domiciliario("Ana Gómez", "3002345678", "1234567892", true));
-             domiciliarioRepository.save(new Domiciliario("Luis Martínez", "3003456789", "1234567893", true));
-             domiciliarioRepository.save(new Domiciliario("María Rodríguez", "3004567890", "1234567894", true));
-             domiciliarioRepository.save(new Domiciliario("Jorge Ramírez", "3005678901", "1234567895", true));
-             domiciliarioRepository.save(new Domiciliario("Sofía López", "3006789012", "1234567896", true));
-             domiciliarioRepository.save(new Domiciliario("Andrés Torres", "3007890123", "1234567897", true));
-             domiciliarioRepository.save(new Domiciliario("Laura Sánchez", "3008901234", "1234567898", true));
-             domiciliarioRepository.save(new Domiciliario("Diego Castro", "3009012345", "1234567899", true));
-             domiciliarioRepository.save(new Domiciliario("Valentina Morales", "3000123456", "1234567810", true));
-             domiciliarioRepository.save(new Domiciliario("Camilo Vargas", "3001234500", "1234567811", true));
-             domiciliarioRepository.save(new Domiciliario("Isabella Ruiz", "3002345600", "1234567812", true));
-             domiciliarioRepository.save(new Domiciliario("Mateo Herrera", "3003456700", "1234567813", true));
-             domiciliarioRepository.save(new Domiciliario("Daniela Mendoza", "3004567800", "1234567814", true));
-             domiciliarioRepository.save(new Domiciliario("Sebastián Ortiz", "3005678900", "1234567815", true));
-             domiciliarioRepository.save(new Domiciliario("Gabriela Pineda", "3006789000", "1234567816", true));
-             domiciliarioRepository.save(new Domiciliario("Tomás Rojas", "3007890000", "1234567817", true));
-             domiciliarioRepository.save(new Domiciliario("Lucía Cárdenas", "3008900000", "1234567818", true));
-             domiciliarioRepository.save(new Domiciliario("Juan Esteban", "3009010000", "1234567819", true));
-             domiciliarioRepository.save(new Domiciliario("Paula Mejía", "3000120000", "1234567820", true));
+             
             
             
-             operadorRepository.save(new Operador("María González", "maria.gonzalez", "maria123"));
-             operadorRepository.save(new Operador("Carlos Ramírez", "carlos.ramirez", "carlos123"));
-             operadorRepository.save(new Operador("Ana López", "ana.lopez", "ana123"));
-             operadorRepository.save(new Operador("Luis Martínez", "luis.martinez", "luis123"));
-             operadorRepository.save(new Operador("Sofía Torres", "sofia.torres", "sofia123"));
-             operadorRepository.save(new Operador("Jorge Pérez", "jorge.perez", "jorge123"));
-             operadorRepository.save(new Operador("Isabel Sánchez", "isabel.sanchez", "isabel123"));
-             operadorRepository.save(new Operador("Diego Castro", "diego.castro", "diego123"));
-             operadorRepository.save(new Operador("Valentina Morales", "valentina.morales", "valentina123"));
-             operadorRepository.save(new Operador("Andrés Herrera", "andres.herrera", "andres123"));
+            
 
              // Crear y guardar productos
             clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
