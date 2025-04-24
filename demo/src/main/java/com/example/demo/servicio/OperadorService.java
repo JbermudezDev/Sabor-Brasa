@@ -26,7 +26,10 @@ public class OperadorService {
     public void add(Operador operador) {
         operadorRepository.save(operador);
     }
-
+    public boolean existsByUsuario(String usuario) {
+        return operadorRepository.existsByUsuario(usuario);
+    }
+   
     public void update(Operador operador) {
         operadorRepository.save(operador);
     }

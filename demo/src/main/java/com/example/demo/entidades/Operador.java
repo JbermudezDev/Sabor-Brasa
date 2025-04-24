@@ -2,6 +2,8 @@ package com.example.demo.entidades;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
 @Entity
@@ -12,28 +14,29 @@ public class Operador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Size(min = 2, max = 50, message = "El nombre debe tener entre 2 y 50 caracteres")
     @Column(nullable = false)
     private String nombre;
 
-    @Column(unique = true)
+    @Size(min = 2, max = 50, message = "El usuario debe tener entre 2 y 50 caracteres")
+    @Column(unique = true, nullable = false)
     private String usuario;
 
+    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     @Column(nullable = false)
-    private String contraseña;
+    private String contrasena;
 
-    @OneToMany(mappedBy = "operador", cascade = CascadeType.ALL)
-    @JsonBackReference
-    private List<Pedido> pedidos;
+    
 
     public Operador() {
     }
 
-    public Operador(Integer id, String nombre, String usuario, String contraseña, List<Pedido> pedidos) {
+    public Operador( Integer id, String nombre, String usuario, String contrasena) {
         this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
-        this.contraseña = contraseña;
-        this.pedidos = pedidos;
+        this.contrasena = contrasena;
+        
     }
 
     public Integer getId() {
@@ -60,19 +63,13 @@ public class Operador {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
+    
 }

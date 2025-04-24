@@ -21,10 +21,7 @@ public class Pedido {
     @Column(nullable = false)
     private Date fechaEntrega;
 
-    @ManyToOne
-    @JoinColumn(name = "operador_id")
-    @JsonManagedReference
-    private Operador operador;
+    
 
     @ManyToOne
     @JoinColumn(name = "domiciliario_id")
@@ -39,12 +36,11 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Integer id, String estado, Date fechaCreacion, Date fechaEntrega, Operador operador, Domiciliario domiciliario, CarritoCompras carrito) {
+    public Pedido(Integer id, String estado, Date fechaCreacion, Date fechaEntrega, Domiciliario domiciliario, CarritoCompras carrito) {
         this.id = id;
         this.estado = estado;
         this.fechaCreacion = fechaCreacion;
         this.fechaEntrega = fechaEntrega;
-        this.operador = operador;
         this.domiciliario = domiciliario;
         this.carrito = carrito;
     }
@@ -81,14 +77,7 @@ public class Pedido {
         this.fechaEntrega = fechaEntrega;
     }
 
-    public Operador getOperador() {
-        return operador;
-    }
-
-    public void setOperador(Operador operador) {
-        this.operador = operador;
-    }
-
+   
     public Domiciliario getDomiciliario() {
         return domiciliario;
     }

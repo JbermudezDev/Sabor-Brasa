@@ -54,14 +54,14 @@ public class DatabaseInit implements ApplicationRunner {
 
             
             
-            //Crear y guardar operadores
-            Operador operador1 = new Operador(null, "Carlos Operador", "carlos123", "password123", null);
+           // Crear y guardar operadores
+            Operador operador1 = new Operador(null,"Carlos Operador", "carlos123", "password123");
             operadorRepository.save(operador1);
 
-            Operador operador2 = new Operador(null, "Ana Operadora", "ana456", "password456", null);
+            Operador operador2 = new Operador(null,"Ana Operadora", "ana456", "password456");
             operadorRepository.save(operador2);
 
-            Operador operador3 = new Operador(null, "Luis Operador", "luis789", "password789", null);
+            Operador operador3 = new Operador(null,"Luis Operador", "luis789", "password789");
             operadorRepository.save(operador3);
 
                         

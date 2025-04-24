@@ -3,9 +3,15 @@ package com.example.demo.controlador;
 import com.example.demo.entidades.Operador;
 import com.example.demo.servicio.OperadorService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,20 +37,56 @@ public class OperadorController {
 
     // Agregar un nuevo operador
     @PostMapping("/add")
-    public void agregarOperador(@RequestBody Operador operador) {
+public ResponseEntity<Map<String, String>> agregarOperador(@RequestBody Operador operador) {
+    try {
         operadorService.add(operador);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Operador añadido correctamente");
+        return ResponseEntity.ok(response);
+    } catch (Exception e) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", "Error al añadir el operador: " + e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
-
+}
     // Actualizar un operador existente
     @PutMapping("/update/{id}")
-    public void actualizarOperador(@PathVariable("id") Integer id, @RequestBody Operador operador) {
-        operador.setId(id); // Asegurarse de que el ID sea el correcto
-        operadorService.update(operador);
+    public ResponseEntity<Operador> actualizarOperador(@PathVariable Integer id, @RequestBody Operador operadorActualizado) {
+    // Buscar el operador existente por ID
+    Optional<Operador> operadorExistente = operadorService.findById(id);
+
+    if (operadorExistente.isPresent()) {
+        Operador operador = operadorExistente.get();
+
+    // Actualizar los campos del operador existente con los datos del operador actualizado
+     operador.setNombre(operadorActualizado.getNombre());
+    operador.setUsuario(operadorActualizado.getUsuario());
+    operador.setContrasena(operadorActualizado.getContrasena());
+
+    // Guardar los cambios en la base de datos
+    operadorService.update(operador);
+
+     return ResponseEntity.ok(operador);
     }
+
+    // Si el operador no existe, devolver un 404
+    return ResponseEntity.notFound().build();
+}
 
     // Eliminar un operador por ID
     @DeleteMapping("/delete/{id}")
-    public void eliminarOperador(@PathVariable("id") Integer id) {
+    public ResponseEntity<String> eliminarOperador(@PathVariable Integer id) {
+    try {
+        // Verificar si el operador existe
+        if (!operadorService.findById(id).isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El operador con ID " + id + " no existe");
+        }
+
+        // Eliminar el operador
         operadorService.deleteById(id);
+        return ResponseEntity.ok("Operador eliminado correctamente");
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar el operador: " + e.getMessage());
     }
+}
 }
