@@ -2,10 +2,12 @@ package com.example.demo.controlador;
 
 import com.example.demo.entidades.Administrador;
 import com.example.demo.entidades.Cliente;
+import com.example.demo.entidades.Operador;
 import com.example.demo.servicio.AdministradorService;
 import com.example.demo.servicio.ClienteService;
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpSession;
+import com.example.demo.servicio.OperadorService; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,9 @@ public class LoginController {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private OperadorService operadorService;
 
     // Muestra formulario de login del cliente (sin cambios, ya que es para vistas)
     @GetMapping("/loginCliente")
@@ -75,6 +80,23 @@ public class LoginController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
         }
+    }
+
+    @PostMapping("/operador")
+    public ResponseEntity<?> loginOperador(@RequestBody Operador credenciales, HttpSession session) {
+    // Extraer usuario y contraseña del objeto recibido
+    String usuario = credenciales.getUsuario();
+    String contrasena = credenciales.getContrasena();
+
+    // Autenticar al operador
+    Operador operador = operadorService.autenticar(usuario, contrasena);
+
+    if (operador != null) {
+        session.setAttribute("operadorLogueado", operador); // Guardar operador en la sesión
+        return ResponseEntity.ok(operador); // Devuelve el operador autenticado en formato JSON
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+    }
     }
 
     // Cerrar sesión del Administrador (nuevo método para Angular)

@@ -37,4 +37,8 @@ public class OperadorService {
     public void deleteById(Integer id) {
         operadorRepository.deleteById(id);
     }
+
+    public Operador autenticar(String usuario, String contrasena) {
+        return operadorRepository.findByUsuarioAndContrasena(usuario, contrasena).orElse(null);
+    }
 }
