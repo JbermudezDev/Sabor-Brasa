@@ -25,13 +25,13 @@ public class Producto {
     private Categoria categoria;
    //@JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-@JoinTable(
+    @JoinTable(
     name = "producto_adicional",
     joinColumns = @JoinColumn(name = "producto_id"),
     inverseJoinColumns = @JoinColumn(name = "adicional_id")
-)
-@JsonIgnoreProperties("productos")
-private List<Adicional> adicionales = new ArrayList<>();
+    )
+    @JsonIgnoreProperties("productos")
+    private List<Adicional> adicionales = new ArrayList<>();
 
     public Producto() {}
 

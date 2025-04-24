@@ -135,24 +135,28 @@ public class ProductoController {
     }
 
     // Menú
-    @GetMapping("/Menu")
-    public ResponseEntity<?> mostrarMenu() {
+    @GetMapping("/menu")
+    public ResponseEntity<List<Producto>> obtenerMenu() {
         try {
             List<Producto> productos = productoService.obtenerTodos();
             return ResponseEntity.ok(productos);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al cargar el menú");
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(null);
         }
     }
 
     // Info detallada de un plato
     @GetMapping("/info/{id}")
     public ResponseEntity<?> mostrarInfoPlato(@PathVariable Long id) {
-        Optional<Producto> productoOpt = productoService.findById(id);
-        if (productoOpt.isPresent()) {
-            return ResponseEntity.ok(productoOpt.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
-        }
+    Optional<Producto> productoOpt = productoService.findById(id);
+
+    if (productoOpt.isPresent()) {
+        Producto producto = productoOpt.get();
+        return ResponseEntity.ok(producto); // Devuelve el producto con sus adicionales
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
     }
+}
 }
