@@ -30,8 +30,8 @@ public class Producto {
     joinColumns = @JoinColumn(name = "producto_id"),
     inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
-@JsonIgnoreProperties("productos")
-private List<Adicional> adicionales = new ArrayList<>();
+    @JsonIgnoreProperties("productos")
+    private List<Adicional> adicionales = new ArrayList<>();
 
     public Producto() {}
 
