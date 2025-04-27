@@ -29,27 +29,29 @@ public class LoginController {
     private OperadorService operadorService;
 
     // Muestra formulario de login del cliente (sin cambios, ya que es para vistas)
-    @GetMapping("/loginCliente")
-    public String mostrarFormularioLoginCliente() {
-        return "InicioSesion"; 
-    }
+  @GetMapping("/loginCliente")
+  public String mostrarFormularioLoginCliente() {
+    return "InicioSesion";
+  }
 
-    // Autenticación del Cliente (sin cambios, ya que es para vistas)
-    @PostMapping("/loginCliente")
-    public String loginCliente(@RequestParam String email, 
-                               @RequestParam String password, 
-                               Model model, 
-                               HttpSession session) {
-        Cliente cliente = clienteService.autenticar(email, password);
+  // Autenticación del Cliente (sin cambios, ya que es para vistas)
+  @PostMapping("/loginCliente")
+  public String loginCliente(
+    @RequestParam String email,
+    @RequestParam String password,
+    Model model,
+    HttpSession session
+  ) {
+    Cliente cliente = clienteService.autenticar(email, password);
 
-        if (cliente != null) {
-            session.setAttribute("clienteLogueado", cliente);
-            return "redirect:/Cliente/" + cliente.getId(); // Redirige con el ID en la URL
-        } else {
-            model.addAttribute("error", "Credenciales incorrectas");
-            return "InicioSesion"; 
-        }
+    if (cliente != null) {
+      session.setAttribute("clienteLogueado", cliente);
+      return "redirect:/Cliente/" + cliente.getId(); // Redirige con el ID en la URL
+    } else {
+      model.addAttribute("error", "Credenciales incorrectas");
+      return "InicioSesion";
     }
+  }
 
     // Página del Cliente (sin cambios, ya que es para vistas)
     @GetMapping("/Cliente/{id}")
@@ -111,4 +113,26 @@ public class LoginController {
     public String mostrarPaginaAdministrador() {
         return "Administrador"; 
     }
+
+    @PostMapping("/cliente")
+  public ResponseEntity<?> loginClientee(
+    @RequestBody Cliente credenciales,
+    HttpSession session
+  ) {
+    // Extraer email y password del objeto recibido
+    String email = credenciales.getEmail();
+    String password = credenciales.getPassword();
+
+    // Autenticar al administrador
+    Cliente cliente = clienteService.autenticar(email, password);
+
+    if (cliente != null) {
+      session.setAttribute("adminLogueado", cliente); // Guardar administrador en la sesión
+      return ResponseEntity.ok(cliente); // Devuelve el administrador autenticado en formato JSON
+    } else {
+      return ResponseEntity
+        .status(HttpStatus.UNAUTHORIZED)
+        .body("Credenciales incorrectas");
+    }
+  }
 }
