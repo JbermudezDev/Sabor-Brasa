@@ -30,6 +30,10 @@ public class AdicionalService {
     public Optional<Adicional> findById(Long id) {
         return adicionalRepository.findById(id);
     }
+    
+    public void updateProductos(List<Producto> productos) {
+        productos.forEach(producto -> productoRepository.save(producto));
+    }
 
     // Agregar un nuevo adicional
     public void add(Adicional adicional) {
