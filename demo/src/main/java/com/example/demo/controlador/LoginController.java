@@ -5,13 +5,10 @@ import com.example.demo.entidades.Cliente;
 import com.example.demo.entidades.Operador;
 import com.example.demo.servicio.AdministradorService;
 import com.example.demo.servicio.ClienteService;
-import com.example.demo.servicio.OperadorService;
-import com.example.demo.servicio.CarritoComprasService;
-import com.example.demo.entidades.CarritoCompras;
-
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpSession;
+import com.example.demo.servicio.OperadorService; 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,100 +28,111 @@ public class LoginController {
     @Autowired
     private OperadorService operadorService;
 
-    @Autowired
-    private CarritoComprasService carritoService;
+    // Muestra formulario de login del cliente (sin cambios, ya que es para vistas)
+  @GetMapping("/loginCliente")
+  public String mostrarFormularioLoginCliente() {
+    return "InicioSesion";
+  }
 
-    // ====== LOGIN CLIENTE USANDO COOKIES =======
-    @PostMapping("/cliente")
-    public ResponseEntity<?> loginCliente(@RequestBody Cliente credenciales, HttpServletResponse response) {
-        String email = credenciales.getEmail();
-        String password = credenciales.getPassword();
+  // Autenticación del Cliente (sin cambios, ya que es para vistas)
+  @PostMapping("/loginCliente")
+  public String loginCliente(
+    @RequestParam String email,
+    @RequestParam String password,
+    Model model,
+    HttpSession session
+  ) {
+    Cliente cliente = clienteService.autenticar(email, password);
 
-        Cliente cliente = clienteService.autenticar(email, password);
+    if (cliente != null) {
+      session.setAttribute("clienteLogueado", cliente);
+      return "redirect:/Cliente/" + cliente.getId(); // Redirige con el ID en la URL
+    } else {
+      model.addAttribute("error", "Credenciales incorrectas");
+      return "InicioSesion";
+    }
+  }
 
-        if (cliente != null) {
-            // Crear cookie para clienteId
-            Cookie clienteCookie = new Cookie("clienteId", String.valueOf(cliente.getId()));
-            clienteCookie.setHttpOnly(true);
-            clienteCookie.setSecure(true);
-            clienteCookie.setMaxAge(60 * 60); // 1 hora
-            clienteCookie.setPath("/");
-            response.addCookie(clienteCookie);
+    // Página del Cliente (sin cambios, ya que es para vistas)
+    @GetMapping("/Cliente/{id}")
+    public String mostrarPaginaCliente(@PathVariable Long id, Model model, HttpSession session) {
+        Cliente cliente = (Cliente) session.getAttribute("clienteLogueado");
 
-            // Crear carrito para el cliente
-            CarritoCompras carrito = carritoService.crearCarrito(cliente.getId());
-
-            // Crear cookie para carritoId
-            Cookie carritoCookie = new Cookie("carritoId", String.valueOf(carrito.getId()));
-            carritoCookie.setHttpOnly(true);
-            carritoCookie.setSecure(true);
-            carritoCookie.setMaxAge(60 * 60 * 24); // 24 horas
-            carritoCookie.setPath("/");
-            response.addCookie(carritoCookie);
-
-            return ResponseEntity.ok(cliente); // Devuelve el cliente autenticado
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+        if (cliente == null || !cliente.getId().equals(id)) {
+            return "redirect:/loginCliente"; // Redirige al login si no está autenticado
         }
+
+        model.addAttribute("cliente", cliente);
+        return "Cliente"; 
     }
 
-    // ====== LOGIN ADMINISTRADOR ======
+    // Autenticación del Administrador (modificado para Angular)
     @PostMapping("/admin")
     public ResponseEntity<?> loginAdministrador(@RequestBody Administrador credenciales, HttpSession session) {
+        // Extraer email y password del objeto recibido
         String email = credenciales.getEmail();
         String password = credenciales.getPassword();
-
+    
+        // Autenticar al administrador
         Administrador admin = administradorService.autenticar(email, password);
-
+    
         if (admin != null) {
-            session.setAttribute("adminLogueado", admin);
-            return ResponseEntity.ok(admin);
+            session.setAttribute("adminLogueado", admin); // Guardar administrador en la sesión
+            return ResponseEntity.ok(admin); // Devuelve el administrador autenticado en formato JSON
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
         }
     }
 
-    // ====== LOGIN OPERADOR ======
     @PostMapping("/operador")
     public ResponseEntity<?> loginOperador(@RequestBody Operador credenciales, HttpSession session) {
-        String usuario = credenciales.getUsuario();
-        String contrasena = credenciales.getContrasena();
+    // Extraer usuario y contraseña del objeto recibido
+    String usuario = credenciales.getUsuario();
+    String contrasena = credenciales.getContrasena();
 
-        Operador operador = operadorService.autenticar(usuario, contrasena);
+    // Autenticar al operador
+    Operador operador = operadorService.autenticar(usuario, contrasena);
 
-        if (operador != null) {
-            session.setAttribute("operadorLogueado", operador);
-            return ResponseEntity.ok(operador);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
-        }
+    if (operador != null) {
+        session.setAttribute("operadorLogueado", operador); // Guardar operador en la sesión
+        return ResponseEntity.ok(operador); // Devuelve el operador autenticado en formato JSON
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+    }
     }
 
-    // ====== LOGOUT CLIENTE ======
-    @PostMapping("/logoutCliente")
-    public ResponseEntity<?> logoutCliente(HttpServletResponse response) {
-        // Borrar cookies del cliente
-        Cookie clienteCookie = new Cookie("clienteId", null);
-        clienteCookie.setHttpOnly(true);
-        clienteCookie.setSecure(true);
-        clienteCookie.setMaxAge(0);
-        clienteCookie.setPath("/");
-        response.addCookie(clienteCookie);
-
-        Cookie carritoCookie = new Cookie("carritoId", null);
-        carritoCookie.setHttpOnly(true);
-        carritoCookie.setSecure(true);
-        carritoCookie.setMaxAge(0);
-        carritoCookie.setPath("/");
-        response.addCookie(carritoCookie);
-
-        return ResponseEntity.ok("Sesión de cliente cerrada correctamente");
-    }
-
-    // ====== LOGOUT ADMIN Y OPERADOR ======
+    // Cerrar sesión del Administrador (nuevo método para Angular)
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpSession session) {
-        session.invalidate();
+        session.invalidate(); // Invalida la sesión
         return ResponseEntity.ok("Sesión cerrada correctamente");
     }
+
+    // Página del Administrador (sin cambios, ya que es para vistas)
+    @GetMapping("/Administrador")
+    public String mostrarPaginaAdministrador() {
+        return "Administrador"; 
+    }
+
+    @PostMapping("/cliente")
+  public ResponseEntity<?> loginClientee(
+    @RequestBody Cliente credenciales,
+    HttpSession session
+  ) {
+    // Extraer email y password del objeto recibido
+    String email = credenciales.getEmail();
+    String password = credenciales.getPassword();
+
+    // Autenticar al administrador
+    Cliente cliente = clienteService.autenticar(email, password);
+
+    if (cliente != null) {
+      session.setAttribute("adminLogueado", cliente); // Guardar administrador en la sesión
+      return ResponseEntity.ok(cliente); // Devuelve el administrador autenticado en formato JSON
+    } else {
+      return ResponseEntity
+        .status(HttpStatus.UNAUTHORIZED)
+        .body("Credenciales incorrectas");
+    }
+  }
 }
