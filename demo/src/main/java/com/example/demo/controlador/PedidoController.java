@@ -1,6 +1,6 @@
 package com.example.demo.controlador;
 
-import com.example.demo.dto.PedidoRequest;
+import com.example.demo.DTO.PedidoRequest;
 import com.example.demo.entidades.CarritoCompras;
 import com.example.demo.entidades.Pedido;
 import com.example.demo.repositorio.CarritoComprasRepository;
