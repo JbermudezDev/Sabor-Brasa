@@ -1,17 +1,14 @@
 package com.example.demo.controlador;
 
-import com.example.demo.DTO.PedidoRequest;
-import com.example.demo.entidades.CarritoCompras;
-import com.example.demo.entidades.Pedido;
-import com.example.demo.repositorio.CarritoComprasRepository;
-import com.example.demo.repositorio.PedidoRepository;
-import com.example.demo.repositorio.SeleccionarProductosRepository;
+import com.example.demo.entidades.*;
+import com.example.demo.servicio.PedidoService;
+import com.example.demo.servicio.OperadorService;
+import com.example.demo.servicio.DomiciliarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/pedidos")
@@ -19,54 +16,58 @@ import java.util.List;
 public class PedidoController {
 
     @Autowired
-    private PedidoRepository pedidoRepository;
+    private PedidoService pedidoService;
 
     @Autowired
-    private CarritoComprasRepository carritoRepository;
+    private OperadorService operadorService;
 
     @Autowired
-    private SeleccionarProductosRepository seleccionarProductosRepository;
+    private DomiciliarioService domiciliarioService;
 
     @PostMapping("/confirmar/{clienteId}")
-    public ResponseEntity<String> confirmarPedido(
-            @PathVariable Integer clienteId,
-            @RequestBody PedidoRequest pedidoRequest
-    ) {
-        // Buscar el carrito activo del cliente
-        CarritoCompras carrito = carritoRepository.findByClienteModelId(clienteId);
-
-        if (carrito == null) {
-            return ResponseEntity.badRequest().body("Carrito no encontrado para el cliente");
+    public ResponseEntity<?> confirmarPedido(@PathVariable Long clienteId) {
+        Pedido pedido = pedidoService.confirmarPedido(clienteId);
+        if (pedido == null) {
+            return ResponseEntity.badRequest().body("Carrito no encontrado o vacío");
         }
-
-        if (pedidoRequest.getProductos() == null || pedidoRequest.getProductos().isEmpty()) {
-            return ResponseEntity.badRequest().body("No se enviaron productos para confirmar");
-        }
-
-        // Crear el pedido
-        Pedido pedido = new Pedido();
-        pedido.setEstado("Confirmado");
-        pedido.setFechaCreacion(new Date());
-        pedido.setFechaEntrega(new Date(System.currentTimeMillis() + (2 * 60 * 60 * 1000))); // 2 horas después
-        pedido.setCarrito(carrito);
-
-        pedidoRepository.save(pedido);
-
-        // Opcional: limpiar los productos seleccionados del carrito
-        carrito.getProductosSeleccionados().clear();
-        carritoRepository.save(carrito);
-
-        return ResponseEntity.ok("Pedido confirmado exitosamente");
-    }
-
-    @GetMapping("/listar")
-    public List<Pedido> listarPedidos() {
-        return pedidoRepository.findAll();
+        return ResponseEntity.ok(pedido);
     }
 
     @GetMapping("/cliente/{clienteId}")
-    public ResponseEntity<List<Pedido>> listarPedidosPorCliente(@PathVariable Integer clienteId) {
-        List<Pedido> pedidos = pedidoRepository.findByCarritoClienteModelId(clienteId);
+    public ResponseEntity<List<Pedido>> obtenerPedidosPorCliente(@PathVariable Long clienteId) {
+        List<Pedido> pedidos = pedidoService.listarPedidosPorCliente(clienteId);
         return ResponseEntity.ok(pedidos);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Pedido>> listarTodos() {
+        return ResponseEntity.ok(pedidoService.listarTodos());
+    }
+
+    @PutMapping("/actualizarEstado/{pedidoId}")
+    public ResponseEntity<?> actualizarEstado(
+        @PathVariable Integer pedidoId,
+        @RequestParam EstadoPedido estado,
+        @RequestParam Integer operadorId
+    ) {
+        Operador operador = operadorService.findById(operadorId).orElse(null);
+        if (operador == null) return ResponseEntity.badRequest().body("Operador inválido");
+
+        Pedido actualizado = pedidoService.actualizarEstado(pedidoId, estado, operador);
+        return ResponseEntity.ok(actualizado);
+    }
+
+    @PutMapping("/asignarDomiciliario/{pedidoId}")
+    public ResponseEntity<?> asignarDomiciliario(
+        @PathVariable Integer pedidoId,
+        @RequestParam Integer domiciliarioId
+    ) {
+        Domiciliario domiciliario = domiciliarioService.buscarPorId(domiciliarioId).orElse(null);
+        if (domiciliario == null || !domiciliario.isDisponibilidad()) {
+            return ResponseEntity.badRequest().body("Domiciliario no disponible o no válido");
+        }
+
+        Pedido actualizado = pedidoService.asignarDomiciliario(pedidoId, domiciliario);
+        return ResponseEntity.ok(actualizado);
     }
 }

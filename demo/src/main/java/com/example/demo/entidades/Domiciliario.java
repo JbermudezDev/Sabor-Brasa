@@ -28,8 +28,7 @@ public class Domiciliario {
     @JsonBackReference
     private List<Pedido> pedidos;
 
-    public Domiciliario() {
-    }
+    public Domiciliario() {}
 
     public Domiciliario(Integer id, String nombre, String celular, String cedula, boolean disponibilidad) {
         this.id = id;

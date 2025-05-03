@@ -1,6 +1,7 @@
 package com.example.demo.entidades;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "seleccionar_productos")
@@ -21,15 +22,25 @@ public class SeleccionarProductos {
     @JoinColumn(name = "producto_id")
     private Producto producto;
 
-    public SeleccionarProductos() {
-    }
+    @ManyToMany
+    @JoinTable(
+        name = "producto_seleccionado_adicionales",
+        joinColumns = @JoinColumn(name = "producto_seleccionado_id"),
+        inverseJoinColumns = @JoinColumn(name = "adicional_id")
+    )
+    private List<Adicional> adicionales;
 
-    public SeleccionarProductos(Integer id, int cantidad, CarritoCompras carrito, Producto producto) {
+    public SeleccionarProductos() {}
+
+    public SeleccionarProductos(Integer id, int cantidad, CarritoCompras carrito, Producto producto, List<Adicional> adicionales) {
         this.id = id;
         this.cantidad = cantidad;
         this.carrito = carrito;
         this.producto = producto;
+        this.adicionales = adicionales;
     }
+
+    // Getters y Setters
 
     public Integer getId() {
         return id;
@@ -61,5 +72,13 @@ public class SeleccionarProductos {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public List<Adicional> getAdicionales() {
+        return adicionales;
+    }
+
+    public void setAdicionales(List<Adicional> adicionales) {
+        this.adicionales = adicionales;
     }
 }

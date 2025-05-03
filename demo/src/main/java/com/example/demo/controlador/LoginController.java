@@ -43,9 +43,9 @@ public class LoginController {
 
         if (cliente != null) {
             // Buscar si ya existe un carrito
-            CarritoCompras carrito = carritoService.buscarCarritoPorCliente(cliente.getId().intValue());
+            CarritoCompras carrito = carritoService.buscarCarritoPorCliente(cliente.getId());
             if (carrito == null) {
-                carrito = carritoService.crearCarrito(cliente.getId().intValue()); // Crear si no existe
+                carrito = carritoService.crearCarrito(cliente.getId()); // Crear si no existe
             }
 
             // Crear cookie para clienteId

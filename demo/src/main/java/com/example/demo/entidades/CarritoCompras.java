@@ -24,11 +24,10 @@ public class CarritoCompras {
     @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SeleccionarProductos> productosSeleccionados;
 
-    public CarritoCompras() {
-    }
+    public CarritoCompras() {}
 
     public CarritoCompras(Cliente clienteModel) {
-        this.precioTotal = 100;
+        this.precioTotal = 0; // Inicializa en cero
         this.clienteModel = clienteModel;
     }
 

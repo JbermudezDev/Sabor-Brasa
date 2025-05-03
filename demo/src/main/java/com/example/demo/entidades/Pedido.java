@@ -12,16 +12,19 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String estado;
+    private EstadoPedido estado;
 
     @Column(nullable = false)
     private Date fechaCreacion;
 
-    @Column(nullable = false)
+    @Column(nullable = true) // Puede ser null hasta que se entregue
     private Date fechaEntrega;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "operador_id")
+    private Operador operador;
 
     @ManyToOne
     @JoinColumn(name = "domiciliario_id")
@@ -33,14 +36,15 @@ public class Pedido {
     @JsonManagedReference
     private CarritoCompras carrito;
 
-    public Pedido() {
-    }
+    public Pedido() {}
 
-    public Pedido(Integer id, String estado, Date fechaCreacion, Date fechaEntrega, Domiciliario domiciliario, CarritoCompras carrito) {
+    public Pedido(Integer id, EstadoPedido estado, Date fechaCreacion, Date fechaEntrega,
+                  Operador operador, Domiciliario domiciliario, CarritoCompras carrito) {
         this.id = id;
         this.estado = estado;
         this.fechaCreacion = fechaCreacion;
         this.fechaEntrega = fechaEntrega;
+        this.operador = operador;
         this.domiciliario = domiciliario;
         this.carrito = carrito;
     }
@@ -53,11 +57,11 @@ public class Pedido {
         this.id = id;
     }
 
-    public String getEstado() {
+    public EstadoPedido getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoPedido estado) {
         this.estado = estado;
     }
 
@@ -77,7 +81,14 @@ public class Pedido {
         this.fechaEntrega = fechaEntrega;
     }
 
-   
+    public Operador getOperador() {
+        return operador;
+    }
+
+    public void setOperador(Operador operador) {
+        this.operador = operador;
+    }
+
     public Domiciliario getDomiciliario() {
         return domiciliario;
     }

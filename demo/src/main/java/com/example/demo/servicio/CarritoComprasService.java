@@ -7,8 +7,6 @@ import com.example.demo.repositorio.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class CarritoComprasService {
 
@@ -18,20 +16,19 @@ public class CarritoComprasService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    // Buscar carrito existente por clienteId
-    public CarritoCompras buscarCarritoPorCliente(Integer clienteId) {
+    public CarritoCompras buscarCarritoPorCliente(Long clienteId) {
         return carritoRepository.findByClienteModelId(clienteId);
     }
 
-    // Crear carrito nuevo para un cliente
-    public CarritoCompras crearCarrito(Integer clienteId) {
-        Optional<Cliente> clienteOpt = clienteRepository.findById(clienteId.longValue());
-        if (clienteOpt.isPresent()) {
-            CarritoCompras carrito = new CarritoCompras(clienteOpt.get());
-            carrito.setPrecioTotal(0);
-            return carritoRepository.save(carrito);
-        } else {
-            throw new IllegalArgumentException("Cliente no encontrado para id: " + clienteId);
-        }
+    public CarritoCompras crearCarrito(Long clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
+        if (cliente == null) return null;
+
+        CarritoCompras carrito = new CarritoCompras(cliente);
+        return carritoRepository.save(carrito);
+    }
+
+    public void actualizar(CarritoCompras carrito) {
+        carritoRepository.save(carrito);
     }
 }
