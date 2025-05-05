@@ -17,7 +17,7 @@ public class CarritoComprasService {
     private ClienteRepository clienteRepository;
 
     public CarritoCompras buscarCarritoPorCliente(Long clienteId) {
-        return carritoRepository.findByClienteModelId(clienteId);
+        return carritoRepository.findByClienteId(clienteId);
     }
 
     public CarritoCompras crearCarrito(Long clienteId) {

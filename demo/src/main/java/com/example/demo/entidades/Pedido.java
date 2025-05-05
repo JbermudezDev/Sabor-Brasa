@@ -36,10 +36,18 @@ public class Pedido {
     @JsonManagedReference
     private CarritoCompras carrito;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
+    private double total;
+
     public Pedido() {}
 
     public Pedido(Integer id, EstadoPedido estado, Date fechaCreacion, Date fechaEntrega,
-                  Operador operador, Domiciliario domiciliario, CarritoCompras carrito) {
+                  Operador operador, Domiciliario domiciliario, CarritoCompras carrito, Cliente cliente, double total) {
+        this.cliente = cliente;
+        this.total = total;
         this.id = id;
         this.estado = estado;
         this.fechaCreacion = fechaCreacion;
@@ -47,6 +55,22 @@ public class Pedido {
         this.operador = operador;
         this.domiciliario = domiciliario;
         this.carrito = carrito;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public Integer getId() {

@@ -24,7 +24,7 @@ public class SeleccionarProductosService {
     private ProductoRepository productoRepository;
 
     public SeleccionarProductos agregarProductoACarrito(Long clienteId, Long productoId, int cantidad) {
-        CarritoCompras carrito = carritoRepository.findByClienteModelId(clienteId);
+        CarritoCompras carrito = carritoRepository.findByClienteId(clienteId);
         Producto producto = productoRepository.findById(productoId).orElse(null);
 
         if (carrito == null || producto == null) return null;

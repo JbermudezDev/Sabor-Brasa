@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 
-    List<Pedido> findByCarritoClienteModelId(Long clienteId);
+    List<Pedido> findByCarritoClienteId(Long id); 
+
 
     List<Pedido> findByEstado(String estado);
 

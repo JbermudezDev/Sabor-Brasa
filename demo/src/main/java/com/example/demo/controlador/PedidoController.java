@@ -1,5 +1,6 @@
 package com.example.demo.controlador;
 
+import com.example.demo.DTO.PedidoRequestDTO;
 import com.example.demo.entidades.*;
 import com.example.demo.servicio.PedidoService;
 import com.example.demo.servicio.OperadorService;
@@ -32,6 +33,17 @@ public class PedidoController {
         }
         return ResponseEntity.ok(pedido);
     }
+    @PostMapping("/confirmar")
+    public ResponseEntity<?> confirmarPedido(@RequestBody PedidoRequestDTO request) {
+        Pedido pedido = pedidoService.confirmarPedido(request);
+        if (pedido == null) {
+            return ResponseEntity.badRequest().body("Carrito vacío o error en los datos");
+        }
+        return ResponseEntity.ok(pedido);
+    }
+
+   
+
 
     @GetMapping("/cliente/{clienteId}")
     public ResponseEntity<List<Pedido>> obtenerPedidosPorCliente(@PathVariable Long clienteId) {

@@ -2,6 +2,7 @@ package com.example.demo.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -15,22 +16,24 @@ public class CarritoCompras {
     @Column(nullable = false)
     private float precioTotal;
 
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente clienteModel;
-
+    @JoinColumn(name = "cliente_id", nullable = false)
     @JsonIgnore
+    private Cliente cliente;
+
     @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<SeleccionarProductos> productosSeleccionados;
 
+    // Constructores
     public CarritoCompras() {}
 
-    public CarritoCompras(Cliente clienteModel) {
-        this.precioTotal = 0; // Inicializa en cero
-        this.clienteModel = clienteModel;
+    public CarritoCompras(Cliente cliente) {
+        this.precioTotal = 0;
+        this.cliente = cliente;
     }
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -47,12 +50,12 @@ public class CarritoCompras {
         this.precioTotal = precioTotal;
     }
 
-    public Cliente getClienteModel() {
-        return clienteModel;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClienteModel(Cliente clienteModel) {
-        this.clienteModel = clienteModel;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public List<SeleccionarProductos> getProductosSeleccionados() {
