@@ -56,18 +56,28 @@ public class PedidoController {
         return ResponseEntity.ok(pedidoService.listarTodos());
     }
 
-    @PutMapping("/actualizarEstado/{pedidoId}")
+    @PutMapping("/actualizarPedido/{pedidoId}")
     public ResponseEntity<?> actualizarEstado(
-        @PathVariable Integer pedidoId,
-        @RequestParam EstadoPedido estado,
-        @RequestParam Integer operadorId
-    ) {
-        Operador operador = operadorService.findById(operadorId).orElse(null);
-        if (operador == null) return ResponseEntity.badRequest().body("Operador inválido");
+    @PathVariable Integer pedidoId,
+    @RequestParam String estado, // ahora como String
+    @RequestParam Integer operadorId,
+    @RequestParam(required = false) Integer domiciliarioId
+) {
+    Operador operador = operadorService.findById(operadorId).orElse(null);
+    if (operador == null) return ResponseEntity.badRequest().body("Operador inválido");
 
-        Pedido actualizado = pedidoService.actualizarEstado(pedidoId, estado, operador);
-        return ResponseEntity.ok(actualizado);
+    EstadoPedido estadoEnum;
+    try {
+        estadoEnum = EstadoPedido.valueOf(estado.toUpperCase());
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body("Estado inválido");
     }
+
+    Pedido actualizado = pedidoService.actualizarEstado(pedidoId, estadoEnum, operador, domiciliarioId);
+    return ResponseEntity.ok(actualizado);
+}
+
+
 
     @PutMapping("/asignarDomiciliario/{pedidoId}")
     public ResponseEntity<?> asignarDomiciliario(

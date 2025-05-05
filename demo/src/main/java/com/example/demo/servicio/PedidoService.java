@@ -36,6 +36,9 @@ public class PedidoService {
 
     @Autowired
     private AdicionalRepository adicionalRepository;
+
+    @Autowired
+    private DomiciliarioService domiciliarioService;
     
 
    
@@ -141,4 +144,21 @@ public class PedidoService {
 
     return pedidoRepository.save(pedido);
 }
+
+public Pedido actualizarEstado(Integer pedidoId, EstadoPedido nuevoEstado, Operador operador, Integer domiciliarioId) {
+    Pedido pedido = pedidoRepository.findById(pedidoId)
+        .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado"));
+
+    pedido.setEstado(nuevoEstado);
+    pedido.setOperador(operador);
+
+    if (domiciliarioId != null) {
+        Domiciliario domiciliario = domiciliarioService.buscarPorId(domiciliarioId)
+            .orElseThrow(() -> new IllegalArgumentException("Domiciliario no encontrado"));
+        pedido.setDomiciliario(domiciliario);
+    }
+
+    return pedidoRepository.save(pedido);
+}
+
 }
