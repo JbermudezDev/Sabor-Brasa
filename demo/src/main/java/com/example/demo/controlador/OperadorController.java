@@ -23,18 +23,22 @@ public class OperadorController {
     @Autowired
     private OperadorService operadorService;
 
+
+    //http://localhost:8090/operadores/all
     // Obtener todos los operadores
     @GetMapping("/all")
     public List<Operador> obtenerTodosLosOperadores() {
         return operadorService.searchAll();
     }
 
+    //http://localhost:8090/operadores/find/id
     // Obtener un operador por ID
     @GetMapping("/find/{id}")
     public Operador obtenerOperadorPorId(@PathVariable("id") Integer id) {
         return operadorService.findById(id).orElse(null);
     }
 
+    //http://localhost:8090/operadores/agregar
     // Agregar un nuevo operador
     @PostMapping("/add")
 public ResponseEntity<Map<String, String>> agregarOperador(@RequestBody Operador operador) {
@@ -49,6 +53,8 @@ public ResponseEntity<Map<String, String>> agregarOperador(@RequestBody Operador
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }
+
+    //http://localhost:8090/operadores/update/id
     // Actualizar un operador existente
     @PutMapping("/update/{id}")
     public ResponseEntity<Operador> actualizarOperador(@PathVariable Integer id, @RequestBody Operador operadorActualizado) {
@@ -73,6 +79,7 @@ public ResponseEntity<Map<String, String>> agregarOperador(@RequestBody Operador
     return ResponseEntity.notFound().build();
 }
 
+    //http://localhost:8090/operadores/delete/id
     // Eliminar un operador por ID
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> eliminarOperador(@PathVariable Integer id) {

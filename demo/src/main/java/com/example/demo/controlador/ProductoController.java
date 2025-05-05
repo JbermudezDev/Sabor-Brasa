@@ -26,6 +26,7 @@ public class ProductoController {
     @Autowired
     private AdicionalService adicionalService;
 
+    //http://localhost:8090/productos/all
     // Listar productos
     @GetMapping("/all")
     public ResponseEntity<ProductosResponse> mostrarProductos() {
@@ -45,12 +46,14 @@ public class ProductoController {
         }
     }
 
+    //http://localhost:8090/productos/find/id
     // Ver detalles de un producto
     @GetMapping("/find/{id}")
     public Producto verProducto(@PathVariable("id") Long id) {
         return productoService.findById(id).orElse(null);
     }
 
+    //http://localhost:8090/productos/agregar
     // Formulario para agregar un producto
     @GetMapping("/agregar")
     public ResponseEntity<?> mostrarFormularioAgregarProducto() {
@@ -68,6 +71,7 @@ public class ProductoController {
         }
     }
 
+    //http://localhost:8090/productos/add
     // Crear nuevo producto
     @PostMapping("/add")
     public ResponseEntity<Producto> agregarProducto(@RequestBody Producto producto) {
@@ -88,6 +92,8 @@ public class ProductoController {
         }
     }
 
+
+    //http://localhost:8090/productos/update/id
     // Actualizar producto existente
     @PutMapping("/update/{id}")
     public ResponseEntity<?> modificarProducto(@PathVariable("id") Long id, @RequestBody Producto producto) {
@@ -123,6 +129,7 @@ public class ProductoController {
         }
     }
 
+    //http://localhost:8090/productos/delete/id
     // Eliminar producto
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> eliminarProducto(@PathVariable("id") Long id) {
@@ -134,6 +141,7 @@ public class ProductoController {
         }
     }
 
+    //http://localhost:8090/productos/menu
     // Menú
     @GetMapping("/menu")
     public ResponseEntity<List<Producto>> obtenerMenu() {
@@ -147,6 +155,8 @@ public class ProductoController {
         }
     }
 
+
+    //http://localhost:8090/productos/info/id
     // Info detallada de un plato
     @GetMapping("/info/{id}")
     public ResponseEntity<?> mostrarInfoPlato(@PathVariable Long id) {

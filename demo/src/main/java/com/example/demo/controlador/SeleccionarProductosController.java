@@ -16,6 +16,7 @@ public class SeleccionarProductosController {
     @Autowired
     private SeleccionarProductosService seleccionarProductosService;
 
+    //http://localhost:8090/seleccion/agregar
     @PostMapping("/agregar")
     public ResponseEntity<SeleccionarProductos> agregarProducto(
             @RequestParam Long clienteId,
@@ -26,11 +27,14 @@ public class SeleccionarProductosController {
         return ResponseEntity.ok(nuevo);
     }
 
+
+    //http://localhost:8090/seleccion/carrito/{carritoId}
     @GetMapping("/carrito/{carritoId}")
     public List<SeleccionarProductos> listarPorCarrito(@PathVariable Integer carritoId) {
         return seleccionarProductosService.listarPorCarrito(carritoId);
     }
 
+    //http://localhost:8090/seleccion/eliminar/{id}
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Integer id) {
         seleccionarProductosService.eliminarProducto(id);

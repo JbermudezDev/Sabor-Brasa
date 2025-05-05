@@ -25,6 +25,7 @@ public class PedidoController {
     @Autowired
     private DomiciliarioService domiciliarioService;
 
+     //http://localhost:8090/pedidos/confirmar/id
     @PostMapping("/confirmar/{clienteId}")
     public ResponseEntity<?> confirmarPedido(@PathVariable Long clienteId) {
         Pedido pedido = pedidoService.confirmarPedido(clienteId);
@@ -33,6 +34,8 @@ public class PedidoController {
         }
         return ResponseEntity.ok(pedido);
     }
+
+    //http://localhost:8090/pedidos/confirmar
     @PostMapping("/confirmar")
     public ResponseEntity<?> confirmarPedido(@RequestBody PedidoRequestDTO request) {
         Pedido pedido = pedidoService.confirmarPedido(request);
@@ -44,18 +47,20 @@ public class PedidoController {
 
    
 
-
+    //http://localhost:8090/pedidos/cliente/id
     @GetMapping("/cliente/{clienteId}")
     public ResponseEntity<List<Pedido>> obtenerPedidosPorCliente(@PathVariable Long clienteId) {
         List<Pedido> pedidos = pedidoService.listarPedidosPorCliente(clienteId);
         return ResponseEntity.ok(pedidos);
     }
 
+    //http://localhost:8090/pedidos/all
     @GetMapping("/all")
     public ResponseEntity<List<Pedido>> listarTodos() {
         return ResponseEntity.ok(pedidoService.listarTodos());
     }
 
+    //http://localhost:8090/pedidos/actualizarPedido/id
     @PutMapping("/actualizarPedido/{pedidoId}")
     public ResponseEntity<?> actualizarEstado(
     @PathVariable Integer pedidoId,
@@ -78,7 +83,7 @@ public class PedidoController {
 }
 
 
-
+    //http://localhost:8090/pedidos/asignarDomiciliario/id
     @PutMapping("/asignarDomiciliario/{pedidoId}")
     public ResponseEntity<?> asignarDomiciliario(
         @PathVariable Integer pedidoId,

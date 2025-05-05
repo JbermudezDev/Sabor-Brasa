@@ -18,32 +18,38 @@ public class ClienteController {
   @Autowired
   private ClienteService clienteService;
 
+  //http://localhost:8090/clientes/all
   @GetMapping("/all") // Cambiado a /all para evitar conflictos con el método mostrarClientes
   public List<Cliente> mostrarClientes(Model model) {
     return clienteService.searchAll();
   }
 
+  //http://localhost:8090/clientes/find/id
   @GetMapping("/find/{id}") // Cambiado a /find/{id} para evitar conflictos con el método verCliente
   public Cliente verCliente(@PathVariable("id") Long id) {
     return clienteService.findById(id).orElse(null);
   }
-
+  
+  //http://localhost:8090/clientes/agregar
   @GetMapping("/agregar")
   public String mostrarFormularioAgregarCliente(Model model) {
     model.addAttribute("cliente", new Cliente());
     return "AgregarCliente";
   }
 
+  //http://localhost:8090/clientes/add
   @PostMapping("/add") // Cambiado a /add para evitar conflictos con el método agregarCliente
   public void agregarCliente(@RequestBody Cliente cliente) {
     clienteService.add(cliente);
   }
 
+  //http://localhost:8090/clientes/delete/id
   @DeleteMapping("/delete/{id}") // Cambiado a /delete/{id} para evitar conflictos con el método eliminarCliente
   public void eliminarCliente(@PathVariable("id") Long id) {
     clienteService.deleteById(id);
   }
 
+  //http://localhost:8090/clientes/update/id
   @GetMapping("/update/{id}")
   public String mostrarFormularioEdicion(
     @PathVariable("id") Long id,
@@ -58,11 +64,13 @@ public class ClienteController {
     }
   }
 
+  //http://localhost:8090/clientes/update/id
   @PutMapping("/update/{id}") // Cambiado a /update/{id} para evitar conflictos con el método modificarCliente
   public void modificarCliente(@RequestBody Cliente cliente) {
     clienteService.update(cliente);
   }
 
+  //http://localhost:8090/clientes/perfil/id
   @GetMapping("/perfil/{id}")
   public String mostrarPerfilCliente(
     @PathVariable("id") Long id,
@@ -85,6 +93,7 @@ public class ClienteController {
     }
   }
 
+  //http://localhost:8090/clientes/perfil/update/id
   @PostMapping("/perfil/update/{id}")
   public String actualizarPerfilCliente(
     @PathVariable("id") Long id,

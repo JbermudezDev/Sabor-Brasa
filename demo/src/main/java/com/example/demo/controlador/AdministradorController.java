@@ -27,13 +27,15 @@ public class AdministradorController {
     private ProductoRepository productoRepository;
 
     
-    
+    //http://localhost:8090/administradores/administrador
     @GetMapping("/Administrador")
     public String listarProductos(Model model) {
         List<Producto> productos = productoRepository.findAll(); // Obtiene los productos de la BD
         model.addAttribute("productos", productos);
         return "Administrador";  // Renderiza Administrador.html
     }
+    
+    //http://localhost:8090/administradores/logout
     @GetMapping("/logout")
     public String cerrarSesion(HttpSession session) {
     session.invalidate(); // Invalida la sesión actual

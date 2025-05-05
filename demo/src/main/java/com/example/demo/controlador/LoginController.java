@@ -33,6 +33,7 @@ public class LoginController {
     @Autowired
     private CarritoComprasService carritoService;
 
+    //http://localhost:8090/login/cliente
     // ====== LOGIN CLIENTE CON CREACIÓN DE COOKIE ======
     @PostMapping("/cliente")
     public ResponseEntity<?> loginCliente(@RequestBody Cliente credenciales, HttpServletResponse response) {
@@ -70,6 +71,7 @@ public class LoginController {
         }
     }
 
+    //http://localhost:8090/login/admin
     // ====== LOGIN ADMINISTRADOR ======
     @PostMapping("/admin")
     public ResponseEntity<?> loginAdministrador(@RequestBody Administrador credenciales, HttpSession session) {
@@ -86,6 +88,7 @@ public class LoginController {
         }
     }
 
+    //http://localhost:8090/login/operador
     // ====== LOGIN OPERADOR ======
     @PostMapping("/operador")
     public ResponseEntity<?> loginOperador(@RequestBody Operador credenciales, HttpSession session) {
@@ -102,6 +105,7 @@ public class LoginController {
         }
     }
 
+    //http://localhost:8090/login/logoutCliente
     // ====== LOGOUT CLIENTE ======
     @PostMapping("/logoutCliente")
     public ResponseEntity<?> logoutCliente(HttpServletResponse response) {

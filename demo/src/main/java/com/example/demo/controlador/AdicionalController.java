@@ -23,18 +23,21 @@ public class AdicionalController {
     private AdicionalService adicionalService;
     
     // Listar todos los adicionales
+    //http://localhost:8090/adicionales/all
     @GetMapping("/all")
     public List<Adicional> listarAdicionales() {
         return adicionalService.findAll();
     }
 
     // Ver detalles de un adicional por ID
+    //http://localhost:8090/adicionales/find/id
     @GetMapping("/find/{id}")
     public Adicional verAdicional(@PathVariable("id") Long id) {
         return adicionalService.findById(id).orElse(null);
     }
 
     // Formulario para agregar un adicional
+    //http://localhost:8090/adicionales/agregar
     @GetMapping("/agregar")
     public String mostrarFormularioAgregarAdicional(Model model) {
         model.addAttribute("adicional", new Adicional());
@@ -42,12 +45,14 @@ public class AdicionalController {
     }
 
     // Guardar un nuevo adicional
+    //http://localhost:8090/adicionales/add
     @PostMapping("/add")
     public void agregarAdicional(@RequestBody Adicional adicional) {
         adicionalService.add(adicional);
     }
 
     // Eliminar un adicional por ID
+    //http://localhost:8090/adicionales/delete/id
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> eliminarAdicional(@PathVariable Long id) {
         try {
@@ -74,6 +79,7 @@ public class AdicionalController {
     }
 
     // Formulario de edición de un adicional
+    //http://localhost:8090/adicionales/update/id
     @PutMapping("/update/{id}")
     public void modificarAdicional(@RequestBody Adicional adicional, @PathVariable("id") Long id) {
         adicional.setId(id);
@@ -81,6 +87,7 @@ public class AdicionalController {
     }
 
     // Guardar cambios de un adicional
+    //http://localhost:8090/adicionales/update/id
     @PostMapping("/update/{id}")
     public String modificarAdicional(
         @PathVariable("id") Long id,

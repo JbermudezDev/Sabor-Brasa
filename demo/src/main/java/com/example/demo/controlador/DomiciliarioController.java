@@ -16,16 +16,19 @@ public class DomiciliarioController {
     @Autowired
     private DomiciliarioService domiciliarioService;
 
+    //http://localhost:8090/domiciliarios/all
     @GetMapping("/all")
     public List<Domiciliario> obtenerTodos() {
         return domiciliarioService.obtenerTodos();
     }
 
+    //http://localhost:8090/domiciliarios/disponibles
     @GetMapping("/disponibles")
     public List<Domiciliario> obtenerDisponibles() {
         return domiciliarioService.obtenerDisponibles();
     }
 
+    //http://localhost:8090/domiciliarios/find/{id}
     @GetMapping("/find/{id}")
     public ResponseEntity<Domiciliario> obtenerPorId(@PathVariable Integer id) {
         return domiciliarioService.buscarPorId(id)
@@ -33,11 +36,13 @@ public class DomiciliarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    //http://localhost:8090/domiciliarios/add
     @PostMapping("/add")
     public Domiciliario agregar(@RequestBody Domiciliario d) {
         return domiciliarioService.guardar(d);
     }
 
+    //http://localhost:8090/domiciliarios/update/{id}
     @PutMapping("/update/{id}")
     public ResponseEntity<Domiciliario> actualizar(@PathVariable Integer id, @RequestBody Domiciliario actualizado) {
         return domiciliarioService.buscarPorId(id).map(d -> {
@@ -49,6 +54,7 @@ public class DomiciliarioController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    //http://localhost:8090/domiciliarios/delete/{id}
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Integer id) {
         domiciliarioService.eliminar(id);

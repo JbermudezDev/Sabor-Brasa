@@ -13,6 +13,7 @@ public class CarritoComprasController {
     @Autowired
     private CarritoComprasService carritoService;
 
+    //http://localhost:8090/carrito/clienteid
     @GetMapping("/{clienteId}")
     public CarritoCompras obtenerCarritoPorCliente(@PathVariable Long clienteId) {
         return carritoService.buscarCarritoPorCliente(clienteId);
