@@ -83,19 +83,19 @@ public class ClienteRepositoryTest {
     }
 
     @Test
-public void ClienteRepository_findByNombre_Cliente() {
-    // 1. Arrange
-    String nombre = "Julian";
-    Cliente cliente = new Cliente("Julian", "Hernandez", "julian123@gmail.com", "julian123", "1234567890", "Javeriana U");
-    clienteRepository.save(cliente); // Guarda el cliente en la base de datos de prueba
+    public void ClienteRepository_findByNombre_Cliente() {
+        // 1. Arrange
+        String nombre = "Julian";
+        Cliente cliente = new Cliente("Julian", "Hernandez", "julian123@gmail.com", "julian123", "1234567890", "Javeriana U");
+        clienteRepository.save(cliente); // Guarda el cliente en la base de datos de prueba
 
-    // 2. Act
-    Cliente foundCliente = clienteRepository.findByNombre(nombre);
+        // 2. Act
+        Cliente foundCliente = clienteRepository.findByNombre(nombre);
 
-    // 3. Assert
-    Assertions.assertThat(foundCliente).isNotNull();
-    Assertions.assertThat(foundCliente.getNombre()).isEqualTo(nombre);
-}
+        // 3. Assert
+        Assertions.assertThat(foundCliente).isNotNull();
+        Assertions.assertThat(foundCliente.getNombre()).isEqualTo(nombre);
+    }
        
 @Test
 public void ClienteRepository_updateNombre_Cliente() {

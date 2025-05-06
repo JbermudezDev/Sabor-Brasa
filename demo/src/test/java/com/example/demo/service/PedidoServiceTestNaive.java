@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.DTO.PedidoRequestDTO;
+import com.example.demo.dto.PedidoRequestDTO;
 import com.example.demo.entidades.*;
 import com.example.demo.repositorio.*;
 import com.example.demo.servicio.PedidoService;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.*;
 
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@ActiveProfiles("test")
 public class PedidoServiceTestNaive {
 
     @Autowired private PedidoService pedidoService;

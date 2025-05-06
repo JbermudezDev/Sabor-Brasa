@@ -1,6 +1,6 @@
 package com.example.demo.servicio;
 
-import com.example.demo.DTO.PedidoRequestDTO;
+import com.example.demo.dto.PedidoRequestDTO;
 import com.example.demo.entidades.*;
 import com.example.demo.repositorio.CarritoComprasRepository;
 import com.example.demo.repositorio.PedidoRepository;

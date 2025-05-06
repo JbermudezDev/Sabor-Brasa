@@ -1,6 +1,6 @@
 package com.example.demo.controlador;
 
-import com.example.demo.DTO.PedidoRequestDTO;
+import com.example.demo.dto.PedidoRequestDTO;
 import com.example.demo.entidades.*;
 import com.example.demo.servicio.PedidoService;
 import com.example.demo.servicio.OperadorService;
