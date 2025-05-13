@@ -65,6 +65,9 @@ public class DatabaseInit implements ApplicationRunner {
             Operador operador3 = new Operador(null,"Luis Operador", "luis789", "password789");
             operadorRepository.save(operador3);
 
+             Domiciliario domiciliario1 = new Domiciliario(null, "Pedro Gómez", "3001234567", "123456789", true);
+                domiciliarioRepository.save(domiciliario1);
+
                         
              
             
@@ -218,9 +221,9 @@ public class DatabaseInit implements ApplicationRunner {
             producto9.addAdicional(adicional10);
             producto9.addAdicional(adicional11);
             producto9.addAdicional(adicional12);
-            producto10.addAdicional(adicional13);
-            producto10.addAdicional(adicional14);
-            producto10.addAdicional(adicional15);
+            producto10.addAdicional(adicional4);
+            producto10.addAdicional(adicional5);
+            producto10.addAdicional(adicional6);
             
 
             // Guardar el producto con los adicionales
