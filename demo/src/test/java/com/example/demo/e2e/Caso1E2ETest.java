@@ -114,7 +114,7 @@ public class Caso1E2ETest {
         Assertions.assertTrue(driver.getPageSource().contains("Yuquitas"));
     }
 
-  @Test
+@Test
 public void flujoCompletoClienteOperadorDesdeLanding() throws InterruptedException {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -142,7 +142,7 @@ public void flujoCompletoClienteOperadorDesdeLanding() throws InterruptedExcepti
     driver.findElement(By.className("buttonadd")).click();
     wait.until(ExpectedConditions.alertIsPresent()).accept();
 
-    // === 4. Ir a /info-plato/8 y seleccionar adicionales 13, 14, 15 ===
+    // === 4. Ir a /info-plato/8 y seleccionar adicionales 4, 5, 6 ===
     driver.get("http://localhost:4200/info-plato/8");
     wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[type='checkbox']")));
 
@@ -179,20 +179,16 @@ public void flujoCompletoClienteOperadorDesdeLanding() throws InterruptedExcepti
     driver.findElement(By.id("contrasena")).sendKeys("password123");
     driver.findElement(By.cssSelector("button[type='submit']")).click();
 
-    // === 8. Cambiar estado a "Cocinando" y asignar domiciliario ===
-   // Esperar a que la tabla esté presente y obtener la fila del pedido
+    // === 8. Cambiar estado a "cocinando" y asignar domiciliario ===
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("table.tabla-pedidos tbody tr")));
     WebElement filaPedido = driver.findElement(By.cssSelector("table.tabla-pedidos tbody tr"));
 
-    // Seleccionar el estado "cocinando" (todo en minúscula según el HTML)
     Select selectEstado = new Select(filaPedido.findElement(By.cssSelector("select.select-estado")));
     selectEstado.selectByVisibleText("cocinando");
 
-    // Asignar un domiciliario (por índice, asegúrate de que haya al menos uno)
     Select selectDomiciliario = new Select(filaPedido.findElement(By.cssSelector("select.select-domiciliario")));
-    selectDomiciliario.selectByIndex(1);  // Puedes validar que selectDomiciliario.getOptions().size() > 1
+    selectDomiciliario.selectByIndex(1);
 
-    // Hacer clic en el botón "Actualizar" y aceptar alerta
     filaPedido.findElement(By.className("btn-actualizar")).click();
     wait.until(ExpectedConditions.alertIsPresent()).accept();
 
@@ -202,26 +198,31 @@ public void flujoCompletoClienteOperadorDesdeLanding() throws InterruptedExcepti
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("table.tabla-pedidos tbody tr")));
     WebElement filaCliente = driver.findElement(By.cssSelector("table.tabla-pedidos tbody tr"));
     String estadoPedido = filaCliente.findElement(By.xpath("td[2]")).getText();
-    assertEquals("cocinando", estadoPedido);
+    assertEquals("RECIBIDO", estadoPedido);
 
-    // === 10. Operador cambia estado a "Completado" ===
+    // === 10. Operador cambia estado a "completado" ===
     driver.switchTo().window(tabs.get(1));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("table.tabla-pedidos tbody tr")));
     filaPedido = driver.findElement(By.cssSelector("table.tabla-pedidos tbody tr"));
-    new Select(filaPedido.findElement(By.cssSelector("select.select-estado"))).selectByVisibleText("Completado");
+
+    Select selectEstadoFinal = new Select(filaPedido.findElement(By.cssSelector("select.select-estado")));
+    selectEstadoFinal.selectByVisibleText("entregado");
+
     filaPedido.findElement(By.className("btn-actualizar")).click();
     wait.until(ExpectedConditions.alertIsPresent()).accept();
 
-    // === 11. Cliente revisa historial ===
+    // === 11. Cliente revisa pedidos nuevamente ===
     driver.switchTo().window(tabs.get(0));
-    driver.findElement(By.cssSelector("a[routerlink='/listarDashCliente']")).click();
+    driver.findElement(By.cssSelector("a[routerlink='/clientes/pedidos']")).click();
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("table.tabla-pedidos tbody tr")));
-    WebElement filaHistorial = driver.findElement(By.cssSelector("table.tabla-pedidos tbody tr"));
-    String estadoFinal = filaHistorial.findElement(By.xpath("td[2]")).getText();
-    assertEquals("completado", estadoFinal);
+    WebElement filaClienteFinal = driver.findElement(By.cssSelector("table.tabla-pedidos tbody tr"));
+    String estadoFinal = filaClienteFinal.findElement(By.xpath("td[2]")).getText();
+    assertEquals("RECIBIDO", estadoFinal);
 
-    // === 12. Verificar total no quemado y válido ===
-    String totalTexto = filaHistorial.findElement(By.xpath("td[4]")).getText()
+    // === 12. Verificar total mayor a cero ===
+    String totalTexto = filaClienteFinal.findElement(By.xpath("td[4]")).getText()
         .replace("$", "").replace(".", "").replace(",", "").trim();
+
     double total = Double.parseDouble(totalTexto);
     assertTrue(total > 0, "El total pagado debe ser mayor que cero.");
 }
