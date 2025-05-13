@@ -2,6 +2,7 @@ package com.example.demo.e2e;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,63 +10,105 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@ActiveProfiles("test")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class UseCaseTest {
-
-  private final String BASE_URL = "http://localhost:4200";
 
   private WebDriver driver;
   private WebDriverWait wait;
 
   @BeforeEach
-  public void init() {
-    WebDriverManager.chromedriver().setup();
-
-    ChromeOptions chromeOptions = new ChromeOptions();
-
-    chromeOptions.addArguments("--disable-notifications");
-    chromeOptions.addArguments("--disable-extensions");
-    //chromeOptions.addArguments("--headless");
-
-    this.driver = new ChromeDriver(chromeOptions);
-    this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+  public void setup() {
+    WebDriverManager
+      .chromedriver()
+      .driverVersion("136") // Fuerza descarga de ChromeDriver para Chrome 136
+      .setup();
+    driver = new ChromeDriver();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    driver.manage().window().maximize();
+    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
   @Test
-  public void UseCaseOne() {
-    driver.get(BASE_URL);
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnLogin")));
-    WebElement btnElement = driver.findElement(By.id("btnLogin"));
-    btnElement.click();
+  public void UseCaseOne() throws InterruptedException {
+    driver.get("http://localhost:4200/login-cliente");
 
-    WebElement emailInput = wait.until(
-      ExpectedConditions.elementToBeClickable(By.id("email"))
-    );
-    WebElement passwordInput = driver.findElement(By.id("password"));
+    driver.findElement(By.id("email")).sendKeys("joseber@hotmail.com");
+    driver.findElement(By.id("password")).sendKeys("123456");
 
-    emailInput.sendKeys("7Ig6a@example.com");
-    passwordInput.sendKeys("1234");
-
-    WebElement btnIniciar = driver.findElement(By.id("btnIniciar"));
+    WebElement btnIniciar = driver.findElement(By.id("btnLogin"));
     btnIniciar.click();
 
-    emailInput.clear();
-    passwordInput.clear();
+    // try {
+    //   wait.until(ExpectedConditions.alertIsPresent());
+    //   driver.switchTo().alert().accept();
+    //   System.out.println(
+    //     "⚠️ El login falló (alerta detectada), cancelando prueba."
+    //   );
+    //   return; // detener prueba
+    // } catch (Exception e) {
+    //   // No hubo alerta: continuamos
+    // }
 
-    emailInput.sendKeys("thejuanjo1128@gmail.com");
-    passwordInput.sendKeys("123456");
+    // Esperar que la URL cambie a "/menu" o que un elemento post-login esté presente
+    wait.until(ExpectedConditions.urlContains("/menu"));
+    driver.get("http://localhost:4200/info-plato/5");
 
-    WebElement btnIniciar2 = driver.findElement(By.id("btnIniciar"));
-    btnIniciar2.click();
+    List<WebElement> checkboxes = driver.findElements(By.id("check"));
+    checkboxes.get(0).click();
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("check")));
+    checkboxes.get(1).click();
+
+    WebElement btnAgregar = driver.findElement(By.className("buttonadd"));
+    btnAgregar.click();
+
+    try {
+      wait.until(ExpectedConditions.alertIsPresent());
+      driver.switchTo().alert().accept();
+    } catch (Exception e) {
+      System.out.println("No apareció ninguna alerta");
+    }
+
+    driver.get("http://localhost:4200/info-plato/8");
+    List<WebElement> checkboxes1 = driver.findElements(By.id("check"));
+    checkboxes1.get(0).click();
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("check")));
+    checkboxes1.get(1).click();
+
+    WebElement btnAgregar1 = driver.findElement(By.className("buttonadd"));
+    btnAgregar1.click();
+
+    try {
+      wait.until(ExpectedConditions.alertIsPresent());
+      driver.switchTo().alert().accept();
+    } catch (Exception e) {
+      System.out.println("No apareció ninguna alerta");
+    }
+
+    driver.get("http://localhost:4200/carrito-icon");
+
+    wait.until(
+      ExpectedConditions.presenceOfElementLocated(
+        By.className("carrito-container")
+      )
+    );
+
+    List<WebElement> itemsEnCarrito = driver.findElements(By.className("item"));
+    assert (
+      itemsEnCarrito.size() == 2
+    ) : "Se esperaban 2 productos en el carrito, pero se encontraron " +
+    itemsEnCarrito.size();
+
+    for (WebElement item : itemsEnCarrito) {
+      List<WebElement> adicionales = item.findElements(By.tagName("li"));
+      assert (
+        !adicionales.isEmpty()
+      ) : "El producto no tiene adicionales asociados.";
+    }
+
+    WebElement btnconfirmar = driver.findElement(By.className("btn-confirmar"));
+    btnconfirmar.click();
   }
 
   @AfterEach
