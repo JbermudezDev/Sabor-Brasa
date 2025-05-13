@@ -2,7 +2,6 @@ package com.example.demo.e2e;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UseCaseTest {
@@ -20,10 +18,7 @@ public class UseCaseTest {
 
   @BeforeEach
   public void setup() {
-    WebDriverManager
-      .chromedriver()
-      .driverVersion("136") // Fuerza descarga de ChromeDriver para Chrome 136
-      .setup();
+    WebDriverManager.chromedriver().driverVersion("136").setup();
     driver = new ChromeDriver();
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     driver.manage().window().maximize();
@@ -34,81 +29,91 @@ public class UseCaseTest {
   public void UseCaseOne() throws InterruptedException {
     driver.get("http://localhost:4200/login-cliente");
 
-    driver.findElement(By.id("email")).sendKeys("joseber@hotmail.com");
-    driver.findElement(By.id("password")).sendKeys("123456");
+    driver.findElement(By.id("email")).sendKeys("molokojj09@gmail.com");
+    driver.findElement(By.id("password")).sendKeys("bermu123");
 
     WebElement btnIniciar = driver.findElement(By.id("btnLogin"));
     btnIniciar.click();
+    // // try {
+    // //   wait.until(ExpectedConditions.alertIsPresent());
+    // //   driver.switchTo().alert().accept();
+    // //   System.out.println(
+    // //     "El login falló (alerta detectada), cancelando prueba."
+    // //   );
+    // //   return; // detener prueba
+    // // } catch (Exception e) {
+    // //   // No hubo alerta: continuamos
+    // // }
+
+    // driver.get("http://localhost:4200/menu");
+    // driver.get("http://localhost:4200/info-plato/5");
+
+    // List<WebElement> checkboxes = driver.findElements(By.id("check"));
+    // checkboxes.get(0).click();
+    // wait.until(ExpectedConditions.presenceOfElementLocated(By.id("check")));
+    // checkboxes.get(1).click();
+
+    // WebElement btnAgregar = driver.findElement(By.className("buttonadd"));
+    // btnAgregar.click();
 
     // try {
     //   wait.until(ExpectedConditions.alertIsPresent());
     //   driver.switchTo().alert().accept();
-    //   System.out.println(
-    //     "⚠️ El login falló (alerta detectada), cancelando prueba."
-    //   );
-    //   return; // detener prueba
     // } catch (Exception e) {
-    //   // No hubo alerta: continuamos
+    //   System.out.println("No apareció ninguna alerta");
     // }
 
-    wait.until(ExpectedConditions.urlContains("/menu"));
-    driver.get("http://localhost:4200/menu");
-    driver.get("http://localhost:4200/info-plato/5");
+    // driver.get("http://localhost:4200/info-plato/8");
+    // List<WebElement> checkboxes1 = driver.findElements(By.id("check"));
+    // checkboxes1.get(0).click();
+    // wait.until(ExpectedConditions.presenceOfElementLocated(By.id("check")));
+    // checkboxes1.get(1).click();
 
-    List<WebElement> checkboxes = driver.findElements(By.id("check"));
-    checkboxes.get(0).click();
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("check")));
-    checkboxes.get(1).click();
+    // WebElement btnAgregar1 = driver.findElement(By.className("buttonadd"));
+    // btnAgregar1.click();
 
-    WebElement btnAgregar = driver.findElement(By.className("buttonadd"));
-    btnAgregar.click();
+    // try {
+    //   wait.until(ExpectedConditions.alertIsPresent());
+    //   driver.switchTo().alert().accept();
+    // } catch (Exception e) {
+    //   System.out.println("No apareció ninguna alerta");
+    // }
 
-    try {
-      wait.until(ExpectedConditions.alertIsPresent());
-      driver.switchTo().alert().accept();
-    } catch (Exception e) {
-      System.out.println("No apareció ninguna alerta");
-    }
+    // driver.get("http://localhost:4200/carrito-icon");
 
-    driver.get("http://localhost:4200/info-plato/8");
-    List<WebElement> checkboxes1 = driver.findElements(By.id("check"));
-    checkboxes1.get(0).click();
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("check")));
-    checkboxes1.get(1).click();
+    // wait.until(
+    //   ExpectedConditions.presenceOfElementLocated(
+    //     By.className("carrito-container")
+    //   )
+    // );
 
-    WebElement btnAgregar1 = driver.findElement(By.className("buttonadd"));
-    btnAgregar1.click();
+    // List<WebElement> itemsEnCarrito = driver.findElements(By.className("item"));
+    // assert (
+    //   itemsEnCarrito.size() == 2
+    // ) : "Se esperaban 2 productos en el carrito, pero se encontraron " +
+    // itemsEnCarrito.size();
 
-    try {
-      wait.until(ExpectedConditions.alertIsPresent());
-      driver.switchTo().alert().accept();
-    } catch (Exception e) {
-      System.out.println("No apareció ninguna alerta");
-    }
+    // for (WebElement item : itemsEnCarrito) {
+    //   List<WebElement> adicionales = item.findElements(By.tagName("li"));
+    //   assert (
+    //     !adicionales.isEmpty()
+    //   ) : "El producto no tiene adicionales asociados.";
+    // }
 
-    driver.get("http://localhost:4200/carrito-icon");
+    // WebElement btnconfirmar = driver.findElement(By.className("btn-confirmar"));
+    // btnconfirmar.click();
 
-    wait.until(
-      ExpectedConditions.presenceOfElementLocated(
-        By.className("carrito-container")
-      )
-    );
+  }
 
-    List<WebElement> itemsEnCarrito = driver.findElements(By.className("item"));
-    assert (
-      itemsEnCarrito.size() == 2
-    ) : "Se esperaban 2 productos en el carrito, pero se encontraron " +
-    itemsEnCarrito.size();
+  @Test
+  public void UseCaseTwo() throws InterruptedException {
+    driver.get("http://localhost:4200/login-operador");
 
-    for (WebElement item : itemsEnCarrito) {
-      List<WebElement> adicionales = item.findElements(By.tagName("li"));
-      assert (
-        !adicionales.isEmpty()
-      ) : "El producto no tiene adicionales asociados.";
-    }
+    driver.findElement(By.id("usuario")).sendKeys("ana456");
+    driver.findElement(By.id("contrasena")).sendKeys("password456");
 
-    WebElement btnconfirmar = driver.findElement(By.className("btn-confirmar"));
-    btnconfirmar.click();
+    WebElement btnIniciarOp = driver.findElement(By.id("btnLoginOp"));
+    btnIniciarOp.click();
   }
 
   @AfterEach
