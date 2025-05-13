@@ -51,8 +51,8 @@ public class UseCaseTest {
     //   // No hubo alerta: continuamos
     // }
 
-    // Esperar que la URL cambie a "/menu" o que un elemento post-login esté presente
     wait.until(ExpectedConditions.urlContains("/menu"));
+    driver.get("http://localhost:4200/menu");
     driver.get("http://localhost:4200/info-plato/5");
 
     List<WebElement> checkboxes = driver.findElements(By.id("check"));
