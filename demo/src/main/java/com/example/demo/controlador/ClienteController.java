@@ -1,11 +1,17 @@
 package com.example.demo.controlador;
 
+import com.example.demo.DTO.ClienteDTO;
+import com.example.demo.DTO.ClienteMapper;
 import com.example.demo.entidades.Cliente;
 import com.example.demo.servicio.ClienteService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +23,9 @@ public class ClienteController {
 
   @Autowired
   private ClienteService clienteService;
+
+  @Autowired
+  private com.example.demo.repositorio.ClienteRepository clienteRepository;
 
   //http://localhost:8090/clientes/all
   @GetMapping("/all") // Cambiado a /all para evitar conflictos con el método mostrarClientes
@@ -38,10 +47,30 @@ public class ClienteController {
   }
 
   //http://localhost:8090/clientes/add
-  @PostMapping("/add") // Cambiado a /add para evitar conflictos con el método agregarCliente
-  public void agregarCliente(@RequestBody Cliente cliente) {
-    clienteService.add(cliente);
-  }
+@PostMapping("/add")
+public ResponseEntity<ClienteDTO> agregarCliente(@RequestBody @Valid ClienteDTO clienteDTO) {
+    
+    // Validación de existencia del cliente (si aplica)
+    if (clienteRepository.findByEmail(clienteDTO.getEmail()) != null) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    // Convertir de DTO a entidad
+    Cliente cliente = ClienteMapper.INSTANCE.convert(clienteDTO);
+
+    // Guardar el cliente
+    Cliente nuevoCliente = clienteService.add(cliente);
+
+    // Convertir de vuelta a DTO
+    ClienteDTO nuevoClienteDTO = ClienteMapper.INSTANCE.convert(nuevoCliente);
+
+    if (nuevoCliente == null) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    return new ResponseEntity<>(nuevoClienteDTO, HttpStatus.CREATED);
+}
+
 
   //http://localhost:8090/clientes/delete/id
   @DeleteMapping("/delete/{id}") // Cambiado a /delete/{id} para evitar conflictos con el método eliminarCliente

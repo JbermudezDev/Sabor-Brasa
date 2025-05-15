@@ -2,9 +2,14 @@ package com.example.demo.entidades;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "domiciliario")
 public class Domiciliario {
 
@@ -28,7 +33,7 @@ public class Domiciliario {
     @JsonBackReference
     private List<Pedido> pedidos;
 
-    public Domiciliario() {}
+  
 
     public Domiciliario(Integer id, String nombre, String celular, String cedula, boolean disponibilidad) {
         this.id = id;
@@ -38,51 +43,5 @@ public class Domiciliario {
         this.disponibilidad = disponibilidad;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public boolean isDisponibilidad() {
-        return disponibilidad;
-    }
-
-    public void setDisponibilidad(boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
+  
 }

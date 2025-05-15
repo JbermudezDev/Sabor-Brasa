@@ -1,5 +1,8 @@
 package com.example.demo.entidades;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
@@ -10,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "producto")
 public class Producto {
     @Id
@@ -33,7 +38,7 @@ public class Producto {
     @JsonIgnoreProperties("productos")
     private List<Adicional> adicionales = new ArrayList<>();
 
-    public Producto() {}
+  
 
     public Producto(String nombre, float precio, String descripcion, String imagen) {
         this.nombre = nombre;
@@ -55,56 +60,6 @@ public class Producto {
     
   
 
-    // Getters y Setters
-    public Long getId() { 
-        return id; 
-    }
-    public void setId(Long id) { 
-        this.id = id;
-     }
-
-    public String getNombre() { 
-        return nombre;
-     }
-    public void setNombre(String nombre) { 
-        this.nombre = nombre; 
-    }
-
-    public float getPrecio() { 
-        return precio;
-     }
-    public void setPrecio(float precio) { 
-        this.precio = precio;
-     }
-
-    public String getDescripcion() { 
-        return descripcion;
-     }
-    public void setDescripcion(String descripcion) {
-         this.descripcion = descripcion;
-         }
-
-    public String getImagen() {
-         return imagen; 
-        }
-    public void setImagen(String imagen) {
-         this.imagen = imagen;
-         }
-
-         public Categoria getCategoria() {
-            return categoria;
-        }
-    
-        public void setCategoria(Categoria categoria) {
-            this.categoria = categoria;
-        }
-
-    public List<Adicional> getAdicionales() {
-            return adicionales;
-        }
-    
-    public void setAdicionales(List<Adicional> adicionales) {
-            this.adicionales = adicionales;
-        }
+   
  
 }

@@ -1,5 +1,6 @@
 package com.example.demo.servicio;
 
+import com.example.demo.entidades.Cliente;
 import com.example.demo.entidades.Operador;
 import com.example.demo.repositorio.OperadorRepository;
 
@@ -23,9 +24,12 @@ public class OperadorService {
         return operadorRepository.findById(id);
     }
 
-    public void add(Operador operador) {
-        operadorRepository.save(operador);
+    public Operador add(Operador operador) {
+        return operadorRepository.save(operador);
     }
+
+    
+    
     public boolean existsByUsuario(String usuario) {
         return operadorRepository.existsByUsuario(usuario);
     }

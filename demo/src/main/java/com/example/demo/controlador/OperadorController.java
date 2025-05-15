@@ -2,6 +2,8 @@ package com.example.demo.controlador;
 
 import com.example.demo.entidades.Operador;
 import com.example.demo.servicio.OperadorService;
+import com.example.demo.DTO.OperadorDTO;
+import com.example.demo.DTO.OperadorMapper;
 
 import jakarta.validation.Valid;
 
@@ -38,21 +40,22 @@ public class OperadorController {
         return operadorService.findById(id).orElse(null);
     }
 
-    //http://localhost:8090/operadores/agregar
+    // http://localhost:8090/operadores/add
     // Agregar un nuevo operador
     @PostMapping("/add")
-public ResponseEntity<Map<String, String>> agregarOperador(@RequestBody Operador operador) {
-    try {
-        operadorService.add(operador);
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Operador añadido correctamente");
-        return ResponseEntity.ok(response);
-    } catch (Exception e) {
-        Map<String, String> errorResponse = new HashMap<>();
-        errorResponse.put("error", "Error al añadir el operador: " + e.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    public ResponseEntity<Map<String, String>> agregarOperador(@RequestBody OperadorDTO operadorDTO) {
+        try {
+            Operador operador = OperadorMapper.INSTANCE.convert(operadorDTO);
+            operadorService.add(operador);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Operador añadido correctamente");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "Error al añadir el operador: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
     }
-}
 
     //http://localhost:8090/operadores/update/id
     // Actualizar un operador existente

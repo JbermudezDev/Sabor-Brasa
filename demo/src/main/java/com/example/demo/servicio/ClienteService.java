@@ -24,9 +24,9 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public void add(Cliente cliente) {
-        clienteRepository.save(cliente);
-    }
+    public Cliente add(Cliente cliente) {
+    return clienteRepository.save(cliente);
+}
 
     public void deleteById(Long id) {
         clienteRepository.deleteById(id);

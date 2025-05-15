@@ -1,9 +1,14 @@
 package com.example.demo.entidades;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "seleccionar_productos")
 public class SeleccionarProductos {
 
@@ -30,7 +35,7 @@ public class SeleccionarProductos {
     )
     private List<Adicional> adicionales;
 
-    public SeleccionarProductos() {}
+   
 
     public SeleccionarProductos(Integer id, int cantidad, CarritoCompras carrito, Producto producto, List<Adicional> adicionales) {
         this.id = id;
@@ -40,45 +45,4 @@ public class SeleccionarProductos {
         this.adicionales = adicionales;
     }
 
-    // Getters y Setters
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public CarritoCompras getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(CarritoCompras carrito) {
-        this.carrito = carrito;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    public List<Adicional> getAdicionales() {
-        return adicionales;
-    }
-
-    public void setAdicionales(List<Adicional> adicionales) {
-        this.adicionales = adicionales;
-    }
 }

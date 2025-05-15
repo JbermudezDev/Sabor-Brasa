@@ -47,34 +47,30 @@ public class DatabaseInit implements ApplicationRunner {
 
 
         
-            administradorRepository.save(new Administrador("Juan Jose Bermudez", "thejuanjo1128@gmail.com", "123456"));
-            
-            // Crear y guardar clientes
-            Cliente cliente1 = clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
-            Cliente cliente2 = clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
-
-            
-            
-           // Crear y guardar operadores
-            Operador operador1 = new Operador(null,"Carlos Operador", "carlos123", "password123");
+           
+            Administrador administrador= Administrador.builder().nombre("Juan Jose Bermudez").email("thejuanjo1128@gmail.com").password("123456").build();
+            administradorRepository.save(administrador);
+           
+            Operador operador1 = Operador.builder().nombre("Carlos Operador").usuario("carlos123").contrasena("password123").build();
             operadorRepository.save(operador1);
 
-            Operador operador2 = new Operador(null,"Ana Operadora", "ana456", "password456");
+            Operador operador2 = Operador.builder().nombre("Ana Operadora").usuario("ana456").contrasena("password456").build();
             operadorRepository.save(operador2);
 
-            Operador operador3 = new Operador(null,"Luis Operador", "luis789", "password789");
+            Operador operador3 = Operador.builder().nombre("Luis Operador").usuario("luis789").contrasena("password789").build();
             operadorRepository.save(operador3);
-
-             Domiciliario domiciliario1 = new Domiciliario(null, "Pedro Gómez", "3001234567", "123456789", true);
-                domiciliarioRepository.save(domiciliario1);
-
-                        
-             
             
+             // Crear y guardar clientes
+            Cliente cliente1 = clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
             
-            
+            Cliente cliente2 = clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
 
-             // Crear y guardar productos
+           
+
+            Domiciliario domiciliario1 = new Domiciliario(null, "Pedro Gómez", "3001234567", "123456789", true);
+            domiciliarioRepository.save(domiciliario1);
+
+            // Crear y guardar productos
             clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
             // Crear y guardar productos
             
