@@ -9,15 +9,20 @@ import com.example.demo.repositorio.ProductoRepository;
 import com.example.demo.repositorio.OperadorRepository;
 import com.example.demo.repositorio.PedidoRepository;
 import com.example.demo.entidades.Adicional;
+import com.example.demo.repositorio.RoleRepository;
+import com.example.demo.repositorio.UserRepository;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import jakarta.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @Component
 @Transactional
@@ -42,36 +47,78 @@ public class DatabaseInit implements ApplicationRunner {
     @Autowired
     private PedidoRepository pedidoRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
 
-        
+            roleRepository.save(new Role("ADMIN"));
+            roleRepository.save(new Role("CLIENTE"));
+            roleRepository.save(new Role("DOMICILIARIO"));
+            roleRepository.save(new Role("OPERADOR"));
            
-            Administrador administrador= Administrador.builder().nombre("Juan Jose Bermudez").email("thejuanjo1128@gmail.com").password("123456").build();
-            administradorRepository.save(administrador);
-           
-            Operador operador1 = Operador.builder().nombre("Carlos Operador").usuario("carlos123").contrasena("password123").build();
-            operadorRepository.save(operador1);
+            Cliente clienteSave;
+            Administrador adminSave;
+            Domiciliario domiciliarioSave;
+            Operador operadorSave;
+            UserEntity userEntity;
 
-            Operador operador2 = Operador.builder().nombre("Ana Operadora").usuario("ana456").contrasena("password456").build();
-            operadorRepository.save(operador2);
 
-            Operador operador3 = Operador.builder().nombre("Luis Operador").usuario("luis789").contrasena("password789").build();
-            operadorRepository.save(operador3);
             
-             // Crear y guardar clientes
-            Cliente cliente1 = clienteRepository.save(new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "bermu123", "1234567890", "Calle Falsa 123"));
+           
+            adminSave = Administrador.builder().nombre("Juan Jose Bermudez").email("thejuanjo1128@gmail.com").password("123456").build();
+            userEntity = saveUserAdmin(adminSave);
+            adminSave.setUser(userEntity);
+            administradorRepository.save(adminSave);
+
+            operadorSave = Operador.builder().nombre("Carlos Operador").usuario("carlos123").contrasena("password123").build();
+            userEntity = saveUserOperador(operadorSave);
+            operadorSave.setUser(userEntity);
+            operadorRepository.save(operadorSave);
+
+            operadorSave = Operador.builder().nombre("Ana Operadora").usuario("ana456").contrasena("password456").build();
+            userEntity = saveUserOperador(operadorSave);
+            operadorSave.setUser(userEntity);
+            operadorRepository.save(operadorSave);
+
+            operadorSave = Operador.builder().nombre("Luis Operador").usuario("luis789").contrasena("password789").build();
+            userEntity = saveUserOperador(operadorSave);
+            operadorSave.setUser(userEntity);
+            operadorRepository.save(operadorSave);
             
-            Cliente cliente2 = clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
+            clienteSave = new Cliente("Carlos", "Perez", "molokojj09@gmail.com", "123456", "1234567890", "Calle Falsa 123");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepository.save(clienteSave);
+
+            clienteSave = new Cliente("Juan", "Bermudez", "joseber63@hotmail.com", "123456", "1234567890", "Calle Falsa 123");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepository.save(clienteSave);
+
+            clienteSave = new Cliente("Juan", "Bermudez", "joseber@hotmail.com", "123456", "1234567890", "Calle Falsa 123");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepository.save(clienteSave);
 
            
 
-            Domiciliario domiciliario1 = new Domiciliario(null, "Pedro Gómez", "3001234567", "123456789", true);
-            domiciliarioRepository.save(domiciliario1);
+            domiciliarioSave = new Domiciliario(null, "Pedro Gómez", "3001234567", "123456789", true);
+            userEntity = saveUserDomiciliario(domiciliarioSave);
+            domiciliarioSave.setUser(userEntity);
+            domiciliarioRepository.save(domiciliarioSave);
 
-            // Crear y guardar productos
-            clienteRepository.save(new Cliente("Juan", "Bermudez", "joseber@hotmail.com", "123456", "1234567890", "Calle Falsa 123"));
+           
+           
+            
             // Crear y guardar productos
             
             Producto producto2 = new Producto("Chichanorrada", 18.00f, "Crujientes trozos de cerdo fritos hasta alcanzar el punto perfecto de dorado y jugosidad.", "/images/entrada2.png");
@@ -229,10 +276,49 @@ public class DatabaseInit implements ApplicationRunner {
             productoRepository.save(producto9);
             productoRepository.save(producto10);
 
-
+            
             
            
-        
+    
         }
+
+        
+
+    private UserEntity saveUserAdmin(Administrador admin){
+        UserEntity user = new UserEntity();
+        user.setUsername(admin.getEmail());
+        user.setPassword(passwordEncoder.encode(admin.getPassword()));
+        Role roles = roleRepository.findByName("ADMIN").get();
+        user.setRoles(List.of(roles));
+        return userRepository.save(user);
     }
+
+     private UserEntity saveUserCliente(Cliente cliente){
+        UserEntity user = new UserEntity();
+        user.setUsername(cliente.getEmail());
+        user.setPassword(passwordEncoder.encode("123456"));
+        Role roles = roleRepository.findByName("CLIENTE").get();
+        user.setRoles(List.of(roles));
+        return userRepository.save(user);
+    }
+
+        private UserEntity saveUserDomiciliario(Domiciliario domiciliario){
+            UserEntity user = new UserEntity();
+            user.setUsername(domiciliario.getCelular());
+            user.setPassword(passwordEncoder.encode("123456"));
+            Role roles = roleRepository.findByName("DOMICILIARIO").get();
+            user.setRoles(List.of(roles));
+            return userRepository.save(user);
+        }
+    
+        private UserEntity saveUserOperador(Operador operador){
+            UserEntity user = new UserEntity();
+            user.setUsername(operador.getUsuario());
+            user.setPassword(passwordEncoder.encode(operador.getContrasena()));
+            Role roles = roleRepository.findByName("OPERADOR").get();
+            user.setRoles(List.of(roles));
+            return userRepository.save(user);
+    }
+
+}
 

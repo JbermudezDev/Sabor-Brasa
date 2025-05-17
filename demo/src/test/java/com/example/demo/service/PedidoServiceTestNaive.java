@@ -129,9 +129,11 @@ public class PedidoServiceTestNaive {
     CarritoCompras carrito = carritoRepository.save(
       new CarritoCompras(cliente)
     );
-    Operador operador = operadorRepository.save(
-      new Operador(null, "Mario", "mario_op", "claveop123")
-    );
+    Operador operador = new Operador();
+    operador.setNombre("Mario");
+    operador.setUsuario("mario_op");
+    operador.setContrasena("claveop123");
+    operador = operadorRepository.save(operador);
 
     Pedido pedido = new Pedido();
     pedido.setCliente(cliente);

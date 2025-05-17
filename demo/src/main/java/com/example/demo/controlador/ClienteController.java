@@ -3,6 +3,7 @@ package com.example.demo.controlador;
 import com.example.demo.DTO.ClienteDTO;
 import com.example.demo.DTO.ClienteMapper;
 import com.example.demo.entidades.Cliente;
+import com.example.demo.repositorio.UserRepository;
 import com.example.demo.servicio.ClienteService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController // Cambiado a RestController para manejar JSON
 @RequestMapping("/clientes")
 @CrossOrigin(origins = "http://localhost:4200") // Cambiado para permitir solicitudes desde Angular
@@ -26,6 +28,11 @@ public class ClienteController {
 
   @Autowired
   private com.example.demo.repositorio.ClienteRepository clienteRepository;
+
+  @Autowired
+  private UserRepository userRepository;
+
+  
 
   //http://localhost:8090/clientes/all
   @GetMapping("/all") // Cambiado a /all para evitar conflictos con el método mostrarClientes

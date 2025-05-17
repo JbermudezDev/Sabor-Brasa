@@ -1,5 +1,7 @@
 package com.example.demo.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
@@ -18,6 +20,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class Administrador {
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private UserEntity user;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

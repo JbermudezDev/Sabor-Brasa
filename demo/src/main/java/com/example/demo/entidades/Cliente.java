@@ -1,5 +1,7 @@
 package com.example.demo.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -9,6 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Cliente {
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private UserEntity user;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

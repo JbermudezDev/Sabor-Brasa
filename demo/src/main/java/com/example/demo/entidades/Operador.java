@@ -1,6 +1,8 @@
 package com.example.demo.entidades;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,11 @@ import java.util.List;
 @Table(name = "operador")
 public class Operador {
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private UserEntity user;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
