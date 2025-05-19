@@ -162,23 +162,31 @@ public class PedidoService {
     EstadoPedido nuevoEstado,
     Operador operador,
     Integer domiciliarioId
-  ) {
+) {
     Pedido pedido = pedidoRepository
-      .findById(pedidoId)
-      .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado"));
+        .findById(pedidoId)
+        .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado"));
 
     pedido.setEstado(nuevoEstado);
     pedido.setOperador(operador);
 
     if (domiciliarioId != null) {
-      Domiciliario domiciliario = domiciliarioService
-        .buscarPorId(domiciliarioId)
-        .orElseThrow(() ->
-          new IllegalArgumentException("Domiciliario no encontrado")
-        );
-      pedido.setDomiciliario(domiciliario);
+        Domiciliario domiciliario = domiciliarioService
+            .buscarPorId(domiciliarioId)
+            .orElseThrow(() -> new IllegalArgumentException("Domiciliario no encontrado"));
+        pedido.setDomiciliario(domiciliario);
+    }
+
+    // ✅ Guardar fecha de entrega si el estado es ENTREGADO
+    if (nuevoEstado == EstadoPedido.ENTREGADO) {
+        pedido.setFechaEntrega(new Date());
+
+        if (pedido.getDomiciliario() != null) {
+            pedido.getDomiciliario().setDisponibilidad(true);
+        }
     }
 
     return pedidoRepository.save(pedido);
-  }
+}
+
 }
