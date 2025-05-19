@@ -11,6 +11,12 @@ import com.example.demo.servicio.CarritoComprasService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import java.net.Authenticator;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,11 +39,14 @@ public class LoginController {
     @Autowired
     private CarritoComprasService carritoService;
 
+    @Autowired
+    private org.springframework.security.authentication.AuthenticationManager authenticationManager;
+
     //http://localhost:8090/login/cliente
     // ====== LOGIN CLIENTE CON CREACIÓN DE COOKIE ======
     @PostMapping("/cliente")
     public ResponseEntity<?> loginCliente(@RequestBody Cliente credenciales, HttpServletResponse response) {
-        String email = credenciales.getEmail();
+        /*String email = credenciales.getEmail();
         String password = credenciales.getPassword();
 
         Cliente cliente = clienteService.autenticar(email, password);
@@ -69,6 +78,16 @@ public class LoginController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
         }
+    
+        return null;
+        */
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(credenciales.getEmail(), credenciales.getPassword())
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return new ResponseEntity<String>("Usuario autenticado correctamente", HttpStatus.OK);
+
     }
 
     //http://localhost:8090/login/admin
