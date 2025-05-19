@@ -14,7 +14,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.net.Authenticator;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -47,43 +51,9 @@ public class LoginController {
     JWTGenerator jwtGenerator;
     //http://localhost:8090/login/cliente
     // ====== LOGIN CLIENTE CON CREACIÓN DE COOKIE ======
-    @PostMapping("/cliente")
-    public ResponseEntity<?> loginCliente(@RequestBody Cliente credenciales, HttpServletResponse response) {
-        /*String email = credenciales.getEmail();
-        String password = credenciales.getPassword();
-
-        Cliente cliente = clienteService.autenticar(email, password);
-
-        if (cliente != null) {
-            // Buscar si ya existe un carrito
-            CarritoCompras carrito = carritoService.buscarCarritoPorCliente(cliente.getId());
-            if (carrito == null) {
-                carrito = carritoService.crearCarrito(cliente.getId()); // Crear si no existe
-            }
-
-            // Crear cookie para clienteId
-            Cookie clienteCookie = new Cookie("clienteId", String.valueOf(cliente.getId()));
-            clienteCookie.setHttpOnly(false);
-            clienteCookie.setSecure(false); // Para localhost puede ser false
-            clienteCookie.setMaxAge(60 * 60); // 1 hora
-            clienteCookie.setPath("/");
-            response.addCookie(clienteCookie);
-
-            // Crear cookie para carritoId
-            Cookie carritoCookie = new Cookie("carritoId", String.valueOf(carrito.getId()));
-            carritoCookie.setHttpOnly(false);
-            carritoCookie.setSecure(false);
-            carritoCookie.setMaxAge(60 * 60);
-            carritoCookie.setPath("/");
-            response.addCookie(carritoCookie);
-
-            return ResponseEntity.ok(cliente); // Retorna el cliente
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
-        }
-    
-        return null;
-        */
+   @PostMapping("/cliente")
+public ResponseEntity<?> loginCliente(@RequestBody Cliente credenciales) {
+    try {
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(credenciales.getEmail(), credenciales.getPassword())
         );
@@ -91,36 +61,64 @@ public class LoginController {
 
         String token = jwtGenerator.generateToken(authentication);
 
-        return new ResponseEntity<String>(token, HttpStatus.OK);
+        Cliente clienteAutenticado = clienteService.autenticar(credenciales.getEmail(), credenciales.getPassword());
 
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", token);
+        response.put("cliente", clienteAutenticado);
+
+        return ResponseEntity.ok(response); // ✅ Devuelve: { "token": "...", "cliente": {...} }
+
+    } catch (BadCredentialsException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en el servidor");
     }
+}
+
 
     //http://localhost:8090/login/admin
     // ====== LOGIN ADMINISTRADOR ======
     @PostMapping("/admin")
-    public ResponseEntity<?> loginAdministrador(@RequestBody Administrador credenciales, HttpServletResponse response) {
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(credenciales.getEmail(), credenciales.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtGenerator.generateToken(authentication);
+    public ResponseEntity<?> loginAdministrador(@RequestBody Administrador credenciales) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(credenciales.getEmail(), credenciales.getPassword())
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtGenerator.generateToken(authentication);
 
-        return new ResponseEntity<String>(token, HttpStatus.OK);
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
+            return ResponseEntity.ok(response);
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en el servidor");
+        }
     }
 
     //http://localhost:8090/login/operador
     // ====== LOGIN OPERADOR ======
    @PostMapping("/operador")
-        public ResponseEntity<?> loginOperador(@RequestBody Operador credenciales, HttpServletResponse response) {
+public ResponseEntity<?> loginOperador(@RequestBody Operador credenciales) {
+    try {
         Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(credenciales.getUsuario(), credenciales.getContrasena())
+            new UsernamePasswordAuthenticationToken(credenciales.getUsuario(), credenciales.getContrasena())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtGenerator.generateToken(authentication);
 
-        return new ResponseEntity<String>(token, HttpStatus.OK);
-}
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+        return ResponseEntity.ok(response); // ✅ Devuelve JSON: { "token": "..." }
 
+    } catch (BadCredentialsException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en el servidor");
+    }
+}
 
     //http://localhost:8090/login/logoutCliente
     // ====== LOGOUT CLIENTE ======
