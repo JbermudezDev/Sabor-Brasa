@@ -1,5 +1,6 @@
 package com.example.demo.controlador;
 
+import com.example.demo.Security.JWTGenerator;
 import com.example.demo.entidades.Administrador;
 import com.example.demo.entidades.Cliente;
 import com.example.demo.entidades.Operador;
@@ -42,6 +43,8 @@ public class LoginController {
     @Autowired
     private org.springframework.security.authentication.AuthenticationManager authenticationManager;
 
+    @Autowired
+    JWTGenerator jwtGenerator;
     //http://localhost:8090/login/cliente
     // ====== LOGIN CLIENTE CON CREACIÓN DE COOKIE ======
     @PostMapping("/cliente")
@@ -86,43 +89,38 @@ public class LoginController {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<String>("Usuario autenticado correctamente", HttpStatus.OK);
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<String>(token, HttpStatus.OK);
 
     }
 
     //http://localhost:8090/login/admin
     // ====== LOGIN ADMINISTRADOR ======
     @PostMapping("/admin")
-    public ResponseEntity<?> loginAdministrador(@RequestBody Administrador credenciales, HttpSession session) {
-        String email = credenciales.getEmail();
-        String password = credenciales.getPassword();
+    public ResponseEntity<?> loginAdministrador(@RequestBody Administrador credenciales, HttpServletResponse response) {
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(credenciales.getEmail(), credenciales.getPassword())
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtGenerator.generateToken(authentication);
 
-        Administrador admin = administradorService.autenticar(email, password);
-
-        if (admin != null) {
-            session.setAttribute("adminLogueado", admin);
-            return ResponseEntity.ok(admin);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
-        }
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
 
     //http://localhost:8090/login/operador
     // ====== LOGIN OPERADOR ======
-    @PostMapping("/operador")
-    public ResponseEntity<?> loginOperador(@RequestBody Operador credenciales, HttpSession session) {
-        String usuario = credenciales.getUsuario();
-        String contrasena = credenciales.getContrasena();
+   @PostMapping("/operador")
+        public ResponseEntity<?> loginOperador(@RequestBody Operador credenciales, HttpServletResponse response) {
+        Authentication authentication = authenticationManager.authenticate(
+        new UsernamePasswordAuthenticationToken(credenciales.getUsuario(), credenciales.getContrasena())
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtGenerator.generateToken(authentication);
 
-        Operador operador = operadorService.autenticar(usuario, contrasena);
+        return new ResponseEntity<String>(token, HttpStatus.OK);
+}
 
-        if (operador != null) {
-            session.setAttribute("operadorLogueado", operador);
-            return ResponseEntity.ok(operador);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
-        }
-    }
 
     //http://localhost:8090/login/logoutCliente
     // ====== LOGOUT CLIENTE ======
