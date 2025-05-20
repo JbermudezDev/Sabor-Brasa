@@ -1,6 +1,6 @@
 package com.example.demo.Security;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,42 +17,59 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private JwtAuthEntryPoint jwtAuthEntryPoint;
-    @Bean
-    SecurityFilterChain securuSecurityFilterChain(HttpSecurity http) throws Exception {
-        
-        http.
-            csrf(AbstractHttpConfigurer::disable)
-            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
-            .authorizeHttpRequests(requests -> requests
-                .requestMatchers("/h2/**").permitAll()
-                .requestMatchers("/login/cliente").permitAll()
-                .requestMatchers("/login/administrador").permitAll()
-                .requestMatchers("/login/operador").permitAll()
-                .anyRequest().permitAll()
-                )
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));
+  @Autowired
+  private JwtAuthEntryPoint jwtAuthEntryPoint;
 
-                http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-                return http.build();
-            
-    }
+  @Bean
+  SecurityFilterChain securuSecurityFilterChain(HttpSecurity http)
+    throws Exception {
+    http
+      .csrf(AbstractHttpConfigurer::disable)
+      .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+      .authorizeHttpRequests(requests ->
+        requests
+          .requestMatchers("/h2/**")
+          .permitAll()
+          .requestMatchers("/login/cliente")
+          .permitAll()
+          .requestMatchers("/login/administrador")
+          .permitAll()
+          .requestMatchers("/login/operador")
+          .permitAll()
+          .requestMatchers("operadores/detail")
+          .hasAuthority("OPERADOR")
+          .anyRequest()
+          .permitAll()
+          .requestMatchers("/clientes/detail")
+          .hasAuthority("CLIENTE")
+          .anyRequest()
+          .permitAll()
+      )
+      .exceptionHandling(exception ->
+        exception.authenticationEntryPoint(jwtAuthEntryPoint)
+      );
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    http.addFilterBefore(
+      jwtAuthenticationFilter(),
+      UsernamePasswordAuthenticationFilter.class
+    );
+    return http.build();
+  }
 
-    @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+  @Bean
+  PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    public JWTAuthenticationFilter jwtAuthenticationFilter() {
-        return new JWTAuthenticationFilter();
-    }
+  @Bean
+  AuthenticationManager authenticationManager(
+    AuthenticationConfiguration authenticationConfiguration
+  ) throws Exception {
+    return authenticationConfiguration.getAuthenticationManager();
+  }
 
-    
+  @Bean
+  public JWTAuthenticationFilter jwtAuthenticationFilter() {
+    return new JWTAuthenticationFilter();
+  }
 }

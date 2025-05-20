@@ -7,16 +7,15 @@ import com.example.demo.repositorio.UserRepository;
 import com.example.demo.servicio.ClienteService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController // Cambiado a RestController para manejar JSON
 @RequestMapping("/clientes")
@@ -32,8 +31,6 @@ public class ClienteController {
   @Autowired
   private UserRepository userRepository;
 
-  
-
   //http://localhost:8090/clientes/all
   @GetMapping("/all") // Cambiado a /all para evitar conflictos con el método mostrarClientes
   public List<Cliente> mostrarClientes(Model model) {
@@ -45,7 +42,7 @@ public class ClienteController {
   public Cliente verCliente(@PathVariable("id") Long id) {
     return clienteService.findById(id).orElse(null);
   }
-  
+
   //http://localhost:8090/clientes/agregar
   @GetMapping("/agregar")
   public String mostrarFormularioAgregarCliente(Model model) {
@@ -54,12 +51,13 @@ public class ClienteController {
   }
 
   //http://localhost:8090/clientes/add
-@PostMapping("/add")
-public ResponseEntity<ClienteDTO> agregarCliente(@RequestBody @Valid ClienteDTO clienteDTO) {
-    
+  @PostMapping("/add")
+  public ResponseEntity<ClienteDTO> agregarCliente(
+    @RequestBody @Valid ClienteDTO clienteDTO
+  ) {
     // Validación de existencia del cliente (si aplica)
     if (clienteRepository.findByEmail(clienteDTO.getEmail()) != null) {
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     // Convertir de DTO a entidad
@@ -72,12 +70,11 @@ public ResponseEntity<ClienteDTO> agregarCliente(@RequestBody @Valid ClienteDTO 
     ClienteDTO nuevoClienteDTO = ClienteMapper.INSTANCE.convert(nuevoCliente);
 
     if (nuevoCliente == null) {
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     return new ResponseEntity<>(nuevoClienteDTO, HttpStatus.CREATED);
-}
-
+  }
 
   //http://localhost:8090/clientes/delete/id
   @DeleteMapping("/delete/{id}") // Cambiado a /delete/{id} para evitar conflictos con el método eliminarCliente
@@ -127,6 +124,17 @@ public ResponseEntity<ClienteDTO> agregarCliente(@RequestBody @Valid ClienteDTO 
     } else {
       return "redirect:/clientes/all"; // Redirige si no se encuentra el cliente
     }
+  }
+
+  @GetMapping("/details")
+  public ResponseEntity<Cliente> getAllClientes() {
+    Cliente cliente = clienteService.findByEmail(
+      SecurityContextHolder.getContext().getAuthentication().getName()
+    );
+    if (cliente == null) {
+      return new ResponseEntity<Cliente>(cliente, HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
   }
 
   //http://localhost:8090/clientes/perfil/update/id

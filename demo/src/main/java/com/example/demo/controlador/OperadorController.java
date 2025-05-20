@@ -16,6 +16,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequestMapping("/operadores")
@@ -99,4 +103,15 @@ public class OperadorController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar el operador: " + e.getMessage());
     }
 }
+@GetMapping("details")
+public ResponseEntity<OperadorDTO> obtenerDetallesOperador() {
+    Operador operador = operadorService.findByEmail(
+        securityContextHolder.getContext().getAuthentication().getName()
+    );
+    OperadorDTO operadorDTO = OperadorMapper.INSTANCE.convert(operador);
+    if (operador == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(operadorDTO);
+    } else {
+        return new ResponseEntity<>(operadorDTO, HttpStatus.OK);
+    }
 }
