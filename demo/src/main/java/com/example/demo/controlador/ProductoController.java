@@ -9,7 +9,8 @@ import com.example.demo.servicio.ProductoService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.TreeMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -169,4 +170,19 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
     }
 }
+
+@GetMapping("/categorias-distribucion")
+public ResponseEntity<Map<String, Integer>> obtenerDistribucionCategorias() {
+    List<Producto> productos = productoService.obtenerTodos();
+    Map<String, Integer> conteo = new TreeMap<>();
+
+    for (Producto producto : productos) {
+        String categoria = producto.getCategoria() != null ? producto.getCategoria().name() : "Sin categoría";
+        conteo.put(categoria, conteo.getOrDefault(categoria, 0) + 1);
+    }
+
+    return ResponseEntity.ok(conteo);
+}
+
+
 }
