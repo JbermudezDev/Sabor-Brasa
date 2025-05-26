@@ -5,11 +5,26 @@ import com.example.demo.entidades.*;
 import com.example.demo.servicio.DomiciliarioService;
 import com.example.demo.servicio.OperadorService;
 import com.example.demo.servicio.PedidoService;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.draw.LineSeparator;
+import java.text.NumberFormat;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
+import java.io.ByteArrayOutputStream;
+import com.lowagie.text.Document;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Element;
 @RestController
 @RequestMapping("/pedidos")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -227,5 +242,110 @@ public ResponseEntity<Map<String, Integer>> topClientesPorPedidos() {
     return ResponseEntity.ok(resultado);
 }
 
+@GetMapping("/{id}/pdf")
+public ResponseEntity<byte[]> generarPdfPedido(@PathVariable Integer id) {
+    Optional<Pedido> optionalPedido = pedidoService.findById(id);
+    if (optionalPedido.isEmpty()) {
+        return ResponseEntity.notFound().build();
+    }
+
+    Pedido pedido = optionalPedido.get();
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+
+    try {
+        PdfWriter.getInstance(document, baos);
+        document.open();
+
+        // Fuentes
+        Font tituloFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18);
+        Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
+        Font normalFont = FontFactory.getFont(FontFactory.HELVETICA, 12);
+        Font boldFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+
+        NumberFormat formatoPesos = NumberFormat.getNumberInstance(new Locale("es", "CO"));
+
+        // Encabezado
+        Paragraph header = new Paragraph("🍖 Sabor y Brasa - Factura de Pedido\n\n", tituloFont);
+        header.setAlignment(Element.ALIGN_CENTER);
+        document.add(header);
+
+        // Información del pedido
+        document.add(new Paragraph("🧾 Información del Pedido", headerFont));
+        document.add(new Paragraph("ID: " + pedido.getId(), normalFont));
+        document.add(new Paragraph("Fecha: " + pedido.getFechaCreacion(), normalFont));
+        document.add(new Paragraph("Estado: " + pedido.getEstado(), normalFont));
+        document.add(new Paragraph(" "));
+
+        // Información del cliente
+        document.add(new Paragraph("👤 Información del Cliente", headerFont));
+        document.add(new Paragraph("Nombre: " + pedido.getCliente().getNombre() + " " + pedido.getCliente().getApellido(), normalFont));
+        document.add(new Paragraph("Dirección: " + pedido.getCliente().getDireccion(), normalFont));
+        document.add(new Paragraph("Teléfono: " + pedido.getCliente().getTelefono(), normalFont));
+        document.add(new Paragraph(" "));
+
+        // Línea separadora
+        LineSeparator separator = new LineSeparator();
+        document.add(separator);
+        document.add(new Paragraph(" "));
+
+        // Detalles del pedido - tabla
+        document.add(new Paragraph("🛒 Detalles del Pedido", headerFont));
+        document.add(new Paragraph(" "));
+
+        PdfPTable table = new PdfPTable(3); // Solo Producto, Precio, Adicionales
+        table.setWidthPercentage(100);
+        table.setWidths(new float[]{3, 1.5f, 3});
+
+        table.addCell(new PdfPCell(new Phrase("Producto", boldFont)));
+        table.addCell(new PdfPCell(new Phrase("Precio", boldFont)));
+        table.addCell(new PdfPCell(new Phrase("Adicionales", boldFont)));
+
+        for (SeleccionarProductos sp : pedido.getCarrito().getProductosSeleccionados()) {
+            Producto producto = sp.getProducto();
+            String adicionales = "-";
+
+            if (sp.getAdicionales() != null && !sp.getAdicionales().isEmpty()) {
+                StringBuilder sb = new StringBuilder();
+                for (Adicional adicional : sp.getAdicionales()) {
+                    sb.append(adicional.getNombre())
+                      .append(" ($")
+                      .append(formatoPesos.format(adicional.getPrecio()))
+                      .append(")\n");
+                }
+                adicionales = sb.toString().trim();
+            }
+
+            table.addCell(new Phrase(producto.getNombre(), normalFont));
+            table.addCell(new Phrase("$" + formatoPesos.format(producto.getPrecio()), normalFont));
+            table.addCell(new Phrase(adicionales, normalFont));
+        }
+
+        document.add(table);
+        document.add(new Paragraph(" "));
+
+        // Total
+        Paragraph total = new Paragraph("💰 Total del Pedido: $" + formatoPesos.format(pedido.getTotal()), boldFont);
+        total.setAlignment(Element.ALIGN_RIGHT);
+        document.add(total);
+
+        // Cierre
+        document.add(new Paragraph("\nGracias por tu compra en *Sabor y Brasa* 🍽️", normalFont));
+
+        document.close();
+
+        byte[] pdfBytes = baos.toByteArray();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("pedido_" + pedido.getId() + ".pdf", "pedido_" + pedido.getId() + ".pdf");
+        headers.setContentLength(pdfBytes.length);
+
+        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+}
 
 }
