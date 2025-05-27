@@ -2,7 +2,9 @@ package com.example.demo.controlador;
 
 import com.example.demo.DTO.ClienteDTO;
 import com.example.demo.DTO.ClienteMapper;
+import com.example.demo.Security.CustomUserDetailService;
 import com.example.demo.entidades.Cliente;
+import com.example.demo.entidades.UserEntity;
 import com.example.demo.repositorio.UserRepository;
 import com.example.demo.servicio.ClienteService;
 import jakarta.servlet.http.HttpSession;
@@ -32,7 +34,8 @@ public class ClienteController {
   @Autowired
   private UserRepository userRepository;
 
-  
+  @Autowired
+private CustomUserDetailService customUserDetailService;
 
   //http://localhost:8090/clientes/all
   @GetMapping("/all") // Cambiado a /all para evitar conflictos con el método mostrarClientes
@@ -54,30 +57,22 @@ public class ClienteController {
   }
 
   //http://localhost:8090/clientes/add
-@PostMapping("/add")
-public ResponseEntity<ClienteDTO> agregarCliente(@RequestBody @Valid ClienteDTO clienteDTO) {
-    
-    // Validación de existencia del cliente (si aplica)
-    if (clienteRepository.findByEmail(clienteDTO.getEmail()) != null) {
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+ @PostMapping("/add")
+public ResponseEntity<?> agregarCliente(@Valid @RequestBody Cliente cliente) {
+    if (clienteService.buscarPorEmail(cliente.getEmail()).isPresent()) {
+        return ResponseEntity
+            .status(HttpStatus.BAD_REQUEST)
+            .body("Ya existe un cliente con ese email.");
     }
 
-    // Convertir de DTO a entidad
-    Cliente cliente = ClienteMapper.INSTANCE.convert(clienteDTO);
+    // Crear UserEntity, pero sin guardarlo todavía
+    UserEntity user = customUserDetailService.buildUserForCliente(cliente);
+    cliente.setUser(user); // Asóciala directamente
 
-    // Guardar el cliente
+    // Al guardar cliente, se guarda también el usuario gracias a CascadeType.ALL
     Cliente nuevoCliente = clienteService.add(cliente);
-
-    // Convertir de vuelta a DTO
-    ClienteDTO nuevoClienteDTO = ClienteMapper.INSTANCE.convert(nuevoCliente);
-
-    if (nuevoCliente == null) {
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-    return new ResponseEntity<>(nuevoClienteDTO, HttpStatus.CREATED);
+    return ResponseEntity.status(HttpStatus.CREATED).body(nuevoCliente);
 }
-
 
   //http://localhost:8090/clientes/delete/id
   @DeleteMapping("/delete/{id}") // Cambiado a /delete/{id} para evitar conflictos con el método eliminarCliente

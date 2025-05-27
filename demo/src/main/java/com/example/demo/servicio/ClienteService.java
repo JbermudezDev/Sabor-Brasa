@@ -41,4 +41,9 @@ public class ClienteService {
         return clienteRepository.findById(id);
     }
 
+    public Optional<Cliente> buscarPorEmail(String email) {
+    return clienteRepository.findByEmail(email);
+}
+
+
 }

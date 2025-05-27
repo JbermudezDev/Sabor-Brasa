@@ -124,7 +124,7 @@ public void ClienteRepository_findByEmail_ClienteEncontrado() {
     clienteRepository.save(cliente);
 
     // 2. Act
-    Cliente encontrado = clienteRepository.findByEmail(email);
+    Cliente encontrado = clienteRepository.findByEmail(email).get();
 
     // 3. Assert
     Assertions.assertThat(encontrado).isNotNull();

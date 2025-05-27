@@ -64,14 +64,17 @@ public class CustomUserDetailService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-     public UserEntity saveUserCliente(Cliente cliente){
-        UserEntity user = new UserEntity();
-        user.setUsername(cliente.getEmail());
-        user.setPassword(passwordEncoder.encode("123456"));
-        Role roles = roleRepository.findByName("CLIENTE").get();
-        user.setRoles(List.of(roles));
-        return userRepository.save(user);
-    }
+           public UserEntity buildUserForCliente(Cliente cliente){
+    UserEntity user = new UserEntity();
+    user.setUsername(cliente.getEmail());
+    user.setPassword(passwordEncoder.encode("123456"));
+    Role roles = roleRepository.findByName("CLIENTE")
+        .orElseThrow(() -> new RuntimeException("Rol CLIENTE no encontrado"));
+    user.setRoles(List.of(roles));
+    return user; // ¡No lo guardes aún!
+}
+
+
 
         public UserEntity saveUserDomiciliario(Domiciliario domiciliario){
             UserEntity user = new UserEntity();

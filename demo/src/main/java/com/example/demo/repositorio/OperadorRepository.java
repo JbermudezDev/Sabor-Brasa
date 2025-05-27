@@ -8,5 +8,6 @@ import java.util.Optional;
 @Repository
 public interface OperadorRepository extends JpaRepository<Operador, Integer> {
     boolean existsByUsuario(String usuario);
+    Optional<Operador> findByUsuario(String usuario);
     Optional<Operador> findByUsuarioAndContrasena(String usuario, String contrasena);
 }

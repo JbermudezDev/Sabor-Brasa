@@ -45,4 +45,9 @@ public class OperadorService {
     public Operador autenticar(String usuario, String contrasena) {
         return operadorRepository.findByUsuarioAndContrasena(usuario, contrasena).orElse(null);
     }
+
+    public Optional<Operador> buscarPorUsuario(String usuario) {
+    return operadorRepository.findByUsuario(usuario);
+}
+
 }

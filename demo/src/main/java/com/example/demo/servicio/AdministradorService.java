@@ -18,6 +18,10 @@ public class AdministradorService {
         return administradorRepository.findByEmailAndPassword(email, password);
     }
     
+    public Optional<Administrador> buscarPorEmail(String email) {
+    return administradorRepository.findByEmail(email);
+}
+
 
 
 }

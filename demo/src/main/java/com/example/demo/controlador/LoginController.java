@@ -21,8 +21,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/login")
@@ -159,91 +163,91 @@ public class LoginController {
     return ResponseEntity.ok("Sesión de cliente cerrada correctamente");
   }
 
-  @PostMapping
-  public ResponseEntity<?> loginUnificado(
-    @RequestBody Map<String, String> credenciales
-  ) {
-    try {
-      String emailOrUsuario = credenciales.get("email");
-      String password = credenciales.get("password");
+ @PostMapping
+public ResponseEntity<?> loginUnificado(@RequestBody Map<String, String> credenciales) {
+    String username = credenciales.get("email"); // puede ser email o usuario
+    String password = credenciales.get("password");
 
-      if (emailOrUsuario == null || password == null) {
-        return ResponseEntity
-          .badRequest()
-          .body("Faltan datos de autenticación");
-      }
-
-      // Intentar como ADMIN
-      Administrador admin = administradorService.autenticar(
-        emailOrUsuario,
-        password
-      );
-      if (admin != null) {
-        Authentication auth = authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(emailOrUsuario, password)
-        );
-        SecurityContextHolder.getContext().setAuthentication(auth);
-
-        String token = jwtGenerator.generateToken(auth);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("token", token);
-        response.put("rol", "ADMIN");
-        response.put("usuario", admin);
-        return ResponseEntity.ok(response);
-      }
-
-      // Intentar como CLIENTE (sin cookies aquí)
-      Cliente cliente = clienteService.autenticar(emailOrUsuario, password);
-      if (cliente != null) {
-        Authentication auth = authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(emailOrUsuario, password)
-        );
-        SecurityContextHolder.getContext().setAuthentication(auth);
-
-        String token = jwtGenerator.generateToken(auth);
-
-        Cliente clienteAutenticado = clienteService.autenticar(
-          emailOrUsuario,
-          password
-        );
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("token", token);
-        response.put("rol", "CLIENTE");
-        response.put("usuario", cliente);
-        response.put("cliente", clienteAutenticado);
-        return ResponseEntity.ok(response);
-      }
-
-      // Intentar como OPERADOR
-      Operador operador = operadorService.autenticar(emailOrUsuario, password);
-      if (operador != null) {
-        Authentication auth = authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(emailOrUsuario, password)
-        );
-        SecurityContextHolder.getContext().setAuthentication(auth);
-
-        String token = jwtGenerator.generateToken(auth);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("token", token);
-        response.put("rol", "OPERADOR");
-        response.put("usuario", operador);
-        return ResponseEntity.ok(response);
-      }
-
-      return ResponseEntity
-        .status(HttpStatus.UNAUTHORIZED)
-        .body("Credenciales inválidas");
-    } catch (BadCredentialsException e) {
-      return ResponseEntity
-        .status(HttpStatus.UNAUTHORIZED)
-        .body("Credenciales incorrectas");
-    } catch (Exception e) {
-      return ResponseEntity
-        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body("Error en el servidor");
+    if (username == null || password == null) {
+        return ResponseEntity.badRequest().body("Faltan datos de autenticación");
     }
-  }
+
+    try {
+        // Autenticación con Spring Security
+        Authentication auth = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(username, password)
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        String token = jwtGenerator.generateToken(auth);
+
+        // Extraer rol
+        String rol = auth.getAuthorities().stream()
+            .map(GrantedAuthority::getAuthority)
+            .findFirst().orElse("UNKNOWN");
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", token);
+        response.put("rol", rol);
+
+        // Obtener entidad según el rol
+        switch (rol) {
+            case "ADMIN":
+                Optional<Administrador> adminOpt = administradorService.buscarPorEmail(username);
+                if (adminOpt.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Administrador no encontrado");
+                response.put("usuario", adminOpt.get());
+                break;
+
+            case "OPERADOR":
+                Optional<Operador> operadorOpt = operadorService.buscarPorUsuario(username);
+                if (operadorOpt.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Operador no encontrado");
+                response.put("usuario", operadorOpt.get());
+                break;
+
+            case "CLIENTE":
+                Optional<Cliente> clienteOpt = clienteService.buscarPorEmail(username);
+                if (clienteOpt.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado");
+                response.put("usuario", clienteOpt.get());
+                break;
+
+            default:
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Rol no autorizado");
+        }
+
+        return ResponseEntity.ok(response);
+
+    } catch (BadCredentialsException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en el servidor");
+    }
+}
+
+@PostMapping("/logout")
+public ResponseEntity<?> logout(HttpServletResponse response, HttpSession session) {
+    // Invalida la sesión HTTP (opcional si usas JWT)
+    if (session != null) {
+        session.invalidate();
+    }
+
+    // Borra cookies (por si en algún momento las usas)
+    Cookie jwtTokenCookie = new Cookie("jwtToken", null);
+    jwtTokenCookie.setMaxAge(0);
+    jwtTokenCookie.setPath("/");
+    response.addCookie(jwtTokenCookie);
+
+    Cookie clienteCookie = new Cookie("clienteId", null);
+    clienteCookie.setMaxAge(0);
+    clienteCookie.setPath("/");
+    response.addCookie(clienteCookie);
+
+    Cookie carritoCookie = new Cookie("carritoId", null);
+    carritoCookie.setMaxAge(0);
+    response.addCookie(carritoCookie);
+
+    // Respuesta al frontend (aunque frontend puede borrar localStorage por sí solo)
+    return ResponseEntity.ok("Sesión cerrada correctamente");
+}
+
+
 }
