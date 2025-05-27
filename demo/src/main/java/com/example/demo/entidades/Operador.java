@@ -21,9 +21,11 @@ import java.util.List;
 public class Operador {
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
-    private UserEntity user;
+            @OneToOne
+        @JoinColumn(name = "user_id", referencedColumnName = "id")
+        @JsonIgnore
+        private UserEntity user;
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -84,19 +84,25 @@ public class OperadorController {
 
     //http://localhost:8090/operadores/delete/id
     // Eliminar un operador por ID
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> eliminarOperador(@PathVariable Integer id) {
+ @DeleteMapping("/delete/{id}")
+public ResponseEntity<Map<String, String>> eliminarOperador(@PathVariable Integer id) {
+    Map<String, String> response = new HashMap<>();
     try {
-        // Verificar si el operador existe
-        if (!operadorService.findById(id).isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El operador con ID " + id + " no existe");
+        Optional<Operador> optionalOperador = operadorService.findById(id);
+        if (optionalOperador.isEmpty()) {
+            response.put("message", "El operador con ID " + id + " no existe");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
 
-        // Eliminar el operador
         operadorService.deleteById(id);
-        return ResponseEntity.ok("Operador eliminado correctamente");
+        response.put("message", "Operador eliminado correctamente");
+        return ResponseEntity.ok(response);
+
     } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar el operador: " + e.getMessage());
+        response.put("message", "Error al eliminar el operador: " + e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }
+
+
 }
